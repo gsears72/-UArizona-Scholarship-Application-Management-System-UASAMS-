@@ -1,5 +1,0 @@
-#python 3.12.1
-#pip install -r requirments.txt
-
-django
-mysqlclient
