@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return render(request,'student/home.html',{})
+    return render(request,'home.html',{})
 
 def about(request):
-    return render(request,'student/about.html',{})
+    return render(request,'about.html',{})
