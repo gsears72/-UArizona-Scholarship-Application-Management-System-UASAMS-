@@ -22,5 +22,9 @@ urlpatterns = [
     path('', include('SFWEScholarships.urls')),
     path('Login/',include('django.contrib.auth.urls')),
     path('Login/',include('Login.urls')),
+    path('ApplicantReviewer/',include('ApplicantReviewer.urls')),
+    path('ScholarshipAdministrator/',include('ScholarshipAdministrator.urls')),
+    path('ScholarshipDonor/',include('ScholarshipDonor.urls')),
+    path('Student/',include('Student.urls')),
 
 ]
