@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SFWEScholarships.apps.SfwescholarshipsConfig',
     'Login',
+    'ScholarshipDonor.apps.ScholarshipdonorConfig',
+    'ScholarshipAdministrator.apps.ScholarshipadministratorConfig',
+    'ApplicantReviewer.apps.ApplicantreviewerConfig',
+    'Student.apps.StudentConfig',
+
 ]
 
 MIDDLEWARE = [
