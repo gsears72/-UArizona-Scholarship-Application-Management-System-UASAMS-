@@ -1,43 +1,69 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html' %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>SFWE Scholarships</title>
-  </head>
-  <body>
-    {% include 'navbar.html' %}
-    <br/>
-    <h1>Reviewer</h1>
-    <div class = 'container'>
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>{{ message }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+{% block content %}
+<h1>Applicant Reviewer</h1>
+<div class="m-2 p-2 container-fluid rounded bg-dark text-white">
+    <!-- Content here -->
+    <h2>Homepage</h2>
+    <div class="row">
+        <div class="col">
+            <div class="m-2 p-2 btn-group d-flex" role="group" aria-label="Basic example";>
+                <button type="button" class="btn btn-outline-light w-100 btn-lg">View/Search Scholarhips <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                    <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                </svg></button>
+                <button type="button" class="btn btn-outline-light w-100 btn-lg">Search by Applicant Criteria <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                  </svg></button>
+                <button type="button" class="btn btn-outline-light w-100 btn-lg"> My Reviewed Applications <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
+                    <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8z"/>
+                  </svg></button>
+                <button type="button" class="btn btn-outline-light w-100 btn-lg"> Approved Recipients <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                  </svg></button>
             </div>
-          {% endfor %}
-        {% endif %}
-
-        {% block content %}
-            
-        {% endblock %}
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
-
+        </div>
+    </div>
+        <div class="container">
+            <h3>Generated Reports</h3>
+            <hr>
+            <div class="row">
+              <div class="col">
+                Reviews:
+                <br>
+                <a href="#" class="link-primary">Completed Application Reviews</a>
+                <br>
+                <a href="#" class="link-primary">Incomplete Application Reviews</a>
+                <br>
+                <br>
+                <br>
+              </div>
+              <div class="col">
+                Summary Reports:
+                <br>
+                <a href="#" class="link-primary">Assessment Distribution</a>
+                <br>
+                <a href="#" class="link-primary">Applicant Ratings Summary</a>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="col">
+                Matching Reports:
+                <br>
+                <a href="#" class="link-primary">Applications with Mismatched Criteria</a>
+                <br>
+                <a href="#" class="link-primary">Applicant Matching Summary</a>
+                <br>
+                <a href="#" class="link-primary">Recommendation Summary by Matching Criteria</a>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

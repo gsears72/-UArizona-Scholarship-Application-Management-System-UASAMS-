@@ -7,3 +7,12 @@ from django.http import HttpResponse
 
 def home(request):
     return render(request,'Shome.html',{})
+
+def ViewScholarships(request):
+    return render(request, 'SViewScholarships.html', {})
+
+def ViewProfile(request):
+    return render(request, 'SViewProfile.html', {})
+
+def CheckAppStatus(request):
+    return render(request, 'SCheckAppStatus.html', {})
