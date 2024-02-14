@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Create a New Scholarship</h1>
+
+    <form action="{% url 'create_scholarship_submit' %}" method="POST">
+        {% csrf_token %}
+        <!-- Repeating the form structure for creating a scholarship as outlined before -->
+        <!-- Add all necessary fields as per the Scholarship class attributes -->
+        <!-- Ensure names of the input fields match those expected in your view -->
+        <!-- Implementation here is identical to the form in SAhome.html for creating scholarships -->
+        <!-- Placeholder for form fields -->
+        
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-success">Submit Scholarship</button>
+    </form>
+
+    <a href="{% url 'SAhome' %}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}
