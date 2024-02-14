@@ -6,7 +6,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def home(request):
-    return render(request,'Shome.html',{})
+    return render(request,'Shome.html', {})
 
 def ViewScholarships(request):
     return render(request, 'SViewScholarships.html', {})
