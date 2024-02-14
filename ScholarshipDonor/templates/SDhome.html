@@ -1,43 +1,73 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html' %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>SFWE Scholarships</title>
-  </head>
-  <body>
-    {% include 'navbar.html' %}
-    <br/>
-    <h1>Donor</h1>
-    <div class = 'container'>
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>{{ message }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          {% endfor %}
-        {% endif %}
-
-        {% block content %}
-            
-        {% endblock %}
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
-
+{% block content %}
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+  <div id="click_modal" style="display:none;"></div>
+  <h1 style="text-align:center;">Donor Page</h1>
+  <hr>
+  <div>
+    <table class="table table-hover ">
+      <thead class="table-dark">
+        <tr>
+          <th>Scholarship Name</th>
+          <th>Max per candidate</th>
+          <th>Total</th>
+          <th>Date Created</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody style="vertical-align: middle;">
+        {% for scholarship in scholarships %}
+          <tr>
+            <td>{{ scholarship.name }}</td>
+            <td>${{ scholarship.amount }}</td>
+            <td>${{ scholarship.totalAvail }}</td>
+            <td>{{ scholarship.dateCreated }}</td>
+            <td>
+              <button 
+                class="btn btn-success open-incident"
+                data-bs-toggle="modal" 
+                data-bs-target="#scholarshipModal"
+                data-name="{{scholarship.name}}"
+                data-amount="{{scholarship.amount}}" 
+                data-donor="{{scholarship.donor}}"
+                data-totalAvail="{{scholarship.totalAvail}}"
+                data-minGPA="{{scholarship.minGPA}}"
+                data-major="{{scholarship.major}}" 
+                data-dateCreated="{{scholarship.dateCreated}}"
+                data-applicants="{{scholarship.applicants}}" 
+                data-awarded="{{scholarship.awarded}}"
+                data-desc="{{scholarship.description}}">
+                More
+              </button>
+            </td>
+          </tr>
+        {% endfor %}
+        {% include "ScholarshipView.html" %}
+    </table>
+    
+  </div>
+  <script>
+    var Modal = document.getElementById('scholarshipModal')
+    Modal.addEventListener('show.bs.modal', function (event) {
+    // Button that triggered the modal
+    var button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    var name = button.getAttribute('data-name')
+    var desc = button.getAttribute('data-desc')
+    var gpa = button.getAttribute('data-minGPA')
+    // get content to update
+    var modalTitle = Modal.querySelector('.modal-title')
+    var modalDesc = Modal.querySelector('.modal-body')
+    var modalGPA = Modal.querySelector('.modal-gpa')
+    //update it
+    modalTitle.textContent = name
+    modalDesc.textContent = desc
+    modalGPA.textContent = gpa
+    })
+  </script>
+</body>
+{% endblock %}
