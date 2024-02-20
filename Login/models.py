@@ -235,10 +235,6 @@ class ENGRITSupportStaff(User):
     class Meta:
         proxy = True
 
-SECURITY_QUESTION_CHOICES = [
-    ('q1', 'What is your mother\'s maiden name?'),
-    # add more questions...
-]
 
 
 

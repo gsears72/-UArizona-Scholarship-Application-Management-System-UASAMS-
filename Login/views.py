@@ -13,7 +13,7 @@ def login_user(request):
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request,'success')
+            messages.success(request,'Login Sucessful')
             return redirect('home')
             # Redirect to a success page.
         else:
