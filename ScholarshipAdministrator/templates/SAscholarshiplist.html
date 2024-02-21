@@ -9,27 +9,32 @@
             <tr>
                 <th>Name</th>
                 <th>Amount</th>
-                <th>Donor</th>
-                <th>Available Total</th>
-                <th>Min GPA</th>
-                <th>Major</th>
-                <th>Date Created</th>
-                <th>Actions</th>
+                <th>Donor Name</th>
+                <th>Donor Phone Number</th>
+                <th>Donor Email</th>
+                <th>Number of Scholarships Available</th>
+                <th>Required Majors or Minors</th>
+                <th>Required GPA</th>
+                <th>Application Deadline</th>
+                <th>Other Requirements</th>
             </tr>
         </thead>
         <tbody>
             {% for scholarship in scholarships %}
             <tr>
-                <td>{{ scholarship.name }}</td>
-                <td>{{ scholarship.amount }}</td>
-                <td>{{ scholarship.donor }}</td>
-                <td>{{ scholarship.totalAvail }}</td>
-                <td>{{ scholarship.minGPA }}</td>
-                <td>{{ scholarship.major }}</td>
-                <td>{{ scholarship.dateCreated }}</td>
+                <td>{{ scholarship.scholarship_name }}</td>
+                <td>{{ scholarship.scholarship_amount }}</td>
+                <td>{{ scholarship.donor_full_name }}</td>
+                <td>{{ scholarship.donor_phone_number }}</td>
+                <td>{{ scholarship.donor_email }}</td>
+                <td>{{ scholarship.num_scholarship_available }}</td>
+                <td>{{ scholarship.required_majors_or_minors }}</td>
+                <td>{{ scholarship.required_gpa }}</td>
+                <td>{{ scholarship.application_deadline }}</td>
+                <td>{{ scholarship.other_requirements }}</td>
                 <td>
-                    <a href="{% url 'edit_scholarship' scholarship.id %}" class="btn btn-primary">Edit</a>
-                    <a href="{% url 'delete_scholarship' scholarship.id %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'edit_scholarship' scholarship.scholarship_name %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_scholarship' scholarship.scholarship_name %}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             {% endfor %}

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
-from .tempdata import tempdata
+from ScholarshipDonor.tempData import tempData
 
 # Create your views here.
 
@@ -13,10 +13,10 @@ def create_scholarship(request):
     return render(request, 'SAcreatescholarship.html', {})
 
 def scholarship_list(request):
-    return render(request, 'SAscholarshiplist.html', {'scholarships': tempdata})
+    return render(request, 'SAscholarshiplist.html', {'scholarships': tempData})
 
 def edit_scholarship(request):
-    return render(request, 'SAeditscholarship.html', {})
+    return render(request, 'SAeditscholarship.html', {'scholarship': tempData})
 
 def delete_scholarship(request):
     return render(request, 'SAdeletescholarship.html', {})
