@@ -3,5 +3,8 @@ from . import views
 
 urlpatterns = [
     path('ARhome', views.ARhome, name='ARhome'),
-    path('ViewScholarshipAR', views.ARhome, name='ViewScholarshipAR')
+    path('ViewScholarshipsAR', views.ViewScholarshipsAR, name='ViewScholarshipsAR'),
+    path('SearchApplicants', views.SearchApplicants, name='SearchApplicants'),
+    path('MyReviewedApps', views.MyReviewedApps, name='MyReviewedApps'),
+    path('Approved', views.Approved, name='Approved')
 ]
