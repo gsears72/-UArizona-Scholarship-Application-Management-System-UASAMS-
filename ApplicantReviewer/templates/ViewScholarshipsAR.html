@@ -2,4 +2,66 @@
 
 {% block content %}
 <h1>Scholarships</h1>
+  <body>
+      <table class="table table-hover ">
+        <thead class="table-dark">
+          <tr>
+            <th>Scholarship Name</th>
+            <th>Max per candidate</th>
+            <th>Total</th>
+            <th>Date Created</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody style="vertical-align: middle;">
+          {% for scholarship in scholarships %}
+            <tr>
+              <td>{{ scholarship.name }}</td>
+              <td>${{ scholarship.amount }}</td>
+              <td>${{ scholarship.totalAvail }}</td>
+              <td>{{ scholarship.dateCreated }}</td>
+              <td>
+                <button 
+                  class="btn btn-success open-incident"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#scholarshipModal"
+                  data-name="{{scholarship.name}}"
+                  data-amount="{{scholarship.amount}}" 
+                  data-donor="{{scholarship.donor}}"
+                  data-totalAvail="{{scholarship.totalAvail}}"
+                  data-minGPA="{{scholarship.minGPA}}"
+                  data-major="{{scholarship.major}}" 
+                  data-dateCreated="{{scholarship.dateCreated}}"
+                  data-applicants="{{scholarship.applicants}}" 
+                  data-awarded="{{scholarship.awarded}}"
+                  data-desc="{{scholarship.description}}">
+                  More
+                </button>
+              </td>
+            </tr>
+          {% endfor %}
+          {% include "ScholarshipView.html" %}
+      </table>
+      
+    </div>
+    <script>
+      var Modal = document.getElementById('scholarshipModal')
+      Modal.addEventListener('show.bs.modal', function (event) {
+      // Button that triggered the modal
+      var button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      var name = button.getAttribute('data-name')
+      var desc = button.getAttribute('data-desc')
+      var gpa = button.getAttribute('data-minGPA')
+      // get content to update
+      var modalTitle = Modal.querySelector('.modal-title')
+      var modalDesc = Modal.querySelector('.modal-body')
+      var modalGPA = Modal.querySelector('.modal-gpa')
+      //update it
+      modalTitle.textContent = name
+      modalDesc.textContent = desc
+      modalGPA.textContent = gpa
+      })
+    </script>
+  </body>
 {% endblock %}
