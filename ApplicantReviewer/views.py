@@ -19,3 +19,6 @@ def MyReviewedApps(request):
 
 def Approved(request):
     return render(request,'Approved.html',{})
+
+def ViewScholarshipApplicants(request):
+    return render(request,'ViewScholarshipApplicants.html',{})
