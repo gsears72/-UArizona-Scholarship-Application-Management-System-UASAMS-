@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 from ScholarshipDonor.tempData import tempData
+from ScholarshipDonor.models import Scholarship
 
 # Create your views here.
 
@@ -13,13 +14,23 @@ def create_scholarship(request):
     return render(request, 'SAcreatescholarship.html', {})
 
 def scholarship_list(request):
-    return render(request, 'SAscholarshiplist.html', {'scholarships': tempData})
+    scholarships_list = Scholarship.objects.all()
+    return render(request, 'SAscholarshiplist.html', {'scholarships': scholarships_list})
 
-def edit_scholarship(request):
-    return render(request, 'SAeditscholarship.html', {'scholarship': tempData})
+def edit_scholarship(request, scholarship_name):
+    scholarship = Scholarship.objects.get(scholarship_name=scholarship_name)
+    return render(request, 'SAeditscholarship.html', {'scholarship': scholarship})
 
-def delete_scholarship(request):
-    return render(request, 'SAdeletescholarship.html', {})
+def delete_scholarship_page(request, scholarship_name):
+    scholarship = Scholarship.objects.get(scholarship_name=scholarship_name)
+    return render(request, 'SAdeletescholarship.html', {'scholarship': scholarship})
+
+def delete_scholarship_db(request, scholarship_name):
+    scholarship = Scholarship.objects.get(scholarship_name=scholarship_name)
+    scholarship.delete()
+    return render(request, 'SAscholarshipdeleted.html', {})
+
+
 
 def create_scholarship_submit(request):
     if request.method == "POST":
