@@ -1,3 +1,10 @@
+image: python
+
+default:
+  tags:
+    - test
+
+
 run_test:
   stage: test
   image: python:3.12.1-bookworm
