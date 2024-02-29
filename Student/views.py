@@ -18,7 +18,9 @@ def ViewProfile(request):
     return render(request, 'SViewProfile.html', {})
 
 def CheckAppStatus(request):
-    return render(request, 'SCheckAppStatus.html', {})
+    application_object = Application.objects.all()
+    context = {'application_object' : application_object}
+    return render(request, 'SCheckAppStatus.html',context)
 
 def ViewScholarshipInfo(request):
     return render(request, 'SViewScholarshipInfo.html', {})
