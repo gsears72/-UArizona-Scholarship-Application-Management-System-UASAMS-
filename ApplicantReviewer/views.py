@@ -3,13 +3,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 
-# Create your views here.
+from ScholarshipDonor.models import Scholarship
 
 def ARhome(request):
     return render(request,'ARhome.html',{})
 
 def ViewScholarshipsAR(request):
-    return render(request,'ViewScholarshipsAR.html',{})
+    scholarships_object = Scholarship.objects.all()
+    context = {'scholarships_object' : scholarships_object}
+    return render(request,'ViewScholarshipsAR.html', context)
 
 def SearchApplicants(request):
     return render(request,'SearchApplicants.html',{})
