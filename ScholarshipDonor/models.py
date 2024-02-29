@@ -30,7 +30,7 @@ class Donor(models.Model):
     phone_number = models.CharField(max_length=15)  # Assuming phone numbers as strings
     email = models.EmailField()
 
-    def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.username}"
+
+        
 
     

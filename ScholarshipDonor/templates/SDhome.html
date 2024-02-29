@@ -13,34 +13,34 @@
       <thead class="table-dark">
         <tr>
           <th>Scholarship Name</th>
-          <th>Max per candidate</th>
-          <th>Total</th>
-          <th>Date Created</th>
+          <th>Scholarship Amount</th>
+          <th>Number of Scholarships</th>
+          <th>Deadline</th>
           <th> </th>
         </tr>
       </thead>
       <tbody style="vertical-align: middle;">
         {% for scholarship in scholarships %}
           <tr>
-            <td>{{ scholarship.name }}</td>
-            <td>${{ scholarship.amount }}</td>
-            <td>${{ scholarship.totalAvail }}</td>
-            <td>{{ scholarship.dateCreated }}</td>
+            <td>{{ scholarship.scholarship_name }}</td>
+            <td>${{ scholarship.scholarship_amount }}</td>
+            <td>${{ scholarship.num_scholarships_available }}</td>
+            <td>{{ scholarship.application_deadline }}</td>
             <td>
               <button 
                 class="btn btn-success open-incident"
                 data-bs-toggle="modal" 
                 data-bs-target="#scholarshipModal"
-                data-name="{{scholarship.name}}"
+                data-name="{{scholarship.scholarship_name}}"
                 data-amount="{{scholarship.amount}}" 
                 data-donor="{{scholarship.donor}}"
                 data-totalAvail="{{scholarship.totalAvail}}"
-                data-minGPA="{{scholarship.minGPA}}"
+                data-minGPA="{{scholarship.required_gpa}}"
                 data-major="{{scholarship.major}}" 
                 data-dateCreated="{{scholarship.dateCreated}}"
                 data-applicants="{{scholarship.applicants}}" 
                 data-awarded="{{scholarship.awarded}}"
-                data-desc="{{scholarship.description}}">
+                data-desc="{{scholarship.other_requirements}}">
                 More
               </button>
             </td>
