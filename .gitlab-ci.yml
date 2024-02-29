@@ -3,7 +3,5 @@ run_test:
     - test
   stage: test
   image: python:3.12.1-bookworm
-  before_script:
-    - apt-get && apt-get install make
   script:
     - python manage.py test
