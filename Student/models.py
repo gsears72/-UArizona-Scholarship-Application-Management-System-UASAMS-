@@ -16,9 +16,48 @@ class Student(models.Model):
     email = models.EmailField()
     
     # Additional Information
+
+    major_requirement_choices = (
+        ('Engineering', 'Engineering'), 
+        ('Business', 'Business'),
+        ('Music', 'Music'), 
+        ('Art', 'Art'),
+        ('Performing Arts', 'Performing Arts'), 
+        ('Theater Tech', 'Theater Tech'),
+        ('Photography', 'Photography'), 
+        ('Nursing', 'Nursing'), 
+        ('Computer Science', 'Computer Science'), 
+        ('Biology', 'Biology'), 
+        ('Chemistry', 'Chemistry'), 
+        ('Physics', 'Physics'), 
+        ('Political Science', 'Political Science'), 
+        ('Literature', 'Literature'), 
+        ('Writing', 'Writing'), 
+        ('Foreign Language', 'Foreign Language'),
+        ('Law', 'Law'), 
+        ('Medicine', 'Medicine'), 
+        ('Communications', 'Communications'), 
+        ('Marketing', 'Marketing'), 
+        ('Finance', 'Finance'), 
+        ('Ecomomics', 'Economics'), 
+        ('Math', 'Math'), 
+        ('Environmental Science', 'Environmental Science'), 
+        ('Public Health', 'Public Health'), 
+        ('Graphic Design', 'Graphic Design'), 
+        ('Architecture', 'Architecture'), 
+        ('Education', 'Education'), 
+        ('Astronomy', 'Astronomy'), 
+        ('Social Sciences', 'Social Sciences'), 
+        ('Fashion', 'Fashion'), 
+        ('Statistics', 'Statistics'),
+        ('Geology', 'Geology'), 
+        ('Neuroscience', 'Neuroscience'),
+        ('Psychology', 'Psychology'),
+    )
+
     preferred_pronoun = models.CharField(max_length=20, blank=True, null=True)
-    major = models.CharField(max_length=100)
-    minor = models.CharField(max_length=100, blank=True, null=True)
+    major = models.CharField(max_length=30 ,choices = major_requirement_choices)
+    minor = models.CharField(max_length=30 ,choices = major_requirement_choices, blank=True, null=True)
     gpa = models.DecimalField(max_digits=3, decimal_places=2, blank=True, null=True)
     current_year_choices = [
         ('Freshman', 'Freshman'),
