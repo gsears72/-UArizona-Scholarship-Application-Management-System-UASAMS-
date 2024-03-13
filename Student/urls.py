@@ -7,5 +7,6 @@ urlpatterns = [
     path('SViewProfile', views.ViewProfile, name= 'SViewProfile'),
     path('SCheckAppStatus', views.CheckAppStatus, name= 'SCheckAppStatus'),
     path('SViewScholarshipInfo', views.ViewScholarshipInfo, name= 'SViewScholarshipInfo'),
+    path('SViewEligableScholarships', views.ViewEligableScholarships, name= 'SViewEligableScholarships'),
 
 ]
