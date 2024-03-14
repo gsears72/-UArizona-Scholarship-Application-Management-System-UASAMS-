@@ -53,6 +53,7 @@ class Student(models.Model):
         ('Geology', 'Geology'), 
         ('Neuroscience', 'Neuroscience'),
         ('Psychology', 'Psychology'),
+        ('none', 'none'),
     )
 
     preferred_pronoun = models.CharField(max_length=20, blank=True, null=True)

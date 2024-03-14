@@ -38,6 +38,7 @@ class Scholarship(models.Model):
         ('Geology', 'Geology'), 
         ('Neuroscience', 'Neuroscience'),
         ('Psychology', 'Psychology'),
+        ('none', 'none'),
     )
    
    
