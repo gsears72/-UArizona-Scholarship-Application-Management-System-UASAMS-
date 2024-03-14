@@ -22,8 +22,17 @@ def create_scholarship(request):
     return render(request, 'SAcreatescholarship.html', {'form': form})
 
 def scholarship_list(request):
-    scholarships_list = Scholarship.objects.all()
-    return render(request, 'SAscholarshiplist.html', {'scholarships': scholarships_list})
+    query = request.GET.get('q', '')  # Get the search query from 'q' parameter, default to empty string
+    if query:
+        # Filter scholarships based on the search query
+        scholarships = Scholarship.objects.filter(
+            scholarship_name__icontains=query
+            # You can add more fields to filter upon as needed, like donor_name__icontains=query, etc.
+        )
+    else:
+        scholarships = Scholarship.objects.all()
+    
+    return render(request, 'SAscholarshiplist.html', {'scholarships': scholarships})
 
 def edit_scholarship(request, scholarship_name):
     scholarship = get_object_or_404(Scholarship, scholarship_name=scholarship_name)
