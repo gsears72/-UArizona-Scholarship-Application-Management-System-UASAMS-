@@ -32,6 +32,8 @@ build_image:
     - docker push $IMAGE_NAME:$IMAGE_TAG
 
 sonarqube-check:
+  tags:
+    - test
   stage: sonarqube-check
   image: 
     name: sonarsource/sonar-scanner-cli:5.0
