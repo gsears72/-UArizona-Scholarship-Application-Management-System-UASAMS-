@@ -27,4 +27,6 @@ def ViewScholarshipInfo(request):
     return render(request, 'SViewScholarshipInfo.html', {})
 
 def ViewEligableScholarships(request):
-    return render(request, 'SViewEligableScholarships.html', {})
+    scholarships_object = Scholarship.objects.all()
+    context = {'scholarships_object' : scholarships_object}
+    return render(request, 'SViewEligableScholarships.html', context)
