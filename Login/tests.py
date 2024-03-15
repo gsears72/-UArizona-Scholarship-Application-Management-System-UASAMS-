@@ -33,4 +33,3 @@ class UserModelTests(TestCase):
             user = None
 
         self.assertEqual(user, None)
-

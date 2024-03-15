@@ -11,4 +11,5 @@ from .models import Scholarship
 # Create your views here.
 
 def home(request):
-    return render(request,'SDhome.html',{'scholarships': tempData})
+    scholarships = Scholarship.objects.all()
+    return render(request,'SDhome.html',{'scholarships': scholarships})

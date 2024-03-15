@@ -3,34 +3,32 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from Login.models import User
 
+# Define security question choices
 
-
-
-
+SECURITY_QUESTION_CHOICES = [
+    ('1', "What is your mother's maiden name?"),
+    ('2', "What is the name of your first pet?"),
+    ('3', "In what city were you born?"),
+    ('4', "What is the name of your favorite teacher?"),
+    ('5', "What is your favorite movie?"),
+    ('6', "What is the make and model of your first car?"),
+    ('7', "What is the name of your childhood best friend?"),
+    ('8', "What is your favorite book?"),
+    ('9', "What is the name of the street you grew up on?"),
+    ('10', "What is your favorite sports team?"),
+    ('11', "What is your favorite color?"),
+    ('12', "What is the name of the company where you had your first job?"),
+    ('13', "What is the middle name of your oldest sibling?"),
+    ('14', "What is the name of your favorite fictional character?"),
+    ('15', "What is your favorite food?"),
+    ('16', "What was the model of your first cellphone?"),
+    ('17', "What is the name of the first school you attended?"),
+    ('18', "What is the birthdate of your oldest cousin?"),
+    ('19', "What is the name of the hospital where you were born?"),
+    ('20', "What is your favorite vacation destination?"),
+    ]
 
 class CreateStudentForm(UserCreationForm):
-    SECURITY_QUESTION_CHOICES = [
-        ('1', "What is your mother's maiden name?"),
-        ('2', "What is the name of your first pet?"),
-        ('3', "In what city were you born?"),
-        ('4', "What is the name of your favorite teacher?"),
-        ('5', "What is your favorite movie?"),
-        ('6', "What is the make and model of your first car?"),
-        ('7', "What is the name of your childhood best friend?"),
-        ('8', "What is your favorite book?"),
-        ('9', "What is the name of the street you grew up on?"),
-        ('10', "What is your favorite sports team?"),
-        ('11', "What is your favorite color?"),
-        ('12', "What is the name of the company where you had your first job?"),
-        ('13', "What is the middle name of your oldest sibling?"),
-        ('14', "What is the name of your favorite fictional character?"),
-        ('15', "What is your favorite food?"),
-        ('16', "What was the model of your first cellphone?"),
-        ('17', "What is the name of the first school you attended?"),
-        ('18', "What is the birthdate of your oldest cousin?"),
-        ('19', "What is the name of the hospital where you were born?"),
-        ('20', "What is your favorite vacation destination?"),
-    ]
 
     # Define form fields with corresponding widgets and attributes
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))  
@@ -70,28 +68,6 @@ class CreateStudentForm(UserCreationForm):
         self.fields['password1'].widget.attrs.update({'autocomplete': 'off'})
 
 class CreateApplicantReviewerForm(UserCreationForm):
-    SECURITY_QUESTION_CHOICES = [
-        ('1', "What is your mother's maiden name?"),
-        ('2', "What is the name of your first pet?"),
-        ('3', "In what city were you born?"),
-        ('4', "What is the name of your favorite teacher?"),
-        ('5', "What is your favorite movie?"),
-        ('6', "What is the make and model of your first car?"),
-        ('7', "What is the name of your childhood best friend?"),
-        ('8', "What is your favorite book?"),
-        ('9', "What is the name of the street you grew up on?"),
-        ('10', "What is your favorite sports team?"),
-        ('11', "What is your favorite color?"),
-        ('12', "What is the name of the company where you had your first job?"),
-        ('13', "What is the middle name of your oldest sibling?"),
-        ('14', "What is the name of your favorite fictional character?"),
-        ('15', "What is your favorite food?"),
-        ('16', "What was the model of your first cellphone?"),
-        ('17', "What is the name of the first school you attended?"),
-        ('18', "What is the birthdate of your oldest cousin?"),
-        ('19', "What is the name of the hospital where you were born?"),
-        ('20', "What is your favorite vacation destination?"),
-    ]
 
     # Define form fields with corresponding widgets and attributes
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))  
@@ -132,28 +108,6 @@ class CreateApplicantReviewerForm(UserCreationForm):
 
 
 class CreateScholorshipAdministratorForm(UserCreationForm):
-    SECURITY_QUESTION_CHOICES = [
-        ('1', "What is your mother's maiden name?"),
-        ('2', "What is the name of your first pet?"),
-        ('3', "In what city were you born?"),
-        ('4', "What is the name of your favorite teacher?"),
-        ('5', "What is your favorite movie?"),
-        ('6', "What is the make and model of your first car?"),
-        ('7', "What is the name of your childhood best friend?"),
-        ('8', "What is your favorite book?"),
-        ('9', "What is the name of the street you grew up on?"),
-        ('10', "What is your favorite sports team?"),
-        ('11', "What is your favorite color?"),
-        ('12', "What is the name of the company where you had your first job?"),
-        ('13', "What is the middle name of your oldest sibling?"),
-        ('14', "What is the name of your favorite fictional character?"),
-        ('15', "What is your favorite food?"),
-        ('16', "What was the model of your first cellphone?"),
-        ('17', "What is the name of the first school you attended?"),
-        ('18', "What is the birthdate of your oldest cousin?"),
-        ('19', "What is the name of the hospital where you were born?"),
-        ('20', "What is your favorite vacation destination?"),
-    ]
 
     # Define form fields with corresponding widgets and attributes
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))  
@@ -195,28 +149,6 @@ class CreateScholorshipAdministratorForm(UserCreationForm):
 
 class CreateScholorshipDonorForm(UserCreationForm):
 
-    SECURITY_QUESTION_CHOICES = [
-        ('1', "What is your mother's maiden name?"),
-        ('2', "What is the name of your first pet?"),
-        ('3', "In what city were you born?"),
-        ('4', "What is the name of your favorite teacher?"),
-        ('5', "What is your favorite movie?"),
-        ('6', "What is the make and model of your first car?"),
-        ('7', "What is the name of your childhood best friend?"),
-        ('8', "What is your favorite book?"),
-        ('9', "What is the name of the street you grew up on?"),
-        ('10', "What is your favorite sports team?"),
-        ('11', "What is your favorite color?"),
-        ('12', "What is the name of the company where you had your first job?"),
-        ('13', "What is the middle name of your oldest sibling?"),
-        ('14', "What is the name of your favorite fictional character?"),
-        ('15', "What is your favorite food?"),
-        ('16', "What was the model of your first cellphone?"),
-        ('17', "What is the name of the first school you attended?"),
-        ('18', "What is the birthdate of your oldest cousin?"),
-        ('19', "What is the name of the hospital where you were born?"),
-        ('20', "What is your favorite vacation destination?"),
-    ]
 
     # Define form fields with corresponding widgets and attributes
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))  
