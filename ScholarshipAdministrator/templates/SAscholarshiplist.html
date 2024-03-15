@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Scholarship List</h1>
+
+    <form method="get" action="{% url 'scholarship_list' %}" class="mb-3">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Scholarships" name="q" value="{{ request.GET.q }}">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Donor Name</th>
+                <th>Donor Phone Number</th>
+                <th>Donor Email</th>
+                <th>Number of Scholarships Available</th>
+                <th>Required Majors or Minors</th>
+                <th>Required GPA</th>
+                <th>Application Deadline</th>
+                <th>Other Requirements</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for scholarship in scholarships %}
+            <tr>
+                <td>{{ scholarship.scholarship_name }}</td>
+                <td>{{ scholarship.scholarship_amount }}</td>
+                <td>{{ scholarship.donor_full_name }}</td>
+                <td>{{ scholarship.donor_phone_number }}</td>
+                <td>{{ scholarship.donor_email }}</td>
+                <td>{{ scholarship.num_scholarship_available }}</td>
+                <td>{{ scholarship.required_majors_or_minors }}</td>
+                <td>{{ scholarship.required_gpa }}</td>
+                <td>{{ scholarship.application_deadline }}</td>
+                <td>{{ scholarship.other_requirements }}</td>
+                <td>
+                    <a href="{% url 'edit_scholarship' scholarship.scholarship_name %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_scholarship' scholarship.scholarship_name %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'SAhome' %}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}
