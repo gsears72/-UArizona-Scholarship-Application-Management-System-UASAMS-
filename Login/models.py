@@ -8,6 +8,30 @@ from django.contrib.contenttypes.models import ContentType
 import random
 import string
 
+
+SECURITY_QUESTION_CHOICES = [
+    ('1', "What is your mother's maiden name?"),
+    ('2', "What is the name of your first pet?"),
+    ('3', "In what city were you born?"),
+    ('4', "What is the name of your favorite teacher?"),
+    ('5', "What is your favorite movie?"),
+    ('6', "What is the make and model of your first car?"),
+    ('7', "What is the name of your childhood best friend?"),
+    ('8', "What is your favorite book?"),
+    ('9', "What is the name of the street you grew up on?"),
+    ('10', "What is your favorite sports team?"),
+    ('11', "What is your favorite color?"),
+    ('12', "What is the name of the company where you had your first job?"),
+    ('13', "What is the middle name of your oldest sibling?"),
+    ('14', "What is the name of your favorite fictional character?"),
+    ('15', "What is your favorite food?"),
+    ('16', "What was the model of your first cellphone?"),
+    ('17', "What is the name of the first school you attended?"),
+    ('18', "What is the birthdate of your oldest cousin?"),
+    ('19', "What is the name of the hospital where you were born?"),
+    ('20', "What is your favorite vacation destination?"),
+    ]
+
 class MyUserManager(BaseUserManager):
 
     def create_user(self, email, username, password=None, **extra_fields):
@@ -140,28 +164,7 @@ class User(AbstractBaseUser):
     is_superuser                = models.BooleanField(default=False)
 
     # additional fields from the project
-    SECURITY_QUESTION_CHOICES = [
-    ('1', "What is your mother's maiden name?"),
-    ('2', "What is the name of your first pet?"),
-    ('3', "In what city were you born?"),
-    ('4', "What is the name of your favorite teacher?"),
-    ('5', "What is your favorite movie?"),
-    ('6', "What is the make and model of your first car?"),
-    ('7', "What is the name of your childhood best friend?"),
-    ('8', "What is your favorite book?"),
-    ('9', "What is the name of the street you grew up on?"),
-    ('10', "What is your favorite sports team?"),
-    ('11', "What is your favorite color?"),
-    ('12', "What is the name of the company where you had your first job?"),
-    ('13', "What is the middle name of your oldest sibling?"),
-    ('14', "What is the name of your favorite fictional character?"),
-    ('15', "What is your favorite food?"),
-    ('16', "What was the model of your first cellphone?"),
-    ('17', "What is the name of the first school you attended?"),
-    ('18', "What is the birthdate of your oldest cousin?"),
-    ('19', "What is the name of the hospital where you were born?"),
-    ('20', "What is your favorite vacation destination?"),
-    ]
+    
 
 
 
