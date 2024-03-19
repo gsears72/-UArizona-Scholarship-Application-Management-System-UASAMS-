@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
-from ScholarshipDonor.tempData import tempData
 from ScholarshipDonor.models import Scholarship
 from SFWEScholarships.models import Application 
 # Create your views here.
