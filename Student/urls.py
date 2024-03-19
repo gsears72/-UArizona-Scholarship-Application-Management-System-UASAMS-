@@ -6,6 +6,6 @@ urlpatterns = [
     path('SViewScholarships', views.ViewScholarships, name='SViewScholarships'),
     path('SViewProfile', views.ViewProfile, name= 'SViewProfile'),
     path('SCheckAppStatus', views.CheckAppStatus, name= 'SCheckAppStatus'),
-    path('SViewScholarshipInfo', views.ViewScholarshipInfo, name= 'SViewScholarshipInfo'),
-
+    path('SViewScholarshipInfo/<int:scholarship_id>/', views.ViewScholarshipInfo, name= 'SViewScholarshipInfo'),
+    path('applicationForm/<int:scholarship_id>/', views.ViewCreateApplication, name= 'applicationForm'),
 ]
