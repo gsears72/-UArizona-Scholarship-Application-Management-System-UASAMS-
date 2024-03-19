@@ -10,8 +10,8 @@ from django.shortcuts import get_object_or_404
 
 def home(request):
     currentUser = request.user #gets current logged in user
-    student = get_object_or_404(Student, student_info_id = currentUser.id)#filters the students by last name and first nam
-    return render(request,'Shome.html', {'student' : student})
+    #student = get_object_or_404(Student, student_info_id = currentUser.id)#filters the students by last name and first nam
+    return render(request,'Shome.html', {'currentUser' : currentUser})
 
 def ViewScholarships(request):
     scholarships_object = Scholarship.objects.all()
@@ -34,5 +34,5 @@ def ViewCreateApplication(request, scholarship_id):
     currentUser = request.user #gets current logged in user
     student = get_object_or_404(Student, student_info_id = currentUser.id)#filters the students by last name and first name to find current user as a student object
     scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
-    return render(request, 'applicationForm.html', {'scholarship' : scholarship, 'student' : student}) #the one in quotes is what is called in html
+    return render(request, 'applicationForm.html', {'scholarship' : scholarship, 'student' : student, 'user' : currentUser}) #the one in quotes is what is called in html
 

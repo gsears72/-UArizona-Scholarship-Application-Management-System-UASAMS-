@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{student.first_name}}'s Homepage</h1>
+<h1>{{currentUser.id}}'s Homepage</h1>
 
 <a class="btn btn-primary" href="{% url 'SViewProfile' %}" role="button">View Profile</a>
 <br>
