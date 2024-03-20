@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 from ScholarshipDonor.models import Scholarship
+from SFWEScholarships.models import Application 
 # Create your views here.
 
 def home(request):
@@ -24,3 +25,7 @@ def CheckAppStatus(request):
 def ViewScholarshipInfo(request):
     return render(request, 'SViewScholarshipInfo.html', {})
 
+def ViewEligableScholarships(request):
+    scholarships_object = Scholarship.objects.all()
+    context = {'scholarships_object' : scholarships_object}
+    return render(request, 'SViewEligableScholarships.html', context)
