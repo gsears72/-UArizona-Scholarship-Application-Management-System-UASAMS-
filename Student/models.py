@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Student(models.Model):
     # Basic Information
-    student_info = models.OneToOneField('Login.User', on_delete=models.CASCADE)
+    student_info = models.OneToOneField('Login.User', on_delete=models.CASCADE, default = None)
     
     # Additional Information
 
