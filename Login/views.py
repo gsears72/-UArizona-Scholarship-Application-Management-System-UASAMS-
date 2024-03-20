@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from Student.models import Student
+from ScholarshipAdministrator.models import scholarshipAdministrator
+from ScholarshipDonor.models import Donor
+from ApplicantReviewer.models import applicantReviewer
 
 
 from .forms import CreateStudentForm, CreateScholorshipAdministratorForm, CreateScholorshipDonorForm, CreateApplicantReviewerForm
@@ -24,6 +28,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request,'Login Sucessful')
+
             return redirect('home')
             # Redirect to a success page.
         else:
@@ -71,7 +76,8 @@ def studentRegister(request):
              raw_password = form.cleaned_data.get('password')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
-             messages.success(request,'Account Created') 
+             messages.success(request,'Account Created')
+             user = Student.objects.create(student_info=user)
              return redirect("home")
          else:
                 context = {'form': form}
@@ -103,7 +109,8 @@ def scholorshipadminstratoRegister(request):
              raw_password = form.cleaned_data.get('password')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
-             messages.success(request,'Account Created') 
+             messages.success(request,'Account Created')
+             user = scholarshipAdministrator.objects.create(scholarshipAdministrator_info=user) 
              return redirect("home")
          else:
                 context = {'form': form}
@@ -136,7 +143,8 @@ def scholorshipdonorregisterRegister(request):
              raw_password = form.cleaned_data.get('password')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
-             messages.success(request,'Account Created') 
+             messages.success(request,'Account Created')
+             user = Donor.objects.create(donor_info=user) 
              return redirect("home")
          else:
                 context = {'form': form}
@@ -169,7 +177,8 @@ def applicantreviewerRegister(request):
              raw_password = form.cleaned_data.get('password')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
-             messages.success(request,'Account Created') 
+             messages.success(request,'Account Created')
+             user = applicantReviewer.objects.create(applicantReviewer_info=user) 
              return redirect("home")
          else:
                 context = {'form': form}
