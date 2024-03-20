@@ -5,14 +5,20 @@
 
     <form action="{% url 'create_scholarship_submit' %}" method="POST">
         {% csrf_token %}
-        <!-- Repeating the form structure for creating a scholarship as outlined before -->
-        <!-- Add all necessary fields as per the Scholarship class attributes -->
-        <!-- Ensure names of the input fields match those expected in your view -->
-        <!-- Implementation here is identical to the form in SAhome.html for creating scholarships -->
-        <!-- Placeholder for form fields -->
-        
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-success">Submit Scholarship</button>
+        {% for field in form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Create Scholarship</button>
+        <a href="{% url 'SAhome' %}" class = "btn btn-info">Return Home</a>
     </form>
 
     <a href="{% url 'SAhome' %}" class="btn btn-secondary">Back to Dashboard</a>
