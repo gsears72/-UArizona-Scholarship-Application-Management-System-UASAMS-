@@ -12,3 +12,6 @@ def home(request):
 
 def about(request):
     return render(request,'about.html',{})
+
+def application_form(request):
+    return render(request,'application_form.html',{})
