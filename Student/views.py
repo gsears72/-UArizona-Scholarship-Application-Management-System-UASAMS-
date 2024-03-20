@@ -36,3 +36,7 @@ def ViewCreateApplication(request, scholarship_id):
     scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
     return render(request, 'applicationForm.html', {'scholarship' : scholarship, 'student' : student, 'user' : currentUser}) #the one in quotes is what is called in html
 
+def ViewEligableScholarships(request):
+    scholarships_object = Scholarship.objects.all()
+    context = {'scholarships_object' : scholarships_object}
+    return render(request, 'SViewEligableScholarships.html', context)
