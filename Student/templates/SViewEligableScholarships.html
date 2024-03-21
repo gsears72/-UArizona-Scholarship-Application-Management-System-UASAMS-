@@ -24,7 +24,7 @@
       </thead>
       <tbody style="vertical-align: middle;">
         {% for object in scholarships_object %}
-          {% if object.required_gpa <= 3.50 %}
+          {% if object.required_gpa <= student.gpa %}
             <tr>
               <td>{{ object.scholarship_name }}</td>
               <td>${{ object.scholarship_amount }}</td>
@@ -32,7 +32,7 @@
               <td>{{ object.donor_full_name }}</td>
               <td>{{ object.application_deadline }}</td>
               <td>
-                  <a class="btn btn-success" href="{% url 'SViewScholarshipInfo' %}" role="button">More</a>
+                  <a class="btn btn-success" href="{% url 'SViewScholarshipInfo' object.id %}" role="button">More</a>
                 </td>
               </tr>
           {% endif %}
