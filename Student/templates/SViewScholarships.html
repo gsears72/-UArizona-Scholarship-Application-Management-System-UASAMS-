@@ -8,7 +8,7 @@
     </button>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="#">All Scholarships</a></li>
-      <li><a class="dropdown-item" href="#">Eligable Scholarships</a></li>
+      <li><a class="dropdown-item" href="{% url 'SViewEligableScholarships' %}">Eligable Scholarships</a></li>
     </ul>
 
     <table class="table table-hover ">
@@ -31,7 +31,7 @@
           <td>{{ object.donor_full_name }}</td>
           <td>{{ object.application_deadline}}</td>
           <td>
-              <a class="btn btn-success" href="{% url 'SViewScholarshipInfo' %}" role="button">More</a>
+              <a class="btn btn-success" href="{% url 'SViewScholarshipInfo' object.id %}" role="button">More</a>
             </td>
           </tr>
         {% endfor %}  
