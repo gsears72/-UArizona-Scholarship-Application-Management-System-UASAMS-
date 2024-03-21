@@ -8,4 +8,5 @@ urlpatterns = [
     path('SCheckAppStatus', views.CheckAppStatus, name= 'SCheckAppStatus'),
     path('SViewScholarshipInfo/<int:scholarship_id>/', views.ViewScholarshipInfo, name= 'SViewScholarshipInfo'),
     path('applicationForm/<int:scholarship_id>/', views.ViewCreateApplication, name= 'applicationForm'),
+    path('SViewEligableScholarships', views.ViewEligableScholarships, name= 'SViewEligableScholarships'),
 ]

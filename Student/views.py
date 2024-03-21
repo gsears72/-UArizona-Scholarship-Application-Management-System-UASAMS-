@@ -19,12 +19,15 @@ def ViewScholarships(request):
     return render(request, 'SViewScholarships.html', context)
 
 def ViewProfile(request):
-    return render(request, 'SViewProfile.html', {})
+    currentUser = request.user
+    student = get_object_or_404(Student, student_info_id = currentUser.id)
+    context = {'student' : student, 'currentUser' : currentUser}
+    return render(request, 'SViewProfile.html', context)
 
 def CheckAppStatus(request):
     application_object = Application.objects.all()
     context = {'application_object' : application_object}
-    return render(request, 'SCheckAppStatus.html',context)
+    return render(request, 'SCheckAppStatus.html', context)
 
 def ViewScholarshipInfo(request, scholarship_id):
     scholarship = get_object_or_404(Scholarship, pk=scholarship_id) #scholarship is set to a object not a class
@@ -37,6 +40,8 @@ def ViewCreateApplication(request, scholarship_id):
     return render(request, 'applicationForm.html', {'scholarship' : scholarship, 'student' : student, 'user' : currentUser}) #the one in quotes is what is called in html
 
 def ViewEligableScholarships(request):
+    currentUser = request.user
+    student = get_object_or_404(Student, student_info_id = currentUser.id)
     scholarships_object = Scholarship.objects.all()
-    context = {'scholarships_object' : scholarships_object}
+    context = {'scholarships_object' : scholarships_object, 'student' : student}
     return render(request, 'SViewEligableScholarships.html', context)
