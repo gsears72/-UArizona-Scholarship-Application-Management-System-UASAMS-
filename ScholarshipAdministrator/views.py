@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 from ScholarshipDonor.models import Scholarship
-from ScholarshipAdministrator.forms import ScholarshipForm
+#from ScholarshipAdministrator.forms import ScholarshipForm
 
 # Create your views here.
 

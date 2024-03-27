@@ -20,12 +20,19 @@ def SearchApplicants(request):
     return render(request,'SearchApplicants.html',{})
 
 def MyReviewedApps(request):
+    application_object = Application.objects.all()
     return render(request,'MyReviewedApps.html',{})
 
 def Approved(request):
+    application_object = Application.objects.all()
     return render(request,'Approved.html',{})
 
 def ViewScholarshipApplicants(request, scholarship_id):
     currScholarship = scholarship_id
     application_object = Application.objects.all()
     return render(request,'ViewScholarshipApplicants.html',{'scholarship': currScholarship, 'application': application_object})
+
+def ReviewApplication(request, application_id, scholarship_id):
+    currScholarship = Scholarship.objects.get(id=scholarship_id)
+    application_object = Application.objects.get(pk=application_id)
+    return render(request,'ReviewAndScoring.html',{'application': application_object})
