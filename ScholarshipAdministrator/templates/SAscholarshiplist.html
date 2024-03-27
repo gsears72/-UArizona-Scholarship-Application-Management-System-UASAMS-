@@ -4,10 +4,16 @@
 {% block content %}
     <h1>Scholarship List</h1>
 
+    <form method="get" action="{% url 'scholarship_list' %}" class="mb-3">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Scholarships" name="q" value="{{ request.GET.q }}">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+
     <table class="table">
         <thead>
-            <tr>
-                <th>Name</th>
+            <th>Name</th>
                 <th>Amount</th>
                 <th>Donor Name</th>
                 <th>Donor Phone Number</th>

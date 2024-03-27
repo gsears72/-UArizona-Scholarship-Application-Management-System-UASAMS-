@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %}
 
 {% block content %}
@@ -10,41 +8,16 @@
         <p>This is your dashboard, where you can manage scholarships for the university.</p>
     </section>
 
+    <!-- Assuming the template is named create_scholarship.html -->
     <section>
         <h2>Create Scholarship</h2>
         <form action="{% url 'create_scholarship' %}" method="POST">
             {% csrf_token %}
-            <div class="mb-3">
-                <label for="name" class="form-label">Scholarship Name</label>
-                <input type="text" class="form-control" name="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="amount" class="form-label">Amount</label>
-                <input type="number" class="form-control" name="amount" required>
-            </div>
-            <div class="mb-3">
-                <label for="donor" class="form-label">Donor</label>
-                <input type="text" class="form-control" name="donor">
-            </div>
-            <div class="mb-3">
-                <label for="totalAvail" class="form-label">Total Available</label>
-                <input type="number" class="form-control" name="totalAvail" required>
-            </div>
-            <div class="mb-3">
-                <label for="minGPA" class="form-label">Minimum GPA</label>
-                <input type="number" step="0.01" class="form-control" name="minGPA" required>
-            </div>
-            <div class="mb-3">
-                <label for="major" class="form-label">Major</label>
-                <input type="text" class="form-control" name="major">
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="description" rows="3"></textarea>
-            </div>
+            {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Create Scholarship</button>
         </form>
     </section>
+
 
     <section>
         <h2>Modify/Delete Scholarships</h2>
@@ -61,3 +34,4 @@
 
 {% endblock %}
 
+    
