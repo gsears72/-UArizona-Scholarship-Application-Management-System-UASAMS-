@@ -23,7 +23,7 @@
           <td>{{ object.donor_full_name }}</td>
           <td>{{ object.application_deadline}}</td>
           <td>
-              <a class="btn btn-success" href="{% url 'ViewScholarshipApplicants' %}" role="button">More</a>
+              <a class="btn btn-success" href="{% url 'ViewScholarshipApplicants' object.id %}" role="button">More</a>
             </td>
           </tr>
         {% endfor %}  
