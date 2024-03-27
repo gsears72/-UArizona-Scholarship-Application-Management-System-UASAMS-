@@ -1,38 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{currentUser.First_name}}'s Profile</h1>
-<h4>Name</h4>
-<p>{{curentUser.First_name}} {{currentUser.Last_name}}</p>
-<h4>Username</h4>
-<p>{{currentUser.username}}</p>
-<h4>Password</h4>
-<p>*******</p>
-<h4>NetID</h4>
-<p>{{currentUser.Net_ID}}</p>
-<h4>Preferred Pronouns</h4>
-<p>{{student.preferred_pronoun}}</p>
-<h4>Ethnicity</h4>
-<p>{{student.ethnicity}}</p>
-<h4>Email</h4>
-<p>{{currentUser.email}}</p>
-<h4>Phone Number</h4>
-<p>{{currentUser.Phone_number}}</p>
-<h4>Year</h4>
-<p>{{student.current_year}}</p>
-<h4>Major</h4>
-<p>{{student.major}}</p>
-<h4>Minor</h4>
-<p>{{student.minor}}</p>
-<h4>GPA</h4>
-<p>{{student.gpa}}</p>
-<h4>Security Question 1</h4>
-<p>{{currentUser.Security_Question1}}</p>
-<h4>Answer</h4>
-<p>{{currentUser.Security_Question1_answer}}</p>
-<h4>Security Question 2</h4>
-<p>{{currentUser.Security_Question2}}</p>
-<h4>Answer</h4>
-<p>{{currentUser.Security_Question2_answer}}</p>
+<div class="container">
+    <h1>{{currentUser.First_name}}'s Profile</h1>
+    <a class="btn btn-primary" href="#" role="button">Edit Profile</a>
+    <div class="row">
+        <div class="col-sm-6" style="background-color:white;">
+            <h4>Name</h4>
+            <p>{{curentUser.First_name}} {{currentUser.Last_name}}</p>
+            <h4>Username</h4>
+            <p>{{currentUser.username}}</p>
+            <h4>Password</h4>
+            <p>*******</p>
+            <h4>NetID</h4>
+            <p>{{currentUser.Net_ID}}</p>
+            <h4>Preferred Pronouns</h4>
+            <p>{{student.preferred_pronoun}}</p>
+            <h4>Ethnicity</h4>
+            <p>{{student.ethnicity}}</p>
+            <h4>Email</h4>
+            <p>{{currentUser.email}}</p>
+            <h4>Phone Number</h4>
+            <p>{{currentUser.Phone_number}}</p>
+        </div>
+        <div class="col-sm-6" style="background-color:white;">
+            <h4>Year</h4>
+            <p>{{student.current_year}}</p>
+            <h4>Major</h4>
+            <p>{{student.major}}</p>
+            <h4>Minor</h4>
+            <p>{{student.minor}}</p>
+            <h4>GPA</h4>
+            <p>{{student.gpa}}</p>
+            <h4>Security Question 1</h4>
+            <p>{{currentUser.Security_Question1}}</p>
+            <h4>Answer</h4>
+            <p>{{currentUser.Security_Question1_answer}}</p>
+            <h4>Security Question 2</h4>
+            <p>{{currentUser.Security_Question2}}</p>
+            <h4>Answer</h4>
+            <p>{{currentUser.Security_Question2_answer}}</p>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
