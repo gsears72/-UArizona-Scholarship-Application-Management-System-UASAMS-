@@ -73,11 +73,19 @@ def studentRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')
-             user = Student.objects.create(student_info=user)
+             Student.objects.create(student_info=user,
+                                    preferred_pronoun = form.cleaned_data.get('Preferred_Pronoun'),
+                                    major = form.cleaned_data.get('Major'),
+                                    minor = form.cleaned_data.get('Minor'),
+                                    gpa = form.cleaned_data.get('GPA'),
+                                    current_year = form.cleaned_data.get('Current_Year'), 
+                                    ethnicity = form.cleaned_data.get('Ethnicity'),
+                                    personal_statement_essay = form.cleaned_data.get('Personal_Statement'),
+                                    work_experience = form.cleaned_data.get('Work_Experience'))
              return redirect("home")
          else:
                 context = {'form': form}
@@ -106,11 +114,11 @@ def scholorshipadminstratoRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')
-             user = scholarshipAdministrator.objects.create(scholarshipAdministrator_info=user) 
+             scholarshipAdministrator.objects.create(scholarshipAdministrator_info=user) 
              return redirect("home")
          else:
                 context = {'form': form}
@@ -140,11 +148,11 @@ def scholorshipdonorregisterRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')
-             user = Donor.objects.create(donor_info=user) 
+             Donor.objects.create(donor_info=user) 
              return redirect("home")
          else:
                 context = {'form': form}
@@ -174,11 +182,11 @@ def applicantreviewerRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')
-             user = applicantReviewer.objects.create(applicantReviewer_info=user) 
+             applicantReviewer.objects.create(applicantReviewer_info=user) 
              return redirect("home")
          else:
                 context = {'form': form}
