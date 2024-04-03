@@ -2,6 +2,7 @@ from django.db import models
 from ScholarshipDonor.models import Scholarship
 from Student.models import Student
 
+
 # Create your models here.
 class Application(models.Model):
     STATUS = (
