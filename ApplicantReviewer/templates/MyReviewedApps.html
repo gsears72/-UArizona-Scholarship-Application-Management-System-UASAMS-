@@ -15,7 +15,7 @@
     </thead>
     <tbody style="vertical-align: middle;">
       {% for object in application_object %}
-          {% if object.stauts == 'approved' %}
+          {% if object.stauts == 'In Review' %}
               <tr>
               <td>{{ object.student.first_name}}</td>
               <td>{{ object.student.gpa }}</td>
