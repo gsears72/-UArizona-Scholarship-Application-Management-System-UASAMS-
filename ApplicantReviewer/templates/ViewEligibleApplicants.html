@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>All Applicants</h1>
-    <form method="get" action="{% url 'application_list' %}" class="mb-3">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search Applicants" name="q" value="{{ request.GET.q }}">
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
-        </div>
-    </form>
+<h1>Eligible Applicants for {{scholarship_object.scholarship_name}}</h1>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Filter
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'ViewApplicants' scholarship_id %}">All Applicants</a></li>
+      <li><a class="dropdown-item" href="#">Eligible Applicants</a></li>
+    </ul>
+
       <table class="table table-hover ">
         <thead class="table-dark">
           <tr>
@@ -21,6 +24,8 @@
         </thead>
         <tbody style="vertical-align: middle;">
           {% for object in application_object %}
+            {% if object.scholarship.id == scholarship_id and object.student.gpa >= scholarship_object.required_gpa%}
+              {% if scholarship_object.required_majors_or_minors == object.student.major or scholarship_object.required_majors_or_minors == object.student.minor or scholarship_object.required_majors_or_minors == 'none'%}
                   <tr>
                   <td>{{ object.student.first_name}} {{ object.student.last_name}}</td>
                   <td>{{ object.student.gpa }}</td>
@@ -31,7 +36,10 @@
                       <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">More</a>
                       </td>
                   </tr>
-        {% endfor %}    
+              {% endif %}
+            {% endif %}
+      {% endfor %}  
+
       </table>
   </div>
 {% endblock %}

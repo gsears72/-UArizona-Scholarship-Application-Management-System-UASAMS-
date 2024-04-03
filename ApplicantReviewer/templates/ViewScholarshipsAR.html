@@ -18,12 +18,12 @@
         {% for object in scholarships_object %}
         <tr>
           <td>{{ object.scholarship_name }}</td>
-          <td>${{ object.scholarship_amount }}</td>
+          <td>{{ object.scholarship_amount }}</td>
           <td>{{ object.required_majors_or_minors }}</td>
           <td>{{ object.donor_full_name }}</td>
           <td>{{ object.application_deadline}}</td>
           <td>
-              <a class="btn btn-success" href="{% url 'ViewScholarshipApplicants' object.id %}" role="button">More</a>
+              <a class="btn btn-success" href="{% url 'ViewApplicants' object.id %}" role="button">More</a>
             </td>
           </tr>
         {% endfor %}  
