@@ -1,4 +1,6 @@
+from django.db import models
 from Student.models import Student
+from ScholarshipDonor.models import Scholarship
 
 # Create your models here.
 class Application(models.Model):
