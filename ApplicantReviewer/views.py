@@ -43,9 +43,6 @@ def ViewEligibleApplicants(request, scholarship_id):
 def ReviewApplication(request, application_id, scholarship_id):
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
     application_object = Application.objects.get(pk=application_id)
-<<<<<<< HEAD
-    return render(request,'ReviewAndScoring.html',{'application': application_object})
-=======
     return render(request,'ReviewApplication.html',{'application_object': application_object, 'scholarship_object': scholarship_object})
 
 def application_list(request):
@@ -69,4 +66,3 @@ def review_submit(request, application_id):
     application.save()
     
     return render(request, 'ReviewApplication.html', {'application': application})
->>>>>>> 40afdef28ebf60d831914b7e3f985d9233fa0007
