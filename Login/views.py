@@ -73,7 +73,7 @@ def studentRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')
@@ -106,7 +106,7 @@ def scholorshipadminstratoRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')
@@ -140,7 +140,7 @@ def scholorshipdonorregisterRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')
@@ -174,7 +174,7 @@ def applicantreviewerRegister(request):
          if form.is_valid():
              form.save()
              email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password')
+             raw_password = form.cleaned_data.get('password1')
              user = authenticate(email=email, password=raw_password)
              login(request, user)
              messages.success(request,'Account Created')

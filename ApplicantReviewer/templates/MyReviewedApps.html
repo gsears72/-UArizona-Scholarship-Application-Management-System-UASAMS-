@@ -1,5 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>My Reviewed Applications</h1>
+<h1>Reviewed Applications</h1>
+<table class="table table-hover ">
+    <thead class="table-dark">
+      <tr>
+        <th>Student Name</th>
+        <th>GPA</th>
+        <th>Major</th>
+        <th>Minor</th>
+        <th>Current Year</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody style="vertical-align: middle;">
+      {% for object in application_object %}
+          {% if object.stauts == 'In Review' %}
+              <tr>
+              <td>{{ object.student.first_name}}</td>
+              <td>{{ object.student.gpa }}</td>
+              <td>{{ object.student.major }}</td>
+              <td>{{ object.student.minor }}</td>
+              <td>{{ object.student.current_year}}</td>
+              <td>{{object.stauts}}</td>
+          {% endif %}
+      {% endfor %}  
+  </table>
+</div>
 {% endblock %}
