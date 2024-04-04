@@ -2,6 +2,7 @@ from django.db import models
 from ScholarshipDonor.models import Scholarship
 from Student.models import Student
 
+
 # Create your models here.
 class Application(models.Model):
     STATUS = (
@@ -11,10 +12,10 @@ class Application(models.Model):
         ('Rejected', 'Rejected')
     )
 
-
     scholarship = models.ForeignKey(Scholarship, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    status = models.CharField(max_length = 20, choices = STATUS, default = 'Submitted')
+    stauts = models.CharField(max_length = 20, choices = STATUS, default = 'Submitted')
+    personal_statement = models.TextField(max_length = 1000)
 
-    def __str__(self):
-        return f"Application for {self.scholarship.scholarship_name} by {self.student.username}"
+    # def __str__(self):
+    #     return f"Application for {self.scholarship.scholarship_name} by "
