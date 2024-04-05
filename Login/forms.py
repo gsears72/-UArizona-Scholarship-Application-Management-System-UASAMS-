@@ -28,6 +28,65 @@ SECURITY_QUESTION_CHOICES = [
     ('20', "What is your favorite vacation destination?"),
     ]
 
+major_requirement_choices = (
+        ('Engineering', 'Engineering'), 
+        ('Business', 'Business'),
+        ('Music', 'Music'), 
+        ('Art', 'Art'),
+        ('Performing Arts', 'Performing Arts'), 
+        ('Theater Tech', 'Theater Tech'),
+        ('Photography', 'Photography'), 
+        ('Nursing', 'Nursing'), 
+        ('Computer Science', 'Computer Science'), 
+        ('Biology', 'Biology'), 
+        ('Chemistry', 'Chemistry'), 
+        ('Physics', 'Physics'), 
+        ('Political Science', 'Political Science'), 
+        ('Literature', 'Literature'), 
+        ('Writing', 'Writing'), 
+        ('Foreign Language', 'Foreign Language'),
+        ('Law', 'Law'), 
+        ('Medicine', 'Medicine'), 
+        ('Communications', 'Communications'), 
+        ('Marketing', 'Marketing'), 
+        ('Finance', 'Finance'), 
+        ('Ecomomics', 'Economics'), 
+        ('Math', 'Math'), 
+        ('Environmental Science', 'Environmental Science'), 
+        ('Public Health', 'Public Health'), 
+        ('Graphic Design', 'Graphic Design'), 
+        ('Architecture', 'Architecture'), 
+        ('Education', 'Education'), 
+        ('Astronomy', 'Astronomy'), 
+        ('Social Sciences', 'Social Sciences'), 
+        ('Fashion', 'Fashion'), 
+        ('Statistics', 'Statistics'),
+        ('Geology', 'Geology'), 
+        ('Neuroscience', 'Neuroscience'),
+        ('Psychology', 'Psychology'),
+        ('none', 'none'),
+    )
+
+current_year_choices = [
+        ('Freshman', 'Freshman'),
+        ('Sophomore', 'Sophomore'),
+        ('Junior', 'Junior'),
+        ('Senior', 'Senior'),
+        ('Graduate', 'Graduate'),
+    ]
+
+ethnicity_choices = [
+        ('Caucasian', 'Caucasian'),
+        ('Hispanic', 'Hispanic'),
+        ('Black', 'Black'),
+        ('European', 'European'),
+        ('Asian', 'Asian'),
+        ('Indian', 'Indian'),
+        ('American Indian', 'American Indian'),
+        ('Arabic/Middle Eastern', 'Arabic/Middle Eastern'),
+        ('Other', 'Other'),
+    ]
+
 class CreateStudentForm(UserCreationForm):
 
     # Define form fields with corresponding widgets and attributes
@@ -43,7 +102,15 @@ class CreateStudentForm(UserCreationForm):
     Last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     Phone_number = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     Net_ID = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
+    Preferred_Pronoun = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    Major = forms.ChoiceField(choices=major_requirement_choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    Minor = forms.ChoiceField(choices=major_requirement_choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    GPA = forms.DecimalField(max_digits=3, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    Current_Year = forms.ChoiceField(choices=current_year_choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    Ethnicity = forms.ChoiceField(choices=ethnicity_choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    Personal_Statement = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    Work_Experience = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    
     class Meta:
         model = User
         fields = ['email', 'username', 'Security_Question1', 'Security_Question1_answer',

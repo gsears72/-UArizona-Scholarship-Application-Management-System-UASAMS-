@@ -2,54 +2,10 @@
 
 {% block content %}
     <h1>Edit Scholarship</h1>
-
-    <form action="" method="POST">
+    <form method="post">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="name" class="form-label">Scholarship Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ scholarship.scholarship_name }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="amount" class="form-label">Amount</label>
-            <input type="number" class="form-control" id="amount" name="amount" value="{{ scholarship.scholarship_amount }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="donor_full_name" class="form-label">Donor Full Name</label>
-            <input type="text" class="form-control" id="donor_full_name" name="donor_full_name" value="{{ scholarship.donor_full_name }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="donor_phone_number" class="form-label">Donor Phone Number</label>
-            <input type="text" class="form-control" id="donor_phone_number" name="donor_phone_number" value="{{ scholarship.donor_phone_number }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="donor_email" class="form-label">Donor Email</label>
-            <input type="email" class="form-control" id="donor_email" name="donor_email" value="{{ scholarship.donor_email }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="num_scholarships_available" class="form-label">Number of Scholarships Available</label>
-            <input type="number" class="form-control" id="num_scholarships_available" name="num_scholarships_available" value="{{ scholarship.num_scholarships_available }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="required_majors_or_minors" class="form-label">Required Majors or Minors</label>
-            <input type="text" class="form-control" id="required_majors_or_minors" name="required_majors_or_minors" value="{{ scholarship.required_majors_or_minors }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="required_gpa" class="form-label">Required GPA</label>
-            <input type="number" class="form-control" id="required_gpa" name="required_gpa" step="0.01" value="{{ scholarship.required_gpa }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="application_deadline" class="form-label">Application Deadline</label>
-            <input type="date" class="form-control" id="application_deadline" name="application_deadline" value="{{ scholarship.application_deadline|date:'Y-m-d' }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="other_requirements" class="form-label">Other Requirements</label>
-            <textarea class="form-control" id="other_requirements" name="other_requirements" rows="3" required>{{ scholarship.other_requirements }}</textarea>
-        </div>
-        <a href="{% url 'edit_scholarship_db' scholarship.scholarship_name %}" class="btn btn-primary">Modify Scholarship Information</a>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
-    
-    
-    
-
     <a href="{% url 'scholarship_list' %}" class="btn btn-secondary">Back to Scholarship List</a>
 {% endblock %}
