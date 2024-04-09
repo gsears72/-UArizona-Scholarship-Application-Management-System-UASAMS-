@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+  <div id="click_modal" style="display:none;"></div>
+  <h1 style="text-align:center;">Donor Page</h1>
+  <hr>
+  <div>
+    <table class="table table-hover ">
+      <thead class="table-dark">
+        <tr>
+          <th>Scholarship Name</th>
+          <th>Scholarship Amount</th>
+          <th>Number of Scholarships</th>
+          <th>Deadline</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody style="vertical-align: middle;">
+        {% for scholarship in scholarships %}
+          <tr>
+            <td>{{ scholarship.scholarship_name }}</td>
+            <td>${{ scholarship.scholarship_amount }}</td>
+            <td>${{ scholarship.num_scholarships_available }}</td>
+            <td>{{ scholarship.application_deadline }}</td>
+            <td>
+              <button 
+                class="btn btn-success open-incident"
+                data-bs-toggle="modal" 
+                data-bs-target="#scholarshipModal"
+                data-name="{{scholarship.scholarship_name}}"
+                data-amount="{{scholarship.amount}}" 
+                data-donor="{{scholarship.donor}}"
+                data-totalAvail="{{scholarship.totalAvail}}"
+                data-minGPA="{{scholarship.required_gpa}}"
+                data-major="{{scholarship.major}}" 
+                data-dateCreated="{{scholarship.dateCreated}}"
+                data-applicants="{{scholarship.applicants}}" 
+                data-awarded="{{scholarship.awarded}}"
+                data-desc="{{scholarship.other_requirements}}">
+                More
+              </button>
+            </td>
+          </tr>
+        {% endfor %}
+        {% include "ScholarshipView.html" %}
+    </table>
+    
+  </div>
+  <script>
+    var Modal = document.getElementById('scholarshipModal')
+    Modal.addEventListener('show.bs.modal', function (event) {
+    // Button that triggered the modal
+    var button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    var name = button.getAttribute('data-name')
+    var desc = button.getAttribute('data-desc')
+    var gpa = button.getAttribute('data-minGPA')
+    // get content to update
+    var modalTitle = Modal.querySelector('.modal-title')
+    var modalDesc = Modal.querySelector('.modal-body')
+    var modalGPA = Modal.querySelector('.modal-gpa')
+    //update it
+    modalTitle.textContent = name
+    modalDesc.textContent = desc
+    modalGPA.textContent = gpa
+    })
+  </script>
+</body>
+{% endblock %}
