@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Student Application</h1>
 <ul class="list-group">
-    <li class="list-group-item"><b>Name: </b>{{ application_object.student.student_info.first_name}} {{application_object.student.student_info.last_name}}</li>
+    <li class="list-group-item"><b>Name: </b>{{ application_object.student.student_info.First_name}} {{application_object.student.student_info.Last_name}}</li>
     <li class="list-group-item"><b>GPA: </b>{{ application_object.student.gpa}}</li>
     <li class="list-group-item"><b>Major: </b>{{ application_object.student.major}}</li>
     <li class="list-group-item"><b>Minor: </b>/{{ application_object.student.minor}}<li>
@@ -32,7 +32,7 @@
         <option value="disapprove">Reject Application</option>
     </select>
     
-    <button type="submit">Review Application</button>
+    <button type="submit">Submit</button>
   </form>
   <br>
   <br>

@@ -11,4 +11,4 @@ from .models import Scholarship
 
 def home(request):
     scholarships = Scholarship.objects.all()
-    return render(request,'SDhome.html',{})
+    return render(request,'SDhome.html',{'scholarships': scholarships})
