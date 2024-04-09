@@ -55,12 +55,13 @@ def createApplication(request, scholarship_id):
         currentUser = request.user #gets current logged in user
         student = get_object_or_404(Student, student_info_id = currentUser.id)
         scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
+        
         application = Application(
             student = student,
             scholarship = scholarship,
             personal_statement = personal_statement
         )
-        print(application)
+
         application.save()
         messages.success(request, "Application created successfully.")
         return render(request, 'home.html', {})
