@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    padding: 0px 0px;
     <a class="navbar-brand" href="{% url 'home' %}">SFWE Scholarships</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,17 +11,6 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
-
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li>
-        {% endif %}
-
         <li class="nav-item">
           <a class="nav-link" href="{% url 'ARhome' %}">Reviewer</a>
         </li>
@@ -33,6 +23,16 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'Shome' %}">Student</a>
         </li>
+        
+        {% if user.is_authenticated %}
+        <li class="nav-item" >
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
 
       
 

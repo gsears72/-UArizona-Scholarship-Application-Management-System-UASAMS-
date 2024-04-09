@@ -58,7 +58,7 @@ class Scholarship(models.Model):
 
         
 class Donor(models.Model):
-    donor_info = models.OneToOneField('Login.User', on_delete=models.CASCADE)
+    donor_info = models.OneToOneField('Login.User', on_delete=models.CASCADE, default = None)
 
 
         
