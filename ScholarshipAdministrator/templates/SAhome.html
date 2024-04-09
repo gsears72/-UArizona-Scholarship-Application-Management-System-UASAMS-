@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Scholarship Administrator Dashboard</h1>
+
+    <section>
+        <h2>Welcome, Scholarship Administrator</h2>
+        <p>This is your dashboard, where you can manage scholarships for the university.</p>
+    </section>
+
+    <!-- Assuming the template is named create_scholarship.html -->
+    <section>
+        <h2>Create Scholarship</h2>
+        <form action="{% url 'create_scholarship' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Create Scholarship</button>
+        </form>
+    </section>
+
+
+    <section>
+        <h2>Modify/Delete Scholarships</h2>
+        <p>To modify or delete scholarships, please navigate to the scholarship list and select an action.</p>
+        <a href="{% url 'scholarship_list' %}" class="btn btn-info">View Scholarships</a>
+    </section>
+
+    <!-- Additional static elements -->
+    <section>
+        <h2>Reports</h2>
+        <p>View detailed reports on scholarship distribution and performance metrics.</p>
+        <button class="btn btn-secondary" disabled>View Reports</button>
+    </section>
+
+{% endblock %}
+
+    

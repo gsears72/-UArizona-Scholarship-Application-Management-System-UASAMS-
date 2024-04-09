@@ -7,7 +7,7 @@ omit=
     */__init__.py
     */admin.py
     */apps.py
-    */test.py
+    */tests.py
     */settings.py
     manage.py
 
