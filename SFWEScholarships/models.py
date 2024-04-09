@@ -1,6 +1,7 @@
 from django.db import models
 from ScholarshipDonor.models import Scholarship
 from Student.models import Student
+from django.core.validators import MaxValueValidator
 
 
 # Create your models here.
@@ -26,5 +27,5 @@ class Application(models.Model):
     stauts = models.CharField(max_length = 20, choices = STATUS, default = 'Submitted')
     personal_statement = models.TextField()
     sr_status = models.CharField(max_length = 20, choices = SR_STATUS, default = 'In Review')
-    score = models.IntegerField(max_length = 3, default = 0)
+    score = models.IntegerField(validators=[MaxValueValidator(100)], default = 0)
     
