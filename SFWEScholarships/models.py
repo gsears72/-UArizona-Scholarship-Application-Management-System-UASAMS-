@@ -19,6 +19,15 @@ class Application(models.Model):
     
     
     
+    
+    SR_STATUS = (
+        ('In Reivew', 'In Review'),
+        ('Approved', 'Approved'), 
+        ('Rejected', 'Rejected')
+    )
+    
+    
+    
 
     scholarship = models.ForeignKey(Scholarship, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
