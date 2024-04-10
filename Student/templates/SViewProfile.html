@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h1>{{currentUser.First_name}}'s Profile</h1>
-    <a class="btn btn-primary" href="#" role="button">Edit Profile</a>
+    <a class="btn btn-primary" href="{% url 'SeditProfile' %}" role="button">Edit Profile</a>
     <div class="row">
         <div class="col-sm-4" style="background-color:white;">
             <h4>Name</h4>

@@ -14,12 +14,14 @@
     </thead>
     <tbody style="vertical-align: middle;">
       {% for object in application_object %}
-      <tr>
-        <td>{{ object.scholarship.scholarship_name }}</td>
-        <td>${{ object.scholarship.scholarship_amount }}</td>
-        <td>{{ object.scholarship.donor_full_name }}</td>
-        <td>{{ object.stauts }}</td>
-        </tr> 
+        {% if object.student.id == student.id %}
+        <tr>
+          <td>{{ object.scholarship.scholarship_name }}</td>
+          <td>${{ object.scholarship.scholarship_amount }}</td>
+          <td>{{ object.scholarship.donor_full_name }}</td>
+          <td>{{ object.stauts }}</td>
+          </tr> 
+        {% endif %}
       {% endfor %}
   </table>
 </div>
