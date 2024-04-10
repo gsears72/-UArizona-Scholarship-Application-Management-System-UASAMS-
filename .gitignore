@@ -1,7 +1,10 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/** 
 *.py[cod]
 *$py.class
+*.cpython-310.pyc
+*.cpython-312.pyc
+
 
 # C extensions
 *.so
@@ -38,10 +41,9 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
 .tox/
 .nox/
-.coverage
+
 .coverage.*
 .cache
 nosetests.xml
@@ -106,26 +108,8 @@ celerybeat.pid
 .venv
 env/
 venv/
-ENV/
-env.bak/
-venv.bak/
+.pyc
 
-# Spyder project settings
-.spyderproject
-.spyproject
 
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-/data
+**/__pycache__/
+*.py[cod]
