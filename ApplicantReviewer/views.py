@@ -67,25 +67,26 @@ def application_list(request):
     
     return render(request, 'SearchApplicants.html', {'applications': applications})
 
-def scholarship_list(request):
+def scholarship_list_AR(request):
     query = request.GET.get('q', '')  # Get the search query from 'q' parameter, default to empty string
     if query:
         # Filter scholarships based on the search query
-        scholarship_object = Scholarship.objects.filter(
+        scholarships_object = Scholarship.objects.filter(
             scholarship_name__icontains=query
             # You can add more fields to filter upon as needed, like donor_name__icontains=query, etc.
         )
     else:
-        print("Student name not found")
-        scholarship_object = Scholarship.objects.all()
+        scholarships_object = Scholarship.objects.all()
     
-    return render(request, 'ViewScholarshipsAR.html', {'scholarship_object': scholarship_object})
+    return render(request, 'ViewScholarshipsAR.html', {'scholarships_object': scholarships_object})
 
 def review_submit(request, application_id):
-    application = get_object_or_404(Application, pk=application_id)
+    application = Application.objects.get(pk=application_id)
     
     # Update the status of the application to 'reviewed'
-    application.stauts = 'In Review'
+    application.stauts = ('In Review')
+    application.sr_status = request.POST.get('approval')
+    application.score = request.POST.get('score')
     application.save()
     
     return render(request, 'ReviewApplication.html', {'application': application})

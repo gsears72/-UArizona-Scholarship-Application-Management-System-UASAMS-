@@ -10,7 +10,7 @@ urlpatterns = [
     path('ViewApplicants/<int:scholarship_id>/', views.ViewApplicants, name='ViewApplicants'),
     path('ViewEligibleApplicants/<int:scholarship_id>/', views.ViewEligibleApplicants, name='ViewEligibleApplicants'),
     path('ReviewApplication/<int:application_id>/<int:scholarship_id>/', views.ReviewApplication, name='ReviewApplication'),
-    path('application-list', views.application_list, name='application_list'),
-    path('scholarship-list', views.scholarship_list, name='scholarship_list'),
-    path('review-submit/<int:application_id>/', views.review_submit, name='review_submit')
+    path('application_list', views.application_list, name='application_list'),
+    path('scholarship_list_AR', views.scholarship_list_AR, name='scholarship_list_AR'),
+    path('review_submit/<int:application_id>/', views.review_submit, name='review_submit')
 ]
