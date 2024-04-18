@@ -2,7 +2,12 @@
 
 {% block content %}
 <h1>Scholarships</h1>
-
+  <form method="get" action="{% url 'scholarship_list_AR' %}" class="mb-3">
+  <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search Scholarships" name="q" value="{{ request.GET.q }}">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+  </form>
     <table class="table table-hover ">
       <thead class="table-dark">
         <tr>
@@ -23,7 +28,7 @@
           <td>{{ object.donor_full_name }}</td>
           <td>{{ object.application_deadline}}</td>
           <td>
-              <a class="btn btn-success" href="{% url 'ViewApplicants' object.id %}" role="button">More</a>
+              <a class="btn btn-success" href="{% url 'ViewApplicants' object.id %}" role="button">Applications</a>
             </td>
           </tr>
         {% endfor %}  

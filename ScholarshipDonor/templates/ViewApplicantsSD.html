@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h1>All Applicants for {{scholarship_object.scholarship_name}}</h1>
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       Filter
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="{% url 'ViewEligibleApplicants' scholarship_id %}">Eligible Applicants</a></li>
+      <li><a class="dropdown-item" href="{% url 'ViewEligibleApplicantsSD' scholarship_id %}">Eligible Applicants</a></li>
       <li><a class="dropdown-item" href="#">All Applicants</a></li>
     </ul>
 

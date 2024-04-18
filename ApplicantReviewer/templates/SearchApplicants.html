@@ -11,6 +11,7 @@
       <table class="table table-hover ">
         <thead class="table-dark">
           <tr>
+            <th>Scholarship Applied To</th>
             <th>Student Name</th>
             <th>GPA</th>
             <th>Major</th>
@@ -20,15 +21,16 @@
           </tr>
         </thead>
         <tbody style="vertical-align: middle;">
-          {% for object in application_object %}
+          {% for object in applications %}
                   <tr>
-                  <td>{{ object.student.first_name}} {{ object.student.last_name}}</td>
+                  <td>{{object.scholarship.scholarship_name}}</td>
+                  <td>{{ object.student.student_info.First_name}} {{ object.student.student_info.Last_name}}</td>
                   <td>{{ object.student.gpa }}</td>
                   <td>{{ object.student.major }}</td>
                   <td>{{ object.student.minor }}</td>
                   <td>{{ object.student.current_year}}</td>
                   <td>
-                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">More</a>
+                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">Applications</a>
                       </td>
                   </tr>
         {% endfor %}    

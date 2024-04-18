@@ -14,6 +14,7 @@
           <th>Number of Scholarships</th>
           <th>Deadline</th>
           <th> </th>
+          <th> </th>
         </tr>
       </thead>
       <tbody style="vertical-align: middle;">
@@ -25,6 +26,9 @@
             <td>{{ scholarship.application_deadline }}</td>
             <td>
               <a href="{% url 'EditScholarshipView' scholarship.id %}" class="btn btn-success open-incident" role="button">Edit</a>
+            </td>
+            <td>
+              <a href="{% url 'ViewApplicantsSD'  scholarship.id %}" class="btn btn-success open-incident" role="button">Applications</a>
             </td>
           </tr>
         {% endfor %}

@@ -2,12 +2,13 @@
 {% block content %}
 <h1>Student Application</h1>
 <ul class="list-group">
-    <li class="list-group-item"><b>Name: </b>{{ application_object.student.student_info.first_name}} {{application_object.student.student_info.last_name}}</li>
+    <li class="list-group-item"><b>Name: </b>{{ application_object.student.student_info.First_name}} {{application_object.student.student_info.Last_name}}</li>
     <li class="list-group-item"><b>GPA: </b>{{ application_object.student.gpa}}</li>
     <li class="list-group-item"><b>Major: </b>{{ application_object.student.major}}</li>
     <li class="list-group-item"><b>Minor: </b>{{ application_object.student.minor}}<li>
     <li class="list-group-item"><b>Current year: </b>{{ application_object.student.current_year}}</li>
     <li class="list-group-item"><b>Personal statement: </b>{{ application_object.student.personal_statement}}</li>
+    <li class="list-group-item"><b>PK: </b>{{ application_object.pk }}</li>
 </ul>
 <br>
 <h1>Scholarship Requirements</h1>
@@ -20,22 +21,22 @@
 </ul>
 <br>
 
-<h1>Scoring</h1>
-<form action="{% url 'review_submit' application_object.id %}" method="POST">
-  {% csrf_token %}
-  <label for="score">Score (0-100):</label>
-  <input type="number" id="score" name="score" min="0" max="100" required>
-  
-  <label for="approval">Approval:</label>
-  <select id="approval" name="approval" required>
-      <option value="approve">Approve Application</option>
-      <option value="disapprove">Reject Application</option>
-  </select>
-  
-  <button type="submit">Review Application</button>
-</form>
-<br>
-<br>
-<br>
+  <h1>Scoring</h1>
+  <form action="{% url 'review_submit' application_id=application_object.pk %}" method="POST">
+    {% csrf_token %}
+    <label for="score">Score (0-100):</label>
+    <input type="number" id="score" name="score" min="0" max="100" required>
+    
+    <label for="approval">Approval:</label>
+    <select id="approval" name="approval" required>
+        <option value="approve">Approve Application</option>
+        <option value="reject">Reject Application</option>
+    </select>
+    
+    <button type="submit">Submit</button>
+  </form>
+  <br>
+  <br>
+  <br>
 
 {% endblock %}
