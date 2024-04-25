@@ -6,6 +6,7 @@ from SFWEScholarships.models import Application
 from ScholarshipDonor.models import Scholarship
 from Student.models import Student
 from django.shortcuts import get_object_or_404
+from SFWEScholarships.forms import ApplicationForm
 # Create your views here.
 
 def home(request):
@@ -33,11 +34,12 @@ def ViewScholarshipInfo(request, scholarship_id):
     scholarship = get_object_or_404(Scholarship, pk=scholarship_id) #scholarship is set to a object not a class
     return render(request, 'SViewScholarshipInfo.html', {'scholarship' : scholarship}) #this scholarship must be passed into the page other wise the page will break
 
-def ViewCreateApplication(request, scholarship_id):
+def ViewApplication(request, scholarship_id):
     currentUser = request.user #gets current logged in user
     student = get_object_or_404(Student, student_info_id = currentUser.id)#filters the students by last name and first name to find current user as a student object
     scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
-    return render(request, 'applicationForm.html', {'scholarship' : scholarship, 'student' : student, 'user' : currentUser}) #the one in quotes is what is called in html
+    form = ApplicationForm()
+    return render(request, 'applicationForm.html', {'form':form, 'scholarship' : scholarship, 'student' : student, 'user' : currentUser}) #the one in quotes is what is called in html
 
 def ViewEligableScholarships(request):
     currentUser = request.user
@@ -45,3 +47,22 @@ def ViewEligableScholarships(request):
     scholarships_object = Scholarship.objects.all()
     context = {'scholarships_object' : scholarships_object, 'student' : student}
     return render(request, 'SViewEligableScholarships.html', context)
+
+
+def createApplication(request, scholarship_id):
+    if request.method == 'POST':
+        personal_statement = request.POST.get('personal_statement')
+        currentUser = request.user #gets current logged in user
+        student = get_object_or_404(Student, student_info_id = currentUser.id)
+        scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
+        application = Application(
+            student = student,
+            scholarship = scholarship,
+            personal_statement = personal_statement
+        )
+        print(application)
+        application.save()
+        messages.success(request, "Application created successfully.")
+        return render(request, 'home.html', {})
+    else:
+        return render(request, 'Shome.html', {})
