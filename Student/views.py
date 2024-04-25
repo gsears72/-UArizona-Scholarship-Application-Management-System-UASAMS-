@@ -6,7 +6,7 @@ from SFWEScholarships.models import Application
 from ScholarshipDonor.models import Scholarship
 from Student.models import Student
 from django.shortcuts import get_object_or_404
-from Login.forms import CreateStudentForm
+from Student.forms import StudentForm
 # Create your views here.
 
 def home(request):
@@ -53,11 +53,11 @@ def ViewEligableScholarships(request):
 def editProfile(request):
     currentUser = request.user
     student = get_object_or_404(Student, student_info_id = currentUser.id)
-    form = CreateStudentForm(request.POST, instance=student)
+    form = StudentForm(request.POST, instance=student)
     if request.method == 'POST':
         if form.is_valid:
             form.save()
         else:
-            form = CreateStudentForm()
+            form = StudentForm()
         #context = {'form' : form}
     return render(request, 'SeditProfile.html',  {'form' : form})
