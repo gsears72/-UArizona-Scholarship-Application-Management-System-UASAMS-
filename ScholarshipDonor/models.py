@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
-class Scholarship(models.Model):
-    major_requirement_choices = (
+
+major_requirement_choices = (
         ('Engineering', 'Engineering'), 
         ('Business', 'Business'),
         ('Music', 'Music'), 
@@ -40,8 +40,9 @@ class Scholarship(models.Model):
         ('Psychology', 'Psychology'),
         ('none', 'none'),
     )
-   
-   
+
+class Scholarship(models.Model):
+    
     scholarship_name = models.CharField(max_length=100)
     scholarship_amount = models.DecimalField(max_digits=10, decimal_places=2)
     donor_full_name = models.CharField(max_length=100)

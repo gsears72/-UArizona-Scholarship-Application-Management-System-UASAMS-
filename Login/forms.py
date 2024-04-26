@@ -157,7 +157,7 @@ class CreateApplicantReviewerForm(UserCreationForm):
                    'Phone_number', 'Net_ID', 'role']
         
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(CreateStudentForm, self).__init__(*args, **kwargs)
+        super(CreateApplicantReviewerForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
         self.fields['role'].initial = "Applicant Reviewer"
         self.fields['password1'].label = "Password"
@@ -197,7 +197,7 @@ class CreateScholorshipAdministratorForm(UserCreationForm):
                    'Phone_number', 'Net_ID', 'role']
         
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(CreateStudentForm, self).__init__(*args, **kwargs)
+        super(CreateScholorshipAdministratorForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
         self.fields['role'].initial = "Scholorship Administrator"
         self.fields['password1'].label = "Password"
@@ -237,7 +237,7 @@ class CreateScholorshipDonorForm(UserCreationForm):
                    'Phone_number', 'role']
         
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(CreateStudentForm, self).__init__(*args, **kwargs)
+        super(CreateScholorshipDonorForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
         self.fields['role'].initial = "Scholorship Donor"
         self.fields['password1'].label = "Password"
