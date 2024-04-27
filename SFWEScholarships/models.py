@@ -1,6 +1,7 @@
 from django.db import models
 from ScholarshipDonor.models import Scholarship
 from Student.models import Student
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 class Application(models.Model):
