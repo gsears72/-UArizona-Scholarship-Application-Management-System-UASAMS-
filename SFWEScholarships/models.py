@@ -11,12 +11,11 @@ class Application(models.Model):
         ('Rejected', 'Rejected')
     )
     
-    SR_STATUS = (
+    SR_STATUS_CHOICES = (
         ('In Reivew', 'In Review'),
         ('Approved', 'Approved'), 
         ('Rejected', 'Rejected')
     )
-    
     
     
 
@@ -24,8 +23,6 @@ class Application(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     stauts = models.CharField(max_length = 20, choices = STATUS, default = 'Submitted')
     personal_statement = models.TextField()
-    sr_status = models.CharField(max_length = 20, choices = SR_STATUS, default = 'In Review')
-    score = models.IntegerField(max_length = 3, default = 0)
-    resume = models.FileField(upload_to='resumes/',default='resumes/default.pdf')
-    
+    sr_status = models.CharField(max_length = 20, choices = SR_STATUS_CHOICES, default = 'In Review')
+    score = models.IntegerField(validators=[MaxValueValidator(100)], default = 0)
     
