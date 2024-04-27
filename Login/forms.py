@@ -157,7 +157,7 @@ class CreateApplicantReviewerForm(UserCreationForm):
                    'Phone_number', 'Net_ID', 'role']
         
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(CreateStudentForm, self).__init__(*args, **kwargs)
+        super(CreateApplicantReviewerForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
         self.fields['role'].initial = "Applicant Reviewer"
         self.fields['password1'].label = "Password"
@@ -192,12 +192,12 @@ class CreateScholorshipAdministratorForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'Security_Question1', 'Security_Question1_answer',
-                   'Security_Question2', 'Security_Question2_answer', 'First_name', 'Last_name',
-                   'Phone_number', 'Net_ID', 'role']
+        fields = ['email', 'username', 'Security_Question1',                'Security_Question1_answer',
+            'Security_Question2', 'Security_Question2_answer', 'First_name', 'Last_name',
+            'Phone_number', 'Net_ID', 'role']
         
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(CreateStudentForm, self).__init__(*args, **kwargs)
+        super(CreateScholorshipAdministratorForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
         self.fields['role'].initial = "Scholorship Administrator"
         self.fields['password1'].label = "Password"
@@ -236,8 +236,8 @@ class CreateScholorshipDonorForm(UserCreationForm):
                    'Security_Question2', 'Security_Question2_answer', 'First_name', 'Last_name',
                    'Phone_number', 'role']
         
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(CreateStudentForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args: Any, **kwargs: Any):
+        super(CreateScholorshipDonorForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
         self.fields['role'].initial = "Scholorship Donor"
         self.fields['password1'].label = "Password"
