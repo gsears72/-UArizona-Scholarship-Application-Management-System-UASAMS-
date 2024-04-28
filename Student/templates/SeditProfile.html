@@ -1,12 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Edit Profile</h1>
-    <form method="post">
+<section>
+    <h2>Edit {{ currentUser.First_name }} {{ currentUser.Last_name }}'s Profile</h2>
+    <form action="" method="post" class="form">
         {% csrf_token %}
-        {{ form1.as_p }}
-        {{ form2.as_p }}
+            <div class="mb-3">
+                {{ form2.First_name.label }}
+                {{ form2.First_name }}
+                {{ form2.Last_name.label }}
+                {{ form2.Last_name }}
+                {{ form2.username.label }}
+                {{ form2.username }}
+                {{ form2.password.label }}
+                {{ form2.password }}
+                {{ form2.Net_ID.label }}
+                {{ form2.Net_ID }}
+                {{ form1.preferred_pronoun.label }}
+                {{ form1.preferred_pronoun }}
+                {{ form1.ethnicity.label }}
+                {{ form1.ethnicity }}
+                {{ form2.email.label }}
+                {{ form2.email }}
+                {{ form2.Phone_number.label }}
+                {{ form2.Phone_number }}
+                {{ form1.current_year.label }}
+                {{ form1.current_year }}
+                {{ form1.major.label }}
+                {{ form1.major }}
+                {{ form1.minor.label }}
+                {{ form1.minor }}
+                {{ form1.gpa.label }}
+                {{ form1.gpa }}
+                {{ form2.Security_Question1.label }}
+                {{ form2.Security_Question1 }}
+                {{ form2.Security_Question1_answer.label }}
+                {{ form2.Security_Question1_answer }}
+                {{ form2.Security_Question2.label }}
+                {{ form2.Security_Question2 }}
+                {{ form2.Security_Question2_answer.label }}
+                {{ form2.Security_Question2_answer }}
+                {{ form1.work_experience.label }}
+                {{ form1.work_experience }}
+                {{ form1.personal_statement_essay.label }}
+                {{ form1.personal_statement_essay }}
+            </div>
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="{% url 'SViewProfile' %}" class = "btn btn-danger">Cancel</a>
     </form>
+</section>
 {% endblock %}

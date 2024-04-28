@@ -25,7 +25,7 @@
             <tr>
               <td>{{ scholarship.scholarship_name }}</td>
               <td>${{ scholarship.scholarship_amount }}</td>
-              <td>${{ scholarship.num_scholarships_available }}</td>
+              <td>{{ scholarship.num_scholarships_available }}</td>
               <td>{{ scholarship.application_deadline }}</td>
               <td>
                 <button 
@@ -50,7 +50,7 @@
         {% endfor %}
         {% include "ScholarshipView.html" %}
     </table>
-    
+        
   </div>
   <script>
     var Modal = document.getElementById('scholarshipModal')

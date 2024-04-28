@@ -64,4 +64,4 @@ def editProfile(request):
             form1 = StudentForm()
             form2 = UserForm()
         #context = {'form' : form}
-    return render(request, 'SeditProfile.html',  {'form1' : form1, 'form2' : form2})
+    return render(request, 'SeditProfile.html',  {'form1' : form1, 'form2' : form2, 'currentUser' : currentUser, 'student' : student})
