@@ -110,17 +110,17 @@ def scholorshipadminstratoRegister(request):
     """
     form = CreateScholorshipAdministratorForm()
     if request.method == 'POST':
-         form = CreateScholorshipAdministratorForm(request.POST)
-         if form.is_valid():
-             form.save()
-             email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password1')
-             user = authenticate(email=email, password=raw_password)
-             login(request, user)
-             messages.success(request,'Account Created')
-             scholarshipAdministrator.objects.create(scholarshipAdministrator_info=user) 
-             return redirect("home")
-         else:
+        form = CreateScholorshipAdministratorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            messages.success(request,'Account Created')
+            scholarshipAdministrator.objects.create(scholarshipAdministrator_info=user) 
+            return redirect("home")
+        else:
                 context = {'form': form}
                 return render(request,'authenticate/scholarship_administrator_register.html',context)
     else:

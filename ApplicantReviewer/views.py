@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import get_list_or_404
-from django.shortcuts import get_object_or_404
 
 from ScholarshipDonor.models import Scholarship
 from SFWEScholarships.models import Application
@@ -23,7 +21,6 @@ def SearchApplicants(request):
     return render(request,'SearchApplicants.html',{'applications': applications})
 
 def MyReviewedApps(request):
-    application_object = Application.objects.all()
     return render(request,'MyReviewedApps.html',{})
 
 def ViewReports(request):

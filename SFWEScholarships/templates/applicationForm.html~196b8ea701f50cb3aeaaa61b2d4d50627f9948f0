@@ -2,11 +2,12 @@
 
 {% block content %}
 <h2>Application for {{scholarship.scholarship_name}}</h2>
-    <form>
+    <form method="POST" action="{% url 'createApplication' scholarship.id %}">
+        {% csrf_token %}
         <label for"f_name">Full Name (required):</label><br>
         <p>{{user.First_name}} {{user.Last_name}}</p>
-        <label for"pronoun">Preferred Pronouns (optional):</label><br>
-        <p>{{student.preferred_pronoun}}</p>
+        <!-- <label for"pronoun">Preferred Pronouns (optional):</label><br>
+        <p>{{student.preferred_pronoun}}</p> -->
         <label for"major">Major (required): </label><br>
         <p>{{student.major}}</p>
         <label for"minor">Minor (optional): </label><br>
@@ -15,16 +16,17 @@
         <p>{{student.gpa}}</p>
         <label for"curr_year">Current Year (required): </label><br>
         <p>{{student.current_year}}</p>
-        <label for"ethnicity">Ethnicity (required): </label><br>
+        <!-- <label for"ethnicity">Ethnicity (required): </label><br>
         <p>{{student.ethnicity}}</p>
         <label for"p_statement">Personal Statement Essay (required): </label><br>
-        <p>{{student.personal_statement_essay}}</p>
+        <p>{{student.personal_statement_essay}}</p> -->
         <label for"w_experience">Work Experience (optional): </label><br>
         <p>{{student.work_experience}}</p>
-        <h3>Cover Letter</h3> 
+        <h3>Cover Letter</h3> -->
         {{ form.personal_statement }}
+        <!--<input type="text" size="100vw" required id="cl" name="cl">-->
+
         <br>
-        {{ fileForm }}
         <br>
 
         <button class="btn btn-success" type="submit">Submit Application</button>

@@ -2,8 +2,8 @@
 **/__pycache__/** 
 *.py[cod]
 *$py.class
-*.cpython-310.pyc
-*.cpython-312.pyc
+**.cpython-310.pyc
+**.cpython-312.pyc
 
 
 # C extensions
@@ -41,9 +41,10 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
+htmlcov/
 .tox/
 .nox/
-
+.coverage
 .coverage.*
 .cache
 nosetests.xml
@@ -109,6 +110,47 @@ celerybeat.pid
 env/
 venv/
 .pyc
+ApplicantReviewer/__pycache__/__init__.cpython-310.pyc
+ApplicantReviewer/__pycache__/admin.cpython-310.pyc
+ApplicantReviewer/__pycache__/apps.cpython-310.pyc
+ApplicantReviewer/__pycache__/models.cpython-310.pyc
+ApplicantReviewer/__pycache__/urls.cpython-310.pyc
+ApplicantReviewer/__pycache__/views.cpython-310.pyc
+Login/__pycache__/__init__.cpython-310.pyc
+Login/__pycache__/apps.cpython-310.pyc
+Login/__pycache__/models.cpython-310.pyc
+Login/__pycache__/views.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/__init__.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/admin.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/apps.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/models.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/urls.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/views.cpython-310.pyc
+ScholarshipDonor/__pycache__/__init__.cpython-310.pyc
+ScholarshipDonor/__pycache__/apps.cpython-310.pyc
+ScholarshipDonor/__pycache__/models.cpython-310.pyc
+ScholarshipDonor/__pycache__/urls.cpython-310.pyc
+ScholarshipDonor/__pycache__/views.cpython-310.pyc
+SFWE402Project/__pycache__/__init__.cpython-310.pyc
+SFWE402Project/__pycache__/settings.cpython-310.pyc
+SFWE402Project/__pycache__/urls.cpython-310.pyc
+SFWE402Project/__pycache__/wsgi.cpython-310.pyc
+SFWE402Project/__pycache__/__init__.cpython-310.pyc
+SFWE402Project/__pycache__/settings.cpython-310.pyc
+SFWE402Project/__pycache__/urls.cpython-310.pyc
+SFWE402Project/__pycache__/wsgi.cpython-310.pyc
+SFWEScholarships/__pycache__/__init__.cpython-310.pyc
+SFWEScholarships/__pycache__/admin.cpython-310.pyc
+SFWEScholarships/__pycache__/apps.cpython-310.pyc
+SFWEScholarships/__pycache__/models.cpython-310.pyc
+SFWEScholarships/__pycache__/urls.cpython-310.pyc
+SFWEScholarships/__pycache__/views.cpython-310.pyc
+Student/__pycache__/__init__.cpython-310.pyc
+Student/__pycache__/admin.cpython-310.pyc
+Student/__pycache__/apps.cpython-310.pyc
+Student/__pycache__/models.cpython-310.pyc
+Student/__pycache__/urls.cpython-310.pyc
+Student/__pycache__/views.cpython-310.pyc
 
 
 **/__pycache__/
