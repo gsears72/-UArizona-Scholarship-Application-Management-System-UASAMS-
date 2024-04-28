@@ -52,7 +52,7 @@ def logout_user(request):
     """
     messages.success(request,'You Were Logged Out')
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
 

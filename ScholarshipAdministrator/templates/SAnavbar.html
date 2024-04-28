@@ -9,34 +9,17 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">Home</a>
+          <a class="nav-link" href="{% url 'create_scholarship' %}">Create</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'ViewScholarshipsAR' %}">Reviewer</a>
+          <a class="nav-link" href="{% url 'scholarship_list' %}">Scholarships</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'SDhome' %}">Donor</a>
+          <a class="nav-link" disabled>Reports</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'scholarship_list' %}">Administrator</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'SViewProfile' %}">Student</a>
-        </li>
-        
-        {% if user.is_authenticated %}
         <li class="nav-item" >
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li>
-        {% endif %}
-
-      
-
-      
 
       </ul>
     </div>

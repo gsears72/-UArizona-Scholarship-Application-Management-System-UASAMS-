@@ -26,6 +26,9 @@ def MyReviewedApps(request):
     application_object = Application.objects.all()
     return render(request,'MyReviewedApps.html',{})
 
+def ViewReports(request):
+    return render(request,'ARreports.html',{})
+
 def Approved(request):
     application_object = Application.objects.all()
     return render(request,'Approved.html',{}, {'application_object':application_object})
