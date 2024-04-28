@@ -30,5 +30,5 @@ class Application(models.Model):
     personal_statement = models.TextField()
     sr_status = models.CharField(max_length = 20, choices = SR_STATUS_CHOICES, default = 'In Review')
     score = models.IntegerField(validators=[MaxValueValidator(100)], default = 0)
-    resume = models.FileField(upload_to = 'Documents/')
+    resume = models.FileField(upload_to='resumes/')
     

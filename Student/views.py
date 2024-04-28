@@ -62,6 +62,7 @@ def createApplication(request, scholarship_id):
         student = get_object_or_404(Student, student_info_id = currentUser.id)
         scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
         form = UploadFileForm(request.POST, request.FILES)
+        print("1")
         if form.is_valid():
 
             application = Application(
@@ -70,11 +71,13 @@ def createApplication(request, scholarship_id):
                 personal_statement = personal_statement,
                 resume = form.fields['resume'],
             )
-
+            print("2")
             application.save()
             messages.success(request, "Application created successfully.")
         else:
+            print("3")
             messages.success(request, "Application failed to upload resume.")
-        return render(request, 'SViewScholarships.html', {})
+        return redirect('SViewScholarships')
     else:
-        return render(request, 'SViewScholarships.html', {})
+        print("4")
+        return redirect('SViewScholarships')

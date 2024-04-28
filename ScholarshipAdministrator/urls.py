@@ -9,6 +9,9 @@ urlpatterns = [
     path('delete-scholarship/<str:scholarship_name>/', views.delete_scholarship_page, name='delete_scholarship'),    
     path('create-scholarship-submit', views.create_scholarship_submit, name='create_scholarship_submit'),
     path('delete-scholarship-db/<str:scholarship_name>/', views.delete_scholarship_db, name='delete_scholarship_db'),
-    path('edit-scholarship-db/<str:scholarship_name>/', views.edit_scholarship, name='edit_scholarship_db')
+    path('edit-scholarship-db/<str:scholarship_name>/', views.edit_scholarship, name='edit_scholarship_db'),
+    path('viewChangeRequest', views.viewChangeRequest, name='viewChangeRequest'),
+    path('denyChangeRequest/<int:change_id>/', views.denyChangeRequest, name='denyChangeRequest'),
+    path('approveChangeRequest/<int:change_id>/', views.approveChangeRequest, name='approveChangeRequest')
 
 ]

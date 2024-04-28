@@ -199,7 +199,7 @@ class CreateScholorshipAdministratorForm(UserCreationForm):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(CreateScholorshipAdministratorForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
-        self.fields['role'].initial = "Scholorship Administrator"
+        self.fields['role'].initial = "Scholarship Administrator"
         self.fields['password1'].label = "Password"
         self.fields['password2'].label = "Confirm Password"
         self.fields['Security_Question1'].label = "Security Question 1"
@@ -239,7 +239,7 @@ class CreateScholorshipDonorForm(UserCreationForm):
     def __init__(self, *args: Any, **kwargs: Any):
         super(CreateScholorshipDonorForm, self).__init__(*args, **kwargs)
         self.fields['role'].widget = forms.HiddenInput()
-        self.fields['role'].initial = "Scholorship Donor"
+        self.fields['role'].initial = "Scholarship Donor"
         self.fields['password1'].label = "Password"
         self.fields['password2'].label = "Confirm Password"
         self.fields['Security_Question1'].label = "Security Question 1"
