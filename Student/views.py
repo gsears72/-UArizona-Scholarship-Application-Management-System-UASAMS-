@@ -7,6 +7,7 @@ from ScholarshipDonor.models import Scholarship
 from Student.models import Student
 from django.shortcuts import get_object_or_404
 from Student.forms import StudentForm
+from Student.forms import UserForm
 # Create your views here.
 
 def home(request):
@@ -53,11 +54,14 @@ def ViewEligableScholarships(request):
 def editProfile(request):
     currentUser = request.user
     student = get_object_or_404(Student, student_info_id = currentUser.id)
-    form = StudentForm(request.POST, instance=student)
+    form1 = StudentForm(request.POST, instance=student)
+    form2 = UserForm(request.POST, instance=currentUser)
     if request.method == 'POST':
-        if form.is_valid:
-            form.save()
+        if (form1.is_valid and form2.is_valid):
+            form1.save()
+            form2.save()
         else:
-            form = StudentForm()
+            form1 = StudentForm()
+            form2 = UserForm()
         #context = {'form' : form}
-    return render(request, 'SeditProfile.html',  {'form' : form})
+    return render(request, 'SeditProfile.html',  {'form1' : form1, 'form2' : form2})

@@ -1,6 +1,7 @@
 from typing import Any
 from django import forms 
 from Student.models import Student
+from Login.models import User
 
 
 SECURITY_QUESTION_CHOICES = [
@@ -92,23 +93,30 @@ class StudentForm(forms.ModelForm):
         model = Student 
         fields = '__all__'
         widgets = {
-            'student_info.First_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'first_name'}),
-            'student_info.Last_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'last_name'}),
-            'student_info.username': forms.TextInput(attrs={'class': 'form-control', 'id': 'username'}),
-            'student_info.password': forms.TextInput(attrs={'class': 'form-control', 'id': 'password'}),
-            'student_info.Net_ID': forms.TextInput(attrs={'class': 'form-control', 'id': 'netID'}),
             'preferred_pronoun': forms.TextInput(attrs={'class': 'form-control', 'id': 'pronoun'}),
             'ethnicity': forms.Select(choices=ethnicity_choices,attrs={'class': 'form-control', 'id': 'ethnicity'}),
-            'student_info.email': forms.EmailInput(attrs={'class': 'form-control', 'id': 'email'}),
-            'student_info.Phone_number': forms.TextInput(attrs={'class': 'form-control', 'id': 'phone'}),
             'current_year': forms.Select(choices=current_year_choices,attrs={'class': 'form-control', 'id': 'year'}),
             'major': forms.Select(choices=major_requirement_choices,attrs={'class': 'form-control', 'id': 'major'}),
             'minor': forms.Select(choices=major_requirement_choices,attrs={'class': 'form-control', 'id': 'minor'}),
             'gpa': forms.NumberInput(attrs={'class': 'form-control', 'id': 'gpa'}),
-            'student_info.Security_Question1': forms.Select(choices=SECURITY_QUESTION_CHOICES,attrs={'class': 'form-control', 'id': 'q1'}),
-            'student_info.Security_Question1_answer': forms.TextInput(attrs={'class': 'form-control', 'id': 'q1a'}),
-            'student_info.Security_Question2': forms.Select(choices=SECURITY_QUESTION_CHOICES,attrs={'class': 'form-control', 'id': 'q2'}),
-            'student_info.Security_Question2_answer': forms.TextInput(attrs={'class': 'form-control', 'id': 'q2a'}),
             'work_experience': forms.Textarea(attrs={'class': 'form-control', 'id': 'work', 'rows':3}),
             'personal_statement_essay': forms.Textarea(attrs={'class': 'form-control', 'id': 'essay', 'rows':3}),
+        }
+
+class UserForm(forms.ModelForm):
+    class Meta: 
+        model = User
+        fields = '__all__'
+        widgets = {
+            'First_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'first_name'}),
+            'Last_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'last_name'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'id': 'username'}),
+            'password': forms.TextInput(attrs={'class': 'form-control', 'id': 'password'}),
+            'Net_ID': forms.TextInput(attrs={'class': 'form-control', 'id': 'netID'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'id': 'email'}),
+            'Phone_number': forms.TextInput(attrs={'class': 'form-control', 'id': 'phone'}),
+            'Security_Question1': forms.Select(choices=SECURITY_QUESTION_CHOICES,attrs={'class': 'form-control', 'id': 'q1'}),
+            'Security_Question1_answer': forms.TextInput(attrs={'class': 'form-control', 'id': 'q1a'}),
+            'Security_Question2': forms.Select(choices=SECURITY_QUESTION_CHOICES,attrs={'class': 'form-control', 'id': 'q2'}),
+            'Security_Question2_answer': forms.TextInput(attrs={'class': 'form-control', 'id': 'q2a'}),
         }
