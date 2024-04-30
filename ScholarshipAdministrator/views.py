@@ -14,10 +14,10 @@ def home(request):
 
 def create_scholarship(request):
     if request.method == 'POST':
-        form = ScholarshipForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('SAhome')  # Adjust the redirect to your needs
+            form = ScholarshipForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('SAhome')  # Adjust the redirect to your needs
     else:
         form = ScholarshipForm()
     return render(request, 'SAcreatescholarship.html', {'form': form})
@@ -97,30 +97,3 @@ def create_scholarship_submit(request):
         
         if not name or not amount or not total_avail or not min_gpa:
             messages.error(request, "Please fill in all required fields.")
-            return redirect('SAcreatescholarship') 
-        try:
-            amount = float(amount)
-            total_avail = float(total_avail)
-            min_gpa = float(min_gpa)
-        except ValueError:
-            messages.error(request, "Please provide valid numerical values for amount, total available, and minimum GPA.")
-            return redirect('SAcreatescholarship')
-        
-        scholarship = Scholarship(
-            name=name,
-            amount=amount,
-            donor=donor,
-            totalAvail=total_avail,
-            minGPA=min_gpa,
-            major=major,
-            dateCreated=None, 
-            applicants=[], 
-            awarded=[],
-            description=description
-        )
-        scholarship.save()
-        
-        messages.success(request, "Scholarship created successfully.")
-        return redirect('SAscholarshiplist') 
-    else:
-        return render(request, 'SAcreatescholarship.html')
