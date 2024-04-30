@@ -1,4 +1,3 @@
-# forms.py
 from typing import Any
 from django import forms
 from ScholarshipDonor.models import Scholarship

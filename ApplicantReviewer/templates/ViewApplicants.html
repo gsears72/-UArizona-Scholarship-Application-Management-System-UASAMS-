@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>All Applicants for {{scholarship_object.scholarship_name}}</h1>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Filter
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'ViewEligibleApplicants' scholarship_id %}">Eligible Applicants</a></li>
+      <li><a class="dropdown-item" href="#">All Applicants</a></li>
+    </ul>
+
+      <table class="table table-hover ">
+        <thead class="table-dark">
+          <tr>
+            <th>Student Name</th>
+            <th>GPA</th>
+            <th>Major</th>
+            <th>Minor</th>
+            <th>Current Year</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody style="vertical-align: middle;">
+          {% for object in application_object %}
+              {% if object.scholarship.id == scholarship_id %}
+                  <tr>
+                  <td>{{ object.student.student_info.First_name}} {{ object.student.student_info.Last_name}}</td>
+                  <td>{{ object.student.gpa }}</td>
+                  <td>{{ object.student.major }}</td>
+                  <td>{{ object.student.minor }}</td>
+                  <td>{{ object.student.current_year}}</td>
+                  <td>
+                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.id object.scholarship.id %}" role="button">More</a>
+                      </td>
+                    </tr>
+              {% endif %}
+          {% endfor %}  
+      </table>
+  </div>
+{% endblock %}

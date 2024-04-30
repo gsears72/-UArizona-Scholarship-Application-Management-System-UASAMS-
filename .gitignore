@@ -1,7 +1,10 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/** 
 *.py[cod]
 *$py.class
+**.cpython-310.pyc
+**.cpython-312.pyc
+
 
 # C extensions
 *.so
@@ -106,26 +109,49 @@ celerybeat.pid
 .venv
 env/
 venv/
-ENV/
-env.bak/
-venv.bak/
+.pyc
+ApplicantReviewer/__pycache__/__init__.cpython-310.pyc
+ApplicantReviewer/__pycache__/admin.cpython-310.pyc
+ApplicantReviewer/__pycache__/apps.cpython-310.pyc
+ApplicantReviewer/__pycache__/models.cpython-310.pyc
+ApplicantReviewer/__pycache__/urls.cpython-310.pyc
+ApplicantReviewer/__pycache__/views.cpython-310.pyc
+Login/__pycache__/__init__.cpython-310.pyc
+Login/__pycache__/apps.cpython-310.pyc
+Login/__pycache__/models.cpython-310.pyc
+Login/__pycache__/views.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/__init__.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/admin.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/apps.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/models.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/urls.cpython-310.pyc
+ScholarshipAdministrator/__pycache__/views.cpython-310.pyc
+ScholarshipDonor/__pycache__/__init__.cpython-310.pyc
+ScholarshipDonor/__pycache__/apps.cpython-310.pyc
+ScholarshipDonor/__pycache__/models.cpython-310.pyc
+ScholarshipDonor/__pycache__/urls.cpython-310.pyc
+ScholarshipDonor/__pycache__/views.cpython-310.pyc
+SFWE402Project/__pycache__/__init__.cpython-310.pyc
+SFWE402Project/__pycache__/settings.cpython-310.pyc
+SFWE402Project/__pycache__/urls.cpython-310.pyc
+SFWE402Project/__pycache__/wsgi.cpython-310.pyc
+SFWE402Project/__pycache__/__init__.cpython-310.pyc
+SFWE402Project/__pycache__/settings.cpython-310.pyc
+SFWE402Project/__pycache__/urls.cpython-310.pyc
+SFWE402Project/__pycache__/wsgi.cpython-310.pyc
+SFWEScholarships/__pycache__/__init__.cpython-310.pyc
+SFWEScholarships/__pycache__/admin.cpython-310.pyc
+SFWEScholarships/__pycache__/apps.cpython-310.pyc
+SFWEScholarships/__pycache__/models.cpython-310.pyc
+SFWEScholarships/__pycache__/urls.cpython-310.pyc
+SFWEScholarships/__pycache__/views.cpython-310.pyc
+Student/__pycache__/__init__.cpython-310.pyc
+Student/__pycache__/admin.cpython-310.pyc
+Student/__pycache__/apps.cpython-310.pyc
+Student/__pycache__/models.cpython-310.pyc
+Student/__pycache__/urls.cpython-310.pyc
+Student/__pycache__/views.cpython-310.pyc
 
-# Spyder project settings
-.spyderproject
-.spyproject
 
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-/data
+**/__pycache__/
+*.py[cod]
