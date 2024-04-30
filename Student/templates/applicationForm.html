@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
 <h2>Application for {{scholarship.scholarship_name}}</h2>
-    <form>
+    <form method="POST" action="{% url 'createApplication' scholarship.id %}">
+        {% csrf_token %}
         <label for"f_name">Full Name (required):</label><br>
         <p>{{user.First_name}} {{user.Last_name}}</p>
         <label for"pronoun">Preferred Pronouns (optional):</label><br>
@@ -23,8 +25,8 @@
         <p>{{student.work_experience}}</p>
         <h3>Cover Letter</h3> 
         {{ form.personal_statement }}
-
         <br>
+        {{ fileForm }}
         <br>
 
         <button class="btn btn-success" type="submit">Submit Application</button>

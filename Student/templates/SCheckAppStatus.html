@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
 <h1>Applications</h1>
 <table class="table table-hover ">
     <thead class="table-dark">
@@ -14,14 +15,13 @@
     </thead>
     <tbody style="vertical-align: middle;">
       {% for object in application_object %}
-        {% if object.student.id == student.id %}
-        <tr>
-          <td>{{ object.scholarship.scholarship_name }}</td>
-          <td>${{ object.scholarship.scholarship_amount }}</td>
-          <td>{{ object.scholarship.donor_full_name }}</td>
-          <td>{{ object.stauts }}</td>
-          </tr> 
-        {% endif %}
+      <tr>
+        <td>{{ object.scholarship.scholarship_name }}</td>
+        <td>${{ object.scholarship.scholarship_amount }}</td>
+        <td>{{ object.scholarship.donor_full_name }}</td>
+        <td>{{ object.status }}</td>
+        <td><a class="nav-link" href="{% url 'openResume' object.id %}">resume</td>
+      </tr> 
       {% endfor %}
   </table>
 </div>

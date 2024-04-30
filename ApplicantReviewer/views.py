@@ -23,6 +23,9 @@ def SearchApplicants(request):
 def MyReviewedApps(request):
     return render(request,'MyReviewedApps.html',{})
 
+def ViewReports(request):
+    return render(request,'ARreports.html',{})
+
 def Approved(request):
     application_object = Application.objects.all()
     return render(request,'Approved.html',{}, {'application_object':application_object})
@@ -86,4 +89,4 @@ def review_submit(request, application_id):
     application.score = request.POST.get('score')
     application.save()
     
-    return render(request, 'ReviewApplication.html', {'application': application})
+    return render(request, 'ReviewApplication.html', {'application_object': application})

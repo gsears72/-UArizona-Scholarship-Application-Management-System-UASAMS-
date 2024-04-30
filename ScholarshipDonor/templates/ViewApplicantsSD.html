@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% include 'SDnavbar.html' %}
 <h1>All Applicants for {{scholarship_object.scholarship_name}}</h1>
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,7 +33,7 @@
                   <td>{{ object.student.minor }}</td>
                   <td>{{ object.student.current_year}}</td>
                   <td>
-                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.id object.scholarship.id %}" role="button">More</a>
+                      <a class="btn btn-success" href="{% url 'ReviewApplicationSD' object.id object.scholarship.id %}" role="button">More</a>
                       </td>
                     </tr>
               {% endif %}

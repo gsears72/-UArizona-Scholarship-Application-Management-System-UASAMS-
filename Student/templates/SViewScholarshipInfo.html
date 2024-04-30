@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
+<h1>{{scholarship.scholarship_name}}</h1>
+<br>
+<a class="btn btn-danger" href="{% url 'applicationForm' scholarship.id %}" role="button">Apply</a>
 <div class="container">
     <h1>{{scholarship.scholarship_name}}</h1>
     <a class="btn btn-danger" href="{% url 'applicationForm' scholarship.id %}" role="button">Apply</a>

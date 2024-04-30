@@ -187,7 +187,7 @@ class User(AbstractBaseUser):
         ENGRITSupportStaff = 'ENGR IT Support Staff', 'ENGR IT Support Staff'
 
 
-    role                       = models.CharField(max_length=50, choices=Role.choices)
+    role = models.CharField(max_length=50, choices=Role.choices)
 
     objects = MyUserManager()
 

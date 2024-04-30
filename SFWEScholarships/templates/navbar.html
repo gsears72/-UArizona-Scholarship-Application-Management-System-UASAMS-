@@ -22,16 +22,16 @@
         {% endif %}
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'ARhome' %}">Reviewer</a>
+          <a class="nav-link" href="{% url 'ViewScholarshipsAR' %}">Reviewer</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'SDhome' %}">Donor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'SAhome' %}">Administrator</a>
+          <a class="nav-link" href="{% url 'scholarship_list' %}">Administrator</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'Shome' %}">Student</a>
+          <a class="nav-link" href="{% url 'SViewProfile' %}">Student</a>
         </li>
         
         {% if user.is_authenticated %}

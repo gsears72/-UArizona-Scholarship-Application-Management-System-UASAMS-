@@ -1,6 +1,8 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SDnavbar.html' %}
 <body>
   <div id="click_modal" style="display:none;"></div>
   <h1 style="text-align:center;">Donor Page</h1>
@@ -22,7 +24,7 @@
           <tr>
             <td>{{ scholarship.scholarship_name }}</td>
             <td>${{ scholarship.scholarship_amount }}</td>
-            <td>${{ scholarship.num_scholarships_available }}</td>
+            <td>{{ scholarship.num_scholarships_available }}</td>
             <td>{{ scholarship.application_deadline }}</td>
             <td>
               <a href="{% url 'EditScholarshipView' scholarship.id %}" class="btn btn-success open-incident" role="button">Edit</a>

@@ -1,17 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{currentUser.First_name}}'s Homepage</h1>
+<h1>Student Homepage</h1>
 
 <a class="btn btn-primary" href="{% url 'SViewProfile' %}" role="button">View Profile</a>
-<br>
-<br>
-<br>
-<br>
 <a class="btn btn-primary" href="{% url 'SViewScholarships' %}" role="button">Search Scholarships</a>
-<br>
-<br>
-<br>
-<br>
 <a class="btn btn-primary" href="{% url 'SCheckAppStatus' %}" role="button">Check Application Status</a>
+
+
 {% endblock %}

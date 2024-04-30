@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from ScholarshipDonor.models import Scholarship
 from .forms import ScholarshipForm
+from ScholarshipDonor.models import Scholarship_change
 #from ScholarshipAdministrator.forms import ScholarshipForm
 
 # Create your views here.
@@ -54,7 +55,35 @@ def delete_scholarship_db(request, scholarship_name):
     scholarship.delete()
     return render(request, 'SAscholarshipdeleted.html', {})
 
+def viewChangeRequest(request):
+    changeRequests = Scholarship_change.objects.all()
+    return render(request, 'viewChangeRequest.html', {'changeRequests': changeRequests})
 
+def denyChangeRequest(request, change_id):
+    changeRequest = get_object_or_404(Scholarship_change, pk=change_id)
+    if request.method == "POST":
+        changeRequest.delete()
+        messages.success(request, "Change request denied.")
+        return redirect('viewChangeRequest')
+    
+def approveChangeRequest(request, change_id):
+    changeRequest = get_object_or_404(Scholarship_change, pk=change_id)
+    scholarship = get_object_or_404(Scholarship, pk=changeRequest.Scholarship_to_change)
+    if request.method == "POST":
+        scholarship.scholarship_name = changeRequest.scholarship_name
+        scholarship.scholarship_amount = changeRequest.scholarship_amount
+        scholarship.donor_full_name = changeRequest.donor_full_name
+        scholarship.donor_email = changeRequest.donor_email
+        scholarship.donor_phone_number = changeRequest.donor_phone_number
+        scholarship.num_scholarships_available = changeRequest.num_scholarships_available
+        scholarship.required_gpa = changeRequest.required_gpa
+        scholarship.application_deadline = changeRequest.application_deadline
+        scholarship.required_majors_or_minors = changeRequest.required_majors_or_minors 
+        scholarship.other_requirements = changeRequest.other_requirements
+        scholarship.save()
+        changeRequest.delete()
+        messages.success(request, "Change request approved.")
+        return redirect('viewChangeRequest')
 
 def create_scholarship_submit(request):
     if request.method == "POST":
