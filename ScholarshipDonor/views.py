@@ -24,18 +24,22 @@ def viewMore(request, scholarship_id):
 def ReviewApplication(request, application_id, scholarship_id):
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
     application_object = Application.objects.get(pk=application_id)
-    return render(request,'SDreviewApp.html',{'application_object': application_object, 'scholarship_object': scholarship_object})
+    return render(request,'SDreviewApp.html', {'application_object': application_object, 'scholarship_object': scholarship_object})
 
 def review_submit(request, application_id):
     application = Application.objects.get(pk=application_id)
-    
+
     # Update the status of the application to 'reviewed'
-    application.stauts = ('In Review')
-    application.sr_status = request.POST.get('approval')
-    application.score = request.POST.get('score')
-    application.save()
-    
-    return render(request, 'SDreviewApp.html', {'application': application})
+    try:
+        application.stauts = ('In Review')
+        application.sr_status = request.POST.get('approval')
+        application.score = request.POST.get('score')
+        application.save()
+        messages.success(request, "Application successfully updated")
+        return redirect('ReviewApplicationSD', {})
+    except:
+        messages.success(request, "Application failed to update")
+    return redirect('ReviewApplicationSD')
 
 def ViewApplicantsSD(request, scholarship_id):
     user_object = User.objects.all()

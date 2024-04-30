@@ -89,4 +89,4 @@ def review_submit(request, application_id):
     application.score = request.POST.get('score')
     application.save()
     
-    return render(request, 'ReviewApplication.html', {'application': application})
+    return render(request, 'ReviewApplication.html', {'application_object': application})
