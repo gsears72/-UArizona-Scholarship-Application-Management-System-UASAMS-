@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Reviewed Applications</h1>
+<h1>Approved Applicants</h1>
+
 <table class="table table-hover ">
     <thead class="table-dark">
       <tr>
@@ -10,21 +11,20 @@
         <th>Major</th>
         <th>Minor</th>
         <th>Current Year</th>
-        <th>Score</th>
         <th>Status</th>
       </tr>
     </thead>
     <tbody style="vertical-align: middle;">
       {% for object in application_object %}
-          {% if object.stauts == 'In Review' %}
+          {% if object.scholarship.stauts == 'Approved' %}
               <tr>
               <td>{{ object.student.first_name}}</td>
               <td>{{ object.student.gpa }}</td>
               <td>{{ object.student.major }}</td>
               <td>{{ object.student.minor }}</td>
               <td>{{ object.student.current_year}}</td>
-              <td>{{ object.score}}</td>
               <td>{{object.stauts}}</td>
+              </tr>
           {% endif %}
       {% endfor %}  
   </table>

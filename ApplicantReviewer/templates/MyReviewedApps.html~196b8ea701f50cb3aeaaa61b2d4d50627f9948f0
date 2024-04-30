@@ -10,7 +10,6 @@
         <th>Major</th>
         <th>Minor</th>
         <th>Current Year</th>
-        <th>Score</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -23,7 +22,6 @@
               <td>{{ object.student.major }}</td>
               <td>{{ object.student.minor }}</td>
               <td>{{ object.student.current_year}}</td>
-              <td>{{ object.score}}</td>
               <td>{{object.stauts}}</td>
           {% endif %}
       {% endfor %}  
