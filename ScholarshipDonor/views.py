@@ -9,11 +9,16 @@ from ScholarshipAdministrator.forms import ScholarshipForm
 from .models import Scholarship
 from Login.models import User
 from SFWEScholarships.models import Application
+from ScholarshipDonor.models import Donor
 
 # Create your views here.
 
 def home(request):
     scholarships = Scholarship.objects.all()
+    currentUser = request.user
+    donor = get_object_or_404(Donor, donor_info_id = currentUser.id)
+    context = {'scholarships' : scholarships, 'donor' : donor, 'currentUser' : currentUser}
+    return render(request,'SDhome.html',context)
     return render(request,'SDhome.html',{'scholarships':scholarships})
 
 def viewMore(request, scholarship_id):

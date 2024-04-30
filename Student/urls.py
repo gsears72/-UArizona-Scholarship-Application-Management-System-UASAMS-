@@ -10,4 +10,5 @@ urlpatterns = [
     path('applicationForm/<int:scholarship_id>/', views.ViewApplication, name= 'applicationForm'),
     path('SViewEligableScholarships', views.ViewEligableScholarships, name= 'SViewEligableScholarships'),
     path('createApplication/<int:scholarship_id>/', views.createApplication, name='createApplication'),
+    path('SeditProfile', views.editProfile, name= 'SeditProfile'),
 ]
