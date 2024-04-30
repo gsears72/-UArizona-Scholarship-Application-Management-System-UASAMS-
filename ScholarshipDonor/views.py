@@ -17,7 +17,7 @@ def home(request):
     scholarships = Scholarship.objects.all()
     currentUser = request.user
     donor = get_object_or_404(Donor, donor_info_id = currentUser.id)
-    context = {'scholarships' : scholarships, 'donor' : donor}
+    context = {'scholarships' : scholarships, 'donor' : donor, 'currentUser' : currentUser}
     return render(request,'SDhome.html',context)
     return render(request,'SDhome.html',{'scholarships':scholarships})
 
