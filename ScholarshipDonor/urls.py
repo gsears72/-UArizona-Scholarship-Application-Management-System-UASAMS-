@@ -7,4 +7,5 @@ urlpatterns = [
     path('ViewApplicantsSD/<int:scholarship_id>/', views.ViewApplicantsSD, name='ViewApplicantsSD'),
     path('ViewEligibleApplicantsSD/<int:scholarship_id>/', views.ViewEligibleApplicantsSD, name='ViewEligibleApplicantsSD'),
     path('createChangeRequest/<int:scholarship_id>/', views.createChangeRequest, name='createChangeRequest'),
+    path('ReviewApplication/<int:application_id>/<int:scholarship_id>/', views.ReviewApplication, name='ReviewApplication'),
 ]
