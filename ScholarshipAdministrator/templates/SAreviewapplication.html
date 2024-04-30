@@ -20,12 +20,16 @@
 </ul>
   <br>
 
-  <h1>Scoring</h1>
-  <form action="{% url 'review_submit' application_object.id %}" method="POST">
+<h1>Reviewer Scoring</h1>
+<ul class="list-group">
+    <li class="list-group-item"><b>Score (0-100): </b>{{ application_object.score }} </li>
+    <li class="list-group-item"><b>Reviewer Request: </b>{{ application_object.sr_stauts }}</li>
+</ul>
+<br>
+
+  <h1>Final Approval/Rejection</h1>
+  <form action="{% url 'application_approval' application_object.id scholarship.id%}" method="POST">
     {% csrf_token %}
-    <label for="score">Score (0-100):</label>
-    <input type="number" id="score" name="score" min="0" max="100" required>
-    
     <label for="approval">Approval:</label>
     <select id="approval" name="approval" required>
         <option value="Approved">Approve Application</option>

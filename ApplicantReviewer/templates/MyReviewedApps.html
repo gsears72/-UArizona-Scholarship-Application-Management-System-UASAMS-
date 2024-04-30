@@ -11,14 +11,14 @@
         <th>Minor</th>
         <th>Current Year</th>
         <th>Score</th>
-        <th>Status</th>
+        <th>Administrative Status</th>
       </tr>
     </thead>
     <tbody style="vertical-align: middle;">
       {% for object in application_object %}
-          {% if object.stauts == 'In Review' %}
+          {% if object.sr_status == 'Approved' or object.sr_status == 'Rejected'%}
               <tr>
-              <td>{{ object.student.first_name}}</td>
+              <td>{{ object.student.student_info.First_name}} {{ object.student.student_info.Last_name}}</td>
               <td>{{ object.student.gpa }}</td>
               <td>{{ object.student.major }}</td>
               <td>{{ object.student.minor }}</td>

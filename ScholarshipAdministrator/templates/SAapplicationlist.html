@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>All Applicants</h1>
+<h1>Applicants for {{scholarship_object.scholarship_name}}</h1>
     <form method="get" action="{% url 'application_list' %}" class="mb-3">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search Applicants" name="q" value="{{ request.GET.q }}">
@@ -17,13 +17,13 @@
             <th>Major</th>
             <th>Minor</th>
             <th>Current Year</th>
+            <th>Initial Review Status</th>
             <th> </th>
           </tr>
         </thead>
         <tbody style="vertical-align: middle;">
           {% for object in applications %}
-              {% if object.stauts == 'Submitted' %}
-                {% if object.sr_status == 'In Review' %}
+              {% if object.stauts == 'In Review' %}
                   <tr>
                   <td>{{object.scholarship.scholarship_name}}</td>
                   <td>{{ object.student.student_info.First_name}} {{ object.student.student_info.Last_name}}</td>
@@ -31,11 +31,11 @@
                   <td>{{ object.student.major }}</td>
                   <td>{{ object.student.minor }}</td>
                   <td>{{ object.student.current_year}}</td>
+                  <td>{{ object.sr_status}}</td>
                   <td>
-                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">Review Application</a>
+                      <a class="btn btn-success" href="{% url 'review_application' object.pk object.scholarship.id%}" role="button">Review Application</a>
                       </td>
                   </tr>
-                {% endif %}
               {% endif %}
         {% endfor %}    
       </table>

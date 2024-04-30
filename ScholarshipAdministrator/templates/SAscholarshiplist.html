@@ -41,6 +41,7 @@
                 <td>
                     <a href="{% url 'edit_scholarship' scholarship.scholarship_name %}" class="btn btn-primary">Edit</a>
                     <a href="{% url 'delete_scholarship' scholarship.scholarship_name %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'application_list' scholarship.id %}" class="btn btn-success">View Applicants</a>
                 </td>
             </tr>
             {% endfor %}
