@@ -153,8 +153,7 @@ class CreateApplicantReviewerForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['email', 'username', 'Security_Question1', 'Security_Question1_answer',
-                   'Security_Question2', 'Security_Question2_answer', 'First_name', 'Last_name',
-                   'Phone_number', 'Net_ID', 'role']
+         'Security_Question2', 'Security_Question2_answer', 'First_name', 'Last_name','Phone_number', 'Net_ID', 'role']
         
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(CreateApplicantReviewerForm, self).__init__(*args, **kwargs)

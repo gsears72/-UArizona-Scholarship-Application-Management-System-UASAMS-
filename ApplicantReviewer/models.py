@@ -1,10 +1,9 @@
 from django.db import models
 
-# Create your models here.
+# Create your models here.  
 class applicantReviewer(models.Model):
-    applicantReviewer_info = models.OneToOneField('Login.User', on_delete=models.CASCADE, default = None)
+    # Basic Information
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
 
-    def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.username}"
-    
 
