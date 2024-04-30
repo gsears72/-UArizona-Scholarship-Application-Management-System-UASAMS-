@@ -1,6 +1,8 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
 <h1>Scholarships Available</h1>
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -17,6 +19,7 @@
           <th>Scholarship Name</th>
           <th>Award Amount</th>
           <th>Required Major/Minor</th>
+          <th>Minimum GPA</th>
           <th>Donor</th>
           <th>Application Deadline</th>
           <th> </th>
@@ -28,6 +31,7 @@
           <td>{{ object.scholarship_name }}</td>
           <td>${{ object.scholarship_amount }}</td>
           <td>{{ object.required_majors_or_minors }}</td>
+          <td>{{object.required_gpa}}</td>
           <td>{{ object.donor_full_name }}</td>
           <td>{{ object.application_deadline}}</td>
           <td>

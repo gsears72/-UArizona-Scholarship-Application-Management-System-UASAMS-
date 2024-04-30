@@ -28,9 +28,15 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request,'Login Sucessful')
-
-            return redirect('home')
-            # Redirect to a success page.
+            match user.role:
+                case 'Scholarship Donor':
+                    return redirect('SDhome')
+                case 'Scholarship Administrator':
+                    return redirect('scholarship_list')
+                case 'Applicant Reviewer':   
+                    return redirect('ViewScholarshipsAR')   
+                case 'Student':
+                    return redirect('SViewScholarships')
         else:
             messages.success(request,'There Was An Error Logging In, Please Try Again')
             return redirect('login')
@@ -52,7 +58,7 @@ def logout_user(request):
     """
     messages.success(request,'You Were Logged Out')
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
 
@@ -110,17 +116,17 @@ def scholorshipadminstratoRegister(request):
     """
     form = CreateScholorshipAdministratorForm()
     if request.method == 'POST':
-         form = CreateScholorshipAdministratorForm(request.POST)
-         if form.is_valid():
-             form.save()
-             email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password1')
-             user = authenticate(email=email, password=raw_password)
-             login(request, user)
-             messages.success(request,'Account Created')
-             scholarshipAdministrator.objects.create(scholarshipAdministrator_info=user) 
-             return redirect("home")
-         else:
+        form = CreateScholorshipAdministratorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            messages.success(request,'Account Created')
+            scholarshipAdministrator.objects.create(scholarshipAdministrator_info=user) 
+            return redirect("home")
+        else:
                 context = {'form': form}
                 return render(request,'authenticate/scholarship_administrator_register.html',context)
     else:
@@ -180,17 +186,17 @@ def applicantreviewerRegister(request):
     if request.method == 'POST':
          form = CreateApplicantReviewerForm(request.POST)
          if form.is_valid():
-             form.save()
-             email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password1')
-             user = authenticate(email=email, password=raw_password)
-             login(request, user)
-             messages.success(request,'Account Created')
-             applicantReviewer.objects.create(applicantReviewer_info=user) 
-             return redirect("home")
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            messages.success(request,'Account Created')
+            applicantReviewer.objects.create(applicantReviewer_info=user) 
+            return redirect("home")
          else:
-                context = {'form': form}
-                return render(request,'authenticate/applicant_reviewer_register.html',context)
+            context = {'form': form}
+            return render(request,'authenticate/applicant_reviewer_register.html',context)
     else:
         form = CreateApplicantReviewerForm()
         context = {'form': form}

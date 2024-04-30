@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'ARnavbar.html' %}
 <h1>All Applicants</h1>
     <form method="get" action="{% url 'application_list' %}" class="mb-3">
         <div class="input-group mb-3">

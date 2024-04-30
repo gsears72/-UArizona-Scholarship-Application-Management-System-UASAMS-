@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
 <h1>Scholarships Available (Eligable) </h1>
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -17,6 +18,7 @@
           <th>Scholarship Name</th>
           <th>Award Amount</th>
           <th>Required Major/Minor</th>
+          <th>Minimum GPA</th>
           <th>Donor</th>
           <th>Application Deadline</th>
           <th> </th>
@@ -25,16 +27,19 @@
       <tbody style="vertical-align: middle;">
         {% for object in scholarships_object %}
           {% if object.required_gpa <= student.gpa %}
-            <tr>
-              <td>{{ object.scholarship_name }}</td>
-              <td>${{ object.scholarship_amount }}</td>
-              <td>{{ object.required_majors_or_minors }}</td>
-              <td>{{ object.donor_full_name }}</td>
-              <td>{{ object.application_deadline }}</td>
-              <td>
-                  <a class="btn btn-success" href="{% url 'SViewScholarshipInfo' object.id %}" role="button">More</a>
+            {% if object.required_majors_or_minors == student.major or object.required_majors_or_minors == student.minor or object.required_majors_or_minors == "none" %}
+              <tr>
+                <td>{{ object.scholarship_name }}</td>
+                <td>${{ object.scholarship_amount }}</td>
+                <td>{{ object.required_majors_or_minors }}</td>
+                <td>{{object.required_gpa}}</td>
+                <td>{{ object.donor_full_name }}</td>
+                <td>{{ object.application_deadline }}</td>
+                <td>
+                    <a class="btn btn-success" href="{% url 'SViewScholarshipInfo' object.id %}" role="button">More</a>
                 </td>
               </tr>
+            {% endif %}
           {% endif %}
         {% endfor %}  
     </table>
