@@ -120,3 +120,6 @@ class UserForm(forms.ModelForm):
             'Security_Question2': forms.Select(choices=SECURITY_QUESTION_CHOICES,attrs={'class': 'form-control', 'id': 'q2'}),
             'Security_Question2_answer': forms.TextInput(attrs={'class': 'form-control', 'id': 'q2a'}),
         }
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField()

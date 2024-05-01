@@ -3,29 +3,25 @@
 {% block content %}
 {% include 'SNavbar.html' %}
 <h1>{{scholarship.scholarship_name}}</h1>
-<br>
 <a class="btn btn-danger" href="{% url 'applicationForm' scholarship.id %}" role="button">Apply</a>
-<div class="container">
-    <h1>{{scholarship.scholarship_name}}</h1>
-    <a class="btn btn-danger" href="{% url 'applicationForm' scholarship.id %}" role="button">Apply</a>
-    <div class="row">
-        <div class="col-sm-6" style="background-color:white;">
-            <h4>Scholarship Amount</h4>
-            <p>{{scholarship.scholarship_amount}}</p>
-            <h4>Application Deadline</h4>
-            <p>{{scholarship.application_deadline}}</p>
-            <h4>Donor</h4>
-            <p>{{scholarship.donor_full_name}}</p>
-            <h4>Required Major/Minor</h4>
-            <p>{{scholarship.required_majors_or_minors}}</p>
-            <h4>Required GPA</h4>
-            <p>{{scholarship.required_gpa}}</p>
-        </div>
-        <div class="col-sm-6" style="background-color:white;">
-            <h4>Other Requirements</h4>
-            <p>{{scholarship.other_requirements}}</p>
-        </div>
+<div class="row">
+    <div class="col-sm-6" style="background-color:white;">
+        <h4>Scholarship Amount</h4>
+        <p>{{scholarship.scholarship_amount}}</p>
+        <h4>Application Deadline</h4>
+        <p>{{scholarship.application_deadline}}</p>
+        <h4>Donor</h4>
+        <p>{{scholarship.donor_full_name}}</p>
+        <h4>Required Major/Minor</h4>
+        <p>{{scholarship.required_majors_or_minors}}</p>
+        <h4>Required GPA</h4>
+        <p>{{scholarship.required_gpa}}</p>
+    </div>
+    <div class="col-sm-6" style="background-color:white;">
+        <h4>Other Requirements</h4>
+        <p>{{scholarship.other_requirements}}</p>
     </div>
 </div>
+
 
 {% endblock %}
