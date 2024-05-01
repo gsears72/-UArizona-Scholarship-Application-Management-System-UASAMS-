@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect, get_list_or_404, get_object_or_40
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
+from django.core.mail import send_mail
 from ScholarshipDonor.models import Scholarship
 from .forms import ScholarshipForm
 from ScholarshipDonor.models import Scholarship_change
+from SFWEScholarships.models import Application
+from Login.models import User
+from Student.models import Student
 #from ScholarshipAdministrator.forms import ScholarshipForm
 
 # Create your views here.
@@ -97,3 +101,69 @@ def create_scholarship_submit(request):
         
         if not name or not amount or not total_avail or not min_gpa:
             messages.error(request, "Please fill in all required fields.")
+        try:
+            amount = float(amount)
+            total_avail = float(total_avail)
+            min_gpa = float(min_gpa)
+        except ValueError:
+            messages.error(request, "Please provide valid numerical values for amount, total available, and minimum GPA.")
+            return redirect('SAcreatescholarship')
+        
+        scholarship = Scholarship(
+            name=name,
+            amount=amount,
+            donor=donor,
+            totalAvail=total_avail,
+            minGPA=min_gpa,
+            major=major,
+            dateCreated=None, 
+            applicants=[], 
+            awarded=[],
+            description=description
+        )
+        scholarship.save()
+        
+        messages.success(request, "Scholarship created successfully.")
+        return redirect('SAscholarshiplist') 
+    else:
+        return render(request, 'SAcreatescholarship.html')
+    
+def review_scholarship_list(request):
+    applications_object = Application.objects.filter(
+        stauts='In Review'
+        )
+    return render(request, 'ViewScholarshipsAR.html', {'applications_object': applications_object})
+
+def application_list(request, scholarship_id):
+    scholarship_object = Scholarship.objects.get(id=scholarship_id)
+    query = request.GET.get('q', '')  # Get the search query from 'q' parameter, default to empty string
+    if query:
+        user = User.objects.get(First_name__icontains=query)
+        curr_student = Student.objects.get(student_info=user)
+        applications_object = Application.objects.filter(
+            student=curr_student,
+            scholarship__id=scholarship_id
+        ) 
+    else:
+        # Retrieve all applications for the specified scholarship
+        applications_object = Application.objects.filter(scholarship__id=scholarship_id)
+
+    return render(request, "SAapplicationlist.html", {'applications_object': applications_object}, {'scholarship_object': scholarship_object})
+
+def review_application(request, application_id, scholarship_id):
+    application_object = Application.objects.get(pk=application_id)
+    scholarship_object = Scholarship.objects.get(id=scholarship_id)
+    return render(request, "SAreviewapplication.html", {'application_object': application_object}, {'scholarship_object': scholarship_object})
+
+def application_approval(request, application_id, scholarship_id):
+    scholarship_object = Scholarship.objects.get(id=scholarship_id)
+    application_object = Application.objects.get(pk=application_id)
+    # Update the status of the application to 'reviewed'
+    application_object.stauts = ('approval')
+    application_object.save()
+
+    # student_recipient_email = application_object.student.student_info.email
+    # student_subject = "Notification: Application Has Been " + application_object.stauts
+    # student_message = "Dear " + application_object.student.student_info.First_name + ", \n\tYour application for " + application_object.scholarship.scholarship_name + " has been " + application_object.stauts + ". For further information, please login to UASAMS."
+    # send_mail(student_subject, student_message, 'madrocarlson@gmail.com', student_recipient_email)
+    return render(request, "SAapplicationlist.html", {'applications': application_object}, {'scholarship_object': scholarship_object})
