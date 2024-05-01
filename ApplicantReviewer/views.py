@@ -15,6 +15,9 @@ from Login.models import ScholarshipAdministrator
 def ARhome(request):
     return render(request,'ARhome.html',{})
 
+def ARreports(request):
+    return render(request, 'ARreports.html', {})
+
 def ViewScholarshipsAR(request):
     scholarships_object = Scholarship.objects.all()
     context = {'scholarships_object' : scholarships_object}

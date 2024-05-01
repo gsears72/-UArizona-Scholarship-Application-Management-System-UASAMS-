@@ -7,7 +7,7 @@ from ScholarshipDonor.models import Scholarship
 from Student.models import Student
 from django.shortcuts import get_object_or_404
 from SFWEScholarships.forms import ApplicationForm
-from .forms import UploadFileForm
+#from .forms import UploadFileForm
 from Student.forms import StudentForm
 from Student.forms import UserForm
 # Create your views here.
