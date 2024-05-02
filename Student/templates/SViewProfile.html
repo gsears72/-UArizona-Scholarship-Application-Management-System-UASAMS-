@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% include 'SNavbar.html' %}
-
 <div class="container">
     <h1>{{currentUser.First_name}}'s Profile</h1>
-    
+    <a class="btn btn-primary" href="{% url 'SeditProfile' %}" role="button">Edit Profile</a>
     <div class="row">
         <div class="col-sm-4" style="background-color:white;">
             <h4>Name</h4>
@@ -13,7 +11,7 @@
             <h4>Username</h4>
             <p>{{currentUser.username}}</p>
             <h4>Password</h4>
-            <p>***</p>
+            <p>*******</p>
             <h4>NetID</h4>
             <p>{{currentUser.Net_ID}}</p>
             <h4>Preferred Pronouns</h4>
