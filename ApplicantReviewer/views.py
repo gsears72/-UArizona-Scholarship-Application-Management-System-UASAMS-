@@ -37,7 +37,7 @@ def ReviewConfirmation(request):
 
 def ARApproved(request):
     application_object = Application.objects.all()
-    return render(request,'ARApproved.html',{}, {'application_object':application_object})
+    return render(request,'ARApproved.html', {'application_object':application_object})
 
 def ViewApplicants(request, scholarship_id):
     user_object = User.objects.all()
@@ -95,15 +95,15 @@ def review_submitAR(request, application_id):
     application.score = request.POST.get('score')
     application.save()
 
-    admin_recipients = User.objects.filter(role='Scholarship_Administrator')
-    admin_recipients_emails = [admin_recipients.email for admin_recipients in admin_recipients]
-    admin_subject = "Notification: Application Pending Approval"
-    admin_message = "Dear Scholarship Administrators, \n\tAn application review has just been submitted, and this application is now pending approval. To view the application of " + application.student.student_info.First_name + " " + application.student.student_info.Last_name + " for approval or rejection, please log into UASAMS."
-    send_mail(admin_subject, admin_message, 'madrocarlson@gmail.com', admin_recipients_emails)
+    # admin_recipients = User.objects.filter(role='Scholarship_Administrator')
+    # admin_recipients_emails = [admin_recipients.email for admin_recipients in admin_recipients]
+    # admin_subject = "Notification: Application Pending Approval"
+    # admin_message = "Dear Scholarship Administrators, \n\tAn application review has just been submitted, and this application is now pending approval. To view the application of " + application.student.student_info.First_name + " " + application.student.student_info.Last_name + " for approval or rejection, please log into UASAMS."
+    # send_mail(admin_subject, admin_message, 'madrocarlson@gmail.com', admin_recipients_emails)
 
-    student_recipient_email = application.student.student_info.email
-    student_subject = "Notification: Application Pending Approval"
-    student_message = "Dear " + application.student.student_info.First_name + ", \n\tYour application for " + application.scholarship.scholarship_name + " has been submitted and is now pending approval."
-    send_mail(student_subject, student_message, 'madrocarlson@gmail.com', student_recipient_email)
+    # student_recipient_email = application.student.student_info.email
+    # student_subject = "Notification: Application Pending Approval"
+    # student_message = "Dear " + application.student.student_info.First_name + ", \n\tYour application for " + application.scholarship.scholarship_name + " has been submitted and is now pending approval."
+    # send_mail(student_subject, student_message, 'madrocarlson@gmail.com', student_recipient_email)
     
     return redirect("ViewScholarshipsAR")
