@@ -12,6 +12,9 @@ urlpatterns = [
     path('edit-scholarship-db/<str:scholarship_name>/', views.edit_scholarship, name='edit_scholarship_db'),
     path('viewChangeRequest', views.viewChangeRequest, name='viewChangeRequest'),
     path('denyChangeRequest/<int:change_id>/', views.denyChangeRequest, name='denyChangeRequest'),
-    path('approveChangeRequest/<int:change_id>/', views.approveChangeRequest, name='approveChangeRequest')
-
+    path('approveChangeRequest/<int:change_id>/', views.approveChangeRequest, name='approveChangeRequest'),
+    path('edit-scholarship-db/<str:scholarship_name>/', views.edit_scholarship, name='edit_scholarship_db'),
+    path('application-list<int:scholarship_id>/', views.application_list, name = 'application_list'),
+    path('review-application<int:application_id>/<int:scholarship_id>', views.review_application, name = 'review_application'),
+    path('application-approval<int:application_id>/', views.application_approval, name = 'application_approval'),
 ]
