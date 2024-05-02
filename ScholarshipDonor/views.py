@@ -41,10 +41,10 @@ def review_submit(request, application_id):
         application.score = request.POST.get('score')
         application.save()
         messages.success(request, "Application successfully updated")
-        return redirect('ReviewApplicationSD', {})
+        return redirect('SDhome')
     except:
         messages.success(request, "Application failed to update")
-    return redirect('ReviewApplicationSD')
+    return redirect('SDhome')
 
 def ViewApplicantsSD(request, scholarship_id):
     user_object = User.objects.all()

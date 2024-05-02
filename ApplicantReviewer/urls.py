@@ -12,6 +12,6 @@ urlpatterns = [
     path('ReviewApplication/<int:application_id>/<int:scholarship_id>/', views.ReviewApplication, name='ReviewApplication'),
     path('application_list', views.application_list, name='application_list'),
     path('scholarship_list_AR', views.scholarship_list_AR, name='scholarship_list_AR'),
-    path('review_submit/<int:application_id>/', views.review_submit, name='review_submit'),
+    path('review_submitAR/<int:application_id>/', views.review_submitAR, name='review_submitAR'),
     path('reports', views.ViewReports, name='reports')
 ]

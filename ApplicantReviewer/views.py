@@ -80,7 +80,7 @@ def scholarship_list_AR(request):
     
     return render(request, 'ViewScholarshipsAR.html', {'scholarships_object': scholarships_object})
 
-def review_submit(request, application_id):
+def review_submitAR(request, application_id):
     application = Application.objects.get(pk=application_id)
     
     # Update the status of the application to 'reviewed'
@@ -89,4 +89,4 @@ def review_submit(request, application_id):
     application.score = request.POST.get('score')
     application.save()
     
-    return render(request, 'ReviewApplication.html', {'application_object': application})
+    return redirect("ViewScholarshipsAR")
