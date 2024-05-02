@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
 <div class="container">
     <h1>{{currentUser.First_name}}'s Profile</h1>
     <a class="btn btn-primary" href="{% url 'SeditProfile' %}" role="button">Edit Profile</a>
