@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SAnavbar.html' %}
 <h1>Applicants for {{scholarship_object.scholarship_name}}</h1>
-    <form method="get" action="{% url 'application_list' %}" class="mb-3">
+    <form method="get" action="{% url 'application_listy' scholarship_object.id %}" class="mb-3">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search Applicants" name="q" value="{{ request.GET.q }}">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
