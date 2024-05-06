@@ -48,8 +48,8 @@ def ViewApplication(request, scholarship_id):
     student = get_object_or_404(Student, student_info_id = currentUser.id)#filters the students by last name and first name to find current user as a student object
     scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
     form = ApplicationForm()
-    fileForm = UploadFileForm()
-    return render(request, 'applicationForm.html', {'fileForm':fileForm, 'form':form, 'scholarship' : scholarship, 'student' : student, 'user' : currentUser}) #the one in quotes is what is called in html
+    #fileForm = UploadFileForm() #when fixed add 'fileForm':fileForm, to context
+    return render(request, 'applicationForm.html', { 'form':form, 'scholarship' : scholarship, 'student' : student, 'user' : currentUser}) #the one in quotes is what is called in html
 
 def ViewEligableScholarships(request):
     currentUser = request.user
