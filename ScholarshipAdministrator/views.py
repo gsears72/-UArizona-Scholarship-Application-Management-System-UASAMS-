@@ -134,7 +134,7 @@ def review_scholarship_list(request):
         )
     return render(request, 'ViewScholarshipsAR.html', {'applications_object': applications_object})
 
-def application_list(request, scholarship_id):
+def application_listy(request, scholarship_id):
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
     query = request.GET.get('q', '')  # Get the search query from 'q' parameter, default to empty string
     if query:

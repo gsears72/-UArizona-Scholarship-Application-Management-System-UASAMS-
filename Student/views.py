@@ -66,6 +66,7 @@ def createApplication(request, scholarship_id):
         student = get_object_or_404(Student, student_info_id = currentUser.id)
         scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
         form = UploadFileForm(request.POST, request.FILES)
+        title = request.POST.get('file')
         print("1")
         if form.is_valid():
 
@@ -73,7 +74,7 @@ def createApplication(request, scholarship_id):
                 student = student,
                 scholarship = scholarship,
                 personal_statement = personal_statement,
-                resume = form.fields['resume'],
+                resume = title,
             )
             print("2")
             application.save()
@@ -85,7 +86,6 @@ def createApplication(request, scholarship_id):
     else:
         print("4")
         return redirect('SViewScholarships')
-        return render(request, 'Shome.html', {})
 
 
 def editProfile(request):

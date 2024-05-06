@@ -122,4 +122,5 @@ class UserForm(forms.ModelForm):
         }
 
 class UploadFileForm(forms.Form):
-    file = forms.FileField()
+    file = forms.FileField(required=False, widget=forms.FileInput(attrs={'class':'form-control', 'id': 'file'}))
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'title'}))
