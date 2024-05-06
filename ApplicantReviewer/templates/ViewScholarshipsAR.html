@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'ARnavbar.html' %}
 <h1>Scholarships</h1>
   <form method="get" action="{% url 'scholarship_list_AR' %}" class="mb-3">
   <div class="input-group mb-3">
