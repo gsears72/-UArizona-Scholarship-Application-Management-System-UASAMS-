@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{scholarship.scholarship_name}}</h1>
+{% include 'SDnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
+    <h1>Change Request for {{scholarship.scholarship_name}}</h1>
+    <p>Request changes to the scholarship</p>
 
-    <form method="POST">
+    <form method="POST" action="{% url 'createChangeRequest' scholarship.id %}">
         {% csrf_token %}
         {% for field in form %}
         <div class="mb-3">
@@ -17,7 +20,8 @@
             {% endfor %}
         </div>
         {% endfor %}
-        <button type="submit" class="btn btn-primary">Update Scholarship</button>
+        <button type="submit" class="btn btn-primary">Request Changes</button>
         <a href="{% url 'SDhome' %}" class = "btn btn-info">Back</a>
     </form>
+</div>
 {% endblock %}

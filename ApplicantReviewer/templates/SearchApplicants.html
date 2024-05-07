@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'ARnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
 <h1>All Applicants</h1>
     <form method="get" action="{% url 'application_list' %}" class="mb-3">
         <div class="input-group mb-3">
@@ -22,6 +24,8 @@
         </thead>
         <tbody style="vertical-align: middle;">
           {% for object in applications %}
+              {% if object.stauts == 'Submitted' %}
+                {% if object.sr_status == 'In Review' %}
                   <tr>
                   <td>{{object.scholarship.scholarship_name}}</td>
                   <td>{{ object.student.student_info.First_name}} {{ object.student.student_info.Last_name}}</td>
@@ -30,10 +34,13 @@
                   <td>{{ object.student.minor }}</td>
                   <td>{{ object.student.current_year}}</td>
                   <td>
-                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">Applications</a>
+                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">Review Application</a>
                       </td>
                   </tr>
+                {% endif %}
+              {% endif %}
         {% endfor %}    
       </table>
   </div>
+</div>
 {% endblock %}

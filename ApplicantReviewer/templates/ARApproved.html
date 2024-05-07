@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'ARnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
+
 <h1>Approved Applicants</h1>
 
 <table class="table table-hover ">
@@ -18,7 +21,7 @@
       {% for object in application_object %}
           {% if object.scholarship.stauts == 'Approved' %}
               <tr>
-              <td>{{ object.student.first_name}}</td>
+              <td>{{ object.student.student_info.First_name}}{{ object.student.studetn_info.Last_name}}</td>
               <td>{{ object.student.gpa }}</td>
               <td>{{ object.student.major }}</td>
               <td>{{ object.student.minor }}</td>
@@ -28,5 +31,6 @@
           {% endif %}
       {% endfor %}  
   </table>
+</div>
 </div>
 {% endblock %}

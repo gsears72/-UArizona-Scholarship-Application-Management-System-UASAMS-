@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SDnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
 <h1>Eligible Applicants for {{scholarship_object.scholarship_name}}</h1>
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       Filter
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="{% url 'ViewApplicants' scholarship_id %}">All Applicants</a></li>
+      <li><a class="dropdown-item" href="{% url 'ViewEligibleApplicantsSD' scholarship_id %}">All Applicants</a></li>
       <li><a class="dropdown-item" href="#">Eligible Applicants</a></li>
     </ul>
 
@@ -33,7 +35,7 @@
                   <td>{{ object.student.minor }}</td>
                   <td>{{ object.student.current_year}}</td>
                   <td>
-                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">More</a>
+                      <a class="btn btn-success" href="{% url 'SDreviewApp' object.pk object.scholarship.id%}" role="button">More</a>
                       </td>
                   </tr>
               {% endif %}
@@ -42,4 +44,5 @@
 
       </table>
   </div>
+</div>
 {% endblock %}

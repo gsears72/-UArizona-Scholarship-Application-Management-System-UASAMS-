@@ -60,90 +60,6 @@ class MyUserManager(BaseUserManager):
 
         user.save(using=self._db)
         return user
-    
-    def create_student(self, email, username, password, **extra_fields):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username = username,
-            password = password,
-            **extra_fields
-        )
-        user.role = 'Student'
-        user.save(using=self._db)
-        user.is_admin = False
-        user.is_staff = False
-        user.is_superuser = False
-        return user
-    
-    def create_scholarship_administrator(self, email, username, password, **extra_fields):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username = username,
-            password = password,
-            **extra_fields
-        )
-        user.role = 'Scholarship Administrator'
-        user.save(using=self._db)
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser = False
-        return user
-    
-    def create_applicant_reviewer(self, email, username, password, **extra_fields):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username = username,
-            password = password,
-            **extra_fields
-        )
-        user.role = 'Applicant Reviewer'
-        user.save(using=self._db)
-        user.is_admin = False
-        user.is_staff = True
-        user.is_superuser = False
-        return user
-    
-    def create_scholarship_donor(self, email, username, password, **extra_fields):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username = username,
-            password = password,
-            **extra_fields
-        )
-        user.role = 'Scholarship Donor'
-        user.save(using=self._db)
-        user.is_admin = False
-        user.is_staff = False
-        user.is_superuser = False
-        return user
-    
-    def create_authorized_ENGR_staff(self, email, username, password, **extra_fields):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username = username,
-            password = password,
-            **extra_fields
-        )
-        user.role = 'Authorized ENGR Staff'
-        user.save(using=self._db)
-        user.is_admin = False
-        user.is_staff = True
-        user.is_superuser = False
-        return user
-    
-    def create_ENGR_IT_support_staff(self, email, username, password, **extra_fields):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username = username,
-            password = password,
-            **extra_fields
-        )
-        user.role = 'ENGR IT Support Staff'
-        user.save(using=self._db)
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser = True
-        return user
 
 def generate_random_email():
     domains = ["example.com", "test.com", "mydomain.com"]
@@ -187,7 +103,7 @@ class User(AbstractBaseUser):
         ENGRITSupportStaff = 'ENGR IT Support Staff', 'ENGR IT Support Staff'
 
 
-    role                       = models.CharField(max_length=50, choices=Role.choices)
+    role = models.CharField(max_length=50, choices=Role.choices)
 
     objects = MyUserManager()
 

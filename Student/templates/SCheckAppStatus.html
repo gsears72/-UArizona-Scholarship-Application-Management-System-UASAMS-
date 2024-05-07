@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
 <h1>Applications</h1>
 <table class="table table-hover ">
     <thead class="table-dark">
@@ -18,9 +20,10 @@
         <td>{{ object.scholarship.scholarship_name }}</td>
         <td>${{ object.scholarship.scholarship_amount }}</td>
         <td>{{ object.scholarship.donor_full_name }}</td>
-        <td>{{ object.status }}</td>
-        </tr> 
+        <td>{{ object.stauts }}</td>
+      </tr> 
       {% endfor %}
   </table>
+</div>
 </div>
 {% endblock %}

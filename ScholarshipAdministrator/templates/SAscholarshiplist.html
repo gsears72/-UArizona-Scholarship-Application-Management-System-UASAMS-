@@ -2,6 +2,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SAnavbar.html' %}
+
+<div class="container bg-white text-black justify-content-center align-items-center">
+
     <h1>Scholarship List</h1>
 
     <form method="get" action="{% url 'scholarship_list' %}" class="mb-3">
@@ -23,6 +27,7 @@
                 <th>Required GPA</th>
                 <th>Application Deadline</th>
                 <th>Other Requirements</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -33,14 +38,17 @@
                 <td>{{ scholarship.donor_full_name }}</td>
                 <td>{{ scholarship.donor_phone_number }}</td>
                 <td>{{ scholarship.donor_email }}</td>
-                <td>{{ scholarship.num_scholarship_available }}</td>
+                <td>{{ scholarship.num_scholarships_available }}</td>
                 <td>{{ scholarship.required_majors_or_minors }}</td>
                 <td>{{ scholarship.required_gpa }}</td>
                 <td>{{ scholarship.application_deadline }}</td>
                 <td>{{ scholarship.other_requirements }}</td>
                 <td>
-                    <a href="{% url 'edit_scholarship' scholarship.scholarship_name %}" class="btn btn-primary">Edit</a>
-                    <a href="{% url 'delete_scholarship' scholarship.scholarship_name %}" class="btn btn-danger">Delete</a>
+                    <div class="btn-group" role="group" aria-label="Scholarship Actions">
+                        <a href="{% url 'edit_scholarship' scholarship.scholarship_name %}" class="btn btn-primary btn-md">Edit</a>
+                        <a href="{% url 'delete_scholarship' scholarship.scholarship_name %}" class="btn btn-danger btn-md">Delete</a>
+                        <a href="{% url 'application_listy' scholarship.id %}" class="btn btn-success btn-md">View Applicants</a>
+                    </div>
                 </td>
             </tr>
             {% endfor %}
@@ -48,4 +56,6 @@
     </table>
 
     <a href="{% url 'SAhome' %}" class="btn btn-secondary">Back to Dashboard</a>
+
+</div>
 {% endblock %}

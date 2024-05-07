@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
+
+<div class="container bg-white text-black justify-content-center align-items-center">
 <h2>Application for {{scholarship.scholarship_name}}</h2>
-    <form>
+    <form method="POST" action="{% url 'createApplication' scholarship.id %}">
+        {% csrf_token %}
         <label for"f_name">Full Name (required):</label><br>
         <p>{{user.First_name}} {{user.Last_name}}</p>
         <label for"pronoun">Preferred Pronouns (optional):</label><br>
@@ -21,15 +25,16 @@
         <p>{{student.personal_statement_essay}}</p>
         <label for"w_experience">Work Experience (optional): </label><br>
         <p>{{student.work_experience}}</p>
-        <h3>Cover Letter</h3> 
-        {{ form.personal_statement }}
-
-        <br>
-        <br>
+        <label for"c_letter">Cover Letter: </label><br>
+        <p>{{ form.personal_statement }}</p>
+        <label for"resume">Resume: </label><br>
+        {{ form.resume }}
+        <br><br>
 
         <button class="btn btn-success" type="submit">Submit Application</button>
         
         <br>
         <br>
     </form>
+</div>
 {% endblock %}

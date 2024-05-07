@@ -11,18 +11,20 @@
     
 {% endif %}
 
-<h1>Applicant Reviewer Register</h1>
 
-<br/>
 
-    <form method = "POST">
-        {% csrf_token %}
+<div class="container", style="background-color: rgb(235, 229, 230);">
+  <br/>
 
-        {{ form.as_p }}
+      <form method = "POST">
+          {% csrf_token %}
 
-        <button type="submit" class="btn btn-primary">Register</button>
+          {{ form.as_p }}
 
-        </form>
+          <button type="submit" class="btn btn-primary">Register</button>
 
-<br/>
+          </form>
+
+  <br/>
+</div>
 {% endblock content %}

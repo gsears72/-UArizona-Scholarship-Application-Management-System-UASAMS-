@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>All Applicants</h1>
-    <form method="get" action="{% url 'application_list' %}" class="mb-3">
+{% include 'SAnavbar.html' %}
+
+<div class="container bg-white text-black justify-content-center align-items-center">
+
+<h1>Applicants for {{scholarship_object.scholarship_name}}</h1>
+    <form method="get" action="{% url 'application_listy' scholarship.id %}" class="mb-3">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search Applicants" name="q" value="{{ request.GET.q }}">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
@@ -11,27 +15,36 @@
       <table class="table table-hover ">
         <thead class="table-dark">
           <tr>
+            <th>Scholarship Applied To</th>
             <th>Student Name</th>
             <th>GPA</th>
             <th>Major</th>
             <th>Minor</th>
             <th>Current Year</th>
+            <th>Initial Review Status</th>
+            <th>Score</th>
             <th> </th>
           </tr>
         </thead>
         <tbody style="vertical-align: middle;">
-          {% for object in application_object %}
+          {% for object in applications %}
+              {% if object.stauts == 'In Review' %}
                   <tr>
-                  <td>{{ object.student.first_name}} {{ object.student.last_name}}</td>
+                  <td>{{object.scholarship.scholarship_name}}</td>
+                  <td>{{ object.student.student_info.First_name}} {{ object.student.student_info.Last_name}}</td>
                   <td>{{ object.student.gpa }}</td>
                   <td>{{ object.student.major }}</td>
                   <td>{{ object.student.minor }}</td>
                   <td>{{ object.student.current_year}}</td>
+                  <td>{{ object.sr_status}}</td>
+                  <td>{{ object.score}}</td>
                   <td>
-                      <a class="btn btn-success" href="{% url 'ReviewApplication' object.pk object.scholarship.id%}" role="button">More</a>
+                      <a class="btn btn-success" href="{% url 'review_application' object.pk object.scholarship.id%}" role="button">Review Application</a>
                       </td>
                   </tr>
+              {% endif %}
         {% endfor %}    
       </table>
   </div>
+</div>
 {% endblock %}

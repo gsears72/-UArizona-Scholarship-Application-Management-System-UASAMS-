@@ -5,6 +5,8 @@ from Student.models import Student
 from ScholarshipAdministrator.models import scholarshipAdministrator
 from ScholarshipDonor.models import Donor
 from ApplicantReviewer.models import applicantReviewer
+from EventLog.models import StudentDemographicsReport
+from EventLog.models import ActiveDonorsReport
 
 
 from .forms import CreateStudentForm, CreateScholorshipAdministratorForm, CreateScholorshipDonorForm, CreateApplicantReviewerForm
@@ -28,9 +30,15 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request,'Login Sucessful')
-
-            return redirect('home')
-            # Redirect to a success page.
+            match user.role:
+                case 'Scholarship Donor':
+                    return redirect('SDhome')
+                case 'Scholarship Administrator':
+                    return redirect('SAhome')
+                case 'Applicant Reviewer':   
+                    return redirect('ARhome')   
+                case 'Student':
+                    return redirect('Shome')
         else:
             messages.success(request,'There Was An Error Logging In, Please Try Again')
             return redirect('login')
@@ -52,7 +60,7 @@ def logout_user(request):
     """
     messages.success(request,'You Were Logged Out')
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
 
@@ -69,15 +77,15 @@ def studentRegister(request):
     """
     form = CreateStudentForm()
     if request.method == 'POST':
-         form = CreateStudentForm(request.POST)
-         if form.is_valid():
-             form.save()
-             email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password1')
-             user = authenticate(email=email, password=raw_password)
-             login(request, user)
-             messages.success(request,'Account Created')
-             Student.objects.create(student_info=user,
+        form = CreateStudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            messages.success(request,'Account Created')
+            Student.objects.create(student_info=user,
                                     preferred_pronoun = form.cleaned_data.get('Preferred_Pronoun'),
                                     major = form.cleaned_data.get('Major'),
                                     minor = form.cleaned_data.get('Minor'),
@@ -86,8 +94,19 @@ def studentRegister(request):
                                     ethnicity = form.cleaned_data.get('Ethnicity'),
                                     personal_statement_essay = form.cleaned_data.get('Personal_Statement'),
                                     work_experience = form.cleaned_data.get('Work_Experience'))
-             return redirect("home")
-         else:
+            StudentDemographicsReport.objects.create(
+            Student_Name = form.cleaned_data.get('First_name') + ' ' + form.cleaned_data.get('Last_name'),
+            Student_Pronouns = form.cleaned_data.get('Preferred_Pronoun'),
+            Student_NetID = form.cleaned_data.get('Net_ID'),
+            Student_Major = form.cleaned_data.get('Major'),             Student_GPA = form.cleaned_data.get('GPA'),
+            Student_Year = form.cleaned_data.get('Current_Year'),
+            Student_Ethnicity = form.cleaned_data.get('Ethnicity'),
+            Student_Personal_Statement = form.cleaned_data.get('Personal_Statement')
+            )
+
+
+            return redirect("home")
+        else:
                 context = {'form': form}
                 return render(request,'authenticate/student_register.html',context)
     else:
@@ -144,17 +163,24 @@ def scholorshipdonorregisterRegister(request):
     """
     form = CreateScholorshipDonorForm()
     if request.method == 'POST':
-         form = CreateScholorshipDonorForm(request.POST)
-         if form.is_valid():
-             form.save()
-             email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password1')
-             user = authenticate(email=email, password=raw_password)
-             login(request, user)
-             messages.success(request,'Account Created')
-             Donor.objects.create(donor_info=user) 
-             return redirect("home")
-         else:
+        form = CreateScholorshipDonorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            messages.success(request,'Account Created')
+            Donor.objects.create(donor_info=user)
+            ActiveDonorsReport.objects.create(
+                Donor_Name = form.cleaned_data.get('First_name') + ' ' + form.cleaned_data.get('Last_name'),
+                Donor_Email = form.cleaned_data.get('email'),
+                Donor_Phone = form.cleaned_data.get('Phone_number'),
+                Donor_Amount = 0,
+                Donor_Scholarships =0,
+            ) 
+            return redirect("home")
+        else:
                 context = {'form': form}
                 return render(request,'authenticate/scholarship_donor_register.html',context)
     else:
@@ -178,23 +204,24 @@ def applicantreviewerRegister(request):
     """
     form = CreateApplicantReviewerForm()
     if request.method == 'POST':
-         form = CreateApplicantReviewerForm(request.POST)
-         if form.is_valid():
-             form.save()
-             email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password1')
-             user = authenticate(email=email, password=raw_password)
-             login(request, user)
-             messages.success(request,'Account Created')
-             applicantReviewer.objects.create(applicantReviewer_info=user) 
-             return redirect("home")
-         else:
-                context = {'form': form}
-                return render(request,'authenticate/applicant_reviewer_register.html',context)
+        form = CreateApplicantReviewerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            messages.success(request,'Account Created')
+            applicantReviewer.objects.create(applicantReviewer_info=user)
+
+            return redirect("home")
+        else:
+            context = {'form': form}
+            return render(request,'authenticate/applicant_reviewer_register.html',context)
     else:
         form = CreateApplicantReviewerForm()
         context = {'form': form}
-        return render(request,'authenticate/scholarship_donor_register.html',context)
+        return render(request,'authenticate/applicant_reviewer_register.html',context)
     
 
 
