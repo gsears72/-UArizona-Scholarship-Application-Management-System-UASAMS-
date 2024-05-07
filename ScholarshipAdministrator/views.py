@@ -120,7 +120,7 @@ def denyChangeRequest(request, change_id):
 def approveChangeRequest(request, change_id):
     changeRequest = get_object_or_404(Scholarship_change, pk=change_id)
     scholarship = get_object_or_404(Scholarship, pk=changeRequest.Scholarship_to_change)
-    Log_available = AvailableScholarshipsReport.objects.get(Scholarship_name=scholarship_name)
+    Log_available = AvailableScholarshipsReport.objects.get(Scholarship_name=scholarship.scholarship_name)
     if request.method == "POST":
         scholarship.scholarship_name = changeRequest.scholarship_name
         scholarship.scholarship_amount = changeRequest.scholarship_amount
@@ -186,7 +186,8 @@ def create_scholarship_submit(request):
         
         messages.success(request, "Scholarship created successfully.")
         return redirect('SAscholarshiplist') 
-    else:
+
+
     
 def review_scholarship_list(request):
     applications_object = Application.objects.filter(
