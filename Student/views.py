@@ -11,12 +11,15 @@ from .forms import UploadFileForm
 from Student.forms import StudentForm
 from Student.forms import UserForm
 from EventLog.models import ScholarshipApplicationReport
+from NotificationSystem.views import send_notification_S_INREVIEW
+from NotificationSystem.models import Notification
+from Login.models import User
 # Create your views here.
 
 def home(request):
-    currentUser = request.user #gets current logged in user
-    #student = get_object_or_404(Student, student_info_id = currentUser.id)#filters the students by last name and first nam
-    return render(request,'Shome.html', {'currentUser' : currentUser})
+    currentUser = request.user 
+    notifications = Notification.objects.filter(recipient=request.user.pk)
+    return render(request,'Shome.html', {'currentUser': currentUser, 'notifications': notifications})
 
 def ViewScholarships(request):
     scholarships_object = Scholarship.objects.all()
@@ -72,6 +75,7 @@ def createApplication(request, scholarship_id):
             application = Application(student=student, scholarship=scholarship, personal_statement=personal_statement, resume=resume)
             ScholarshipApplicationReport.objects.create(Scholarship_Name=scholarship.scholarship_name, Applicant_Name=student.student_info.First_name + " " + student.student_info.Last_name, Applicant_Pronouns=student.preferred_pronoun, Applicant_NetID=student.student_info.Net_ID, Applicant_Major=student.major, Applicant_GPA=student.gpa, Applicant_Year=student.current_year,Applicant_Ethnicity = student.ethnicity, Applicant_Personal_Statement=personal_statement)
             application.save()
+            send_notification_S_INREVIEW(student.student_info, scholarship.scholarship_name)
             messages.success(request, "Application created successfully.")
         else:
             messages.error(request, "Application failed to upload. Please check your input.")

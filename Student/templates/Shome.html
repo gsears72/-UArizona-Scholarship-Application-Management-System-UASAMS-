@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'SNavbar.html' %}
+
 <div class="container bg-white text-black justify-content-center align-items-center">
 <h1>Student Homepage</h1>
 
@@ -8,6 +10,20 @@
 <a class="btn btn-primary" href="{% url 'SViewScholarships' %}" role="button">Search Scholarships</a>
 <a class="btn btn-primary" href="{% url 'SCheckAppStatus' %}" role="button">Check Application Status</a>
 
+{% if notifications %}
+<div class="mt-4">
+    <h2>Notification Inbox</h2>
+    <ul class="list-group">
+        {% for notification in notifications %}
+        <li class="list-group-item">{{ notification.message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<p class="mt-4">No notifications</p>
+{% endif %}
+
+</div>
 </div>
 
 {% endblock %}

@@ -6,13 +6,20 @@ from django.shortcuts import get_list_or_404
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 
+from NotificationSystem.views import send_notification_S_DECISION, send_notification_SA_REVIWFINISHED
 from ScholarshipDonor.models import Scholarship
 from SFWEScholarships.models import Application
 from Student.models import Student
 from Login.models import User
 from Login.models import ScholarshipAdministrator
+from NotificationSystem.models import Notification
+from Login.models import User
 
 def ARhome(request):
+    if User.is_authenticated:
+        notifications = Notification.objects.filter(recipient=request.user.pk)
+    else:
+        notifications = None
     return render(request,'ARhome.html',{})
 
 def ARreports(request):
@@ -93,17 +100,12 @@ def review_submitAR(request, application_id):
     application.stauts = ('In Review')
     application.sr_status = request.POST.get('approval')
     application.score = request.POST.get('score')
+
     application.save()
 
-    # admin_recipients = User.objects.filter(role='Scholarship_Administrator')
-    # admin_recipients_emails = [admin_recipients.email for admin_recipients in admin_recipients]
-    # admin_subject = "Notification: Application Pending Approval"
-    # admin_message = "Dear Scholarship Administrators, \n\tAn application review has just been submitted, and this application is now pending approval. To view the application of " + application.student.student_info.First_name + " " + application.student.student_info.Last_name + " for approval or rejection, please log into UASAMS."
-    # send_mail(admin_subject, admin_message, 'madrocarlson@gmail.com', admin_recipients_emails)
-
-    # student_recipient_email = application.student.student_info.email
-    # student_subject = "Notification: Application Pending Approval"
-    # student_message = "Dear " + application.student.student_info.First_name + ", \n\tYour application for " + application.scholarship.scholarship_name + " has been submitted and is now pending approval."
-    # send_mail(student_subject, student_message, 'madrocarlson@gmail.com', student_recipient_email)
-    
+    # Send notification to Admins
+    admin_user = User.objects.filter(role='Scholarship Administrator')
+    for admin in admin_user:
+        send_notification_SA_REVIWFINISHED(admin, application.scholarship.scholarship_name)
+        
     return redirect("ViewScholarshipsAR")

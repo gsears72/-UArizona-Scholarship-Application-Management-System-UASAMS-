@@ -36,6 +36,19 @@
             <p>View detailed reports on scholarship distribution and performance metrics.</p> 
             <a href="{% url 'Reports' %}" class="btn btn-primary">View Reports</a>
         </section>
+
+        {% if notifications %}
+        <div class="mt-4">
+            <h2>Notification Inbox</h2>
+            <ul class="list-group">
+                {% for notification in notifications %}
+                <li class="list-group-item">{{ notification.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <p class="mt-4">No notifications</p>
+        {% endif %}
     </div>
 
 {% endblock %}

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'ApplicantReviewer.apps.ApplicantreviewerConfig',
     'Student.apps.StudentConfig',
     'EventLog.apps.EventlogConfig',
+    'NotificationSystem.apps.NotificationsystemConfig',
 
 ]
 
@@ -139,4 +140,6 @@ AUTH_USER_MODEL = 'Login.User'
 
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 

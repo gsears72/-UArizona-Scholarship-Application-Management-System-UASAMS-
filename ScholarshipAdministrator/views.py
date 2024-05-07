@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 from django.core.mail import send_mail
-from ScholarshipDonor.models import Scholarship
+import ScholarshipDonor
+from ScholarshipDonor.models import Scholarship, Donor
 from .forms import ScholarshipForm
 from ScholarshipDonor.models import Scholarship_change
 from SFWEScholarships.models import Application
@@ -12,12 +13,17 @@ from Student.models import Student
 from EventLog.models import AvailableScholarshipsReport
 from EventLog.models import ArchivedScholarshipsReport
 from EventLog.models import AwardedScholarshipReport
+from NotificationSystem.views import send_notification_S_DECISION, send_notification_SD_AWARDER
+from NotificationSystem.models import Notification
+from Login.models import User
 #from ScholarshipAdministrator.forms import ScholarshipForm
 
 # Create your views here.
 
 def home(request):
-    return render(request,'SAhome.html',{})
+    currentUser = request.user 
+    notifications = Notification.objects.filter(recipient=request.user.pk)
+    return render(request,'SAhome.html', {'currentUser': currentUser, 'notifications': notifications})
 
 def create_scholarship(request):
     if request.method == 'POST':
@@ -216,8 +222,9 @@ def application_approval(request, application_id, scholarship_id):
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
     application_object = Application.objects.get(pk=application_id)
     # Update the status of the application to 'reviewed'
-
+    application_object.stauts = request.POST.get('approval')
     application_object.save()
+    messages.success(request, "Application status updated.")
 
     # Event Log
     AwardedScholarshipReport.objects.create(
@@ -233,11 +240,16 @@ def application_approval(request, application_id, scholarship_id):
     )
 
 
-    # student_recipient_email = application_object.student.student_info.email
-    # student_subject = "Notification: Application Has Been " + application_object.stauts
-    # student_message = "Dear " + application_object.student.student_info.First_name + ", \n\tYour application for " + application_object.scholarship.scholarship_name + " has been " + application_object.stauts + ". For further information, please login to UASAMS."
-    # send_mail(student_subject, student_message, 'madrocarlson@gmail.com', student_recipient_email)
+    if (application_object.stauts == "Approved"):
+        donor = User.objects.filter(email = scholarship_object.donor_email)
+        print(donor)
+        Student_name = application_object.student.student_info.First_name+" "+application_object.student.student_info.Last_name
+        send_notification_S_DECISION(application_object.student.student_info, "ACCEPTED", scholarship_object.scholarship_name)
 
+        #Can Be Uncommented Once Database has correctly mapped data
+        # send_notification_SD_AWARDER(donor, scholarship_object.scholarship_name,Student_name)
+    else:
+        send_notification_S_DECISION(application_object.student.student_info, "REJECTED", scholarship_object.scholarship_name)
 
 
     return render(request, "SAhome.html", {

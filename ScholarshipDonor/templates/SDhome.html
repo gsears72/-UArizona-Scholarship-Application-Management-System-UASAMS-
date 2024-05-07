@@ -40,6 +40,18 @@
     </table>
         
   </div>
+        {% if notifications %}
+        <div class="mt-4">
+            <h2>Notification Inbox</h2>
+            <ul class="list-group">
+                {% for notification in notifications %}
+                <li class="list-group-item">{{ notification.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <p class="mt-4">No notifications</p>
+        {% endif %}
 </div>
 </body>
 {% endblock %}

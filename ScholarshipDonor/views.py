@@ -10,6 +10,8 @@ from .models import Scholarship, Scholarship_change
 from Login.models import User
 from SFWEScholarships.models import Application
 from ScholarshipDonor.models import Donor
+from NotificationSystem.models import Notification
+from Login.models import User
 
 # Create your views here.
 
@@ -18,8 +20,12 @@ def home(request):
     currentUser = request.user
     donor = get_object_or_404(Donor, donor_info_id = currentUser.id)
     context = {'scholarships' : scholarships, 'donor' : donor, 'currentUser' : currentUser}
+    if User.is_authenticated:
+        notifications = Notification.objects.filter(recipient=request.user.pk)
+    else:
+        notifications = None
     return render(request,'SDhome.html',context)
-    return render(request,'SDhome.html',{'scholarships':scholarships})
+
 
 def viewMore(request, scholarship_id):
     scholarship = get_object_or_404(Scholarship, pk = scholarship_id)

@@ -34,11 +34,11 @@ def login_user(request):
                 case 'Scholarship Donor':
                     return redirect('SDhome')
                 case 'Scholarship Administrator':
-                    return redirect('scholarship_list')
+                    return redirect('SAhome')
                 case 'Applicant Reviewer':   
-                    return redirect('ViewScholarshipsAR')   
+                    return redirect('ARhome')   
                 case 'Student':
-                    return redirect('SViewScholarships')
+                    return redirect('Shome')
         else:
             messages.success(request,'There Was An Error Logging In, Please Try Again')
             return redirect('login')
