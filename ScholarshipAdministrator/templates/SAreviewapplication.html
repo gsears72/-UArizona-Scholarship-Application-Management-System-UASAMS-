@@ -1,45 +1,49 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
 {% block content %}
-<h1>Student Application</h1>
-<ul class="list-group">
-    <li class="list-group-item"><b>Name: </b>{{ application_object.student.student_info.First_name}} {{application_object.student.student_info.Last_name}}</li>
-    <li class="list-group-item"><b>GPA: </b>{{ application_object.student.gpa}}</li>
-    <li class="list-group-item"><b>Major: </b>{{ application_object.student.major}}</li>
-    <li class="list-group-item"><b>Minor: </b>/{{ application_object.student.minor}}<li>
-    <li class="list-group-item"><b>Current year: </b>{{ application_object.student.current_year}}</li>
-    <li class="list-group-item"><b>Personal statement: </b>{{ application_object.student.personal_statement}}</li>
-</ul>
-<br>
-<h1>Scholarship Requirements</h1>
-<ul class="list-group">
-  <li class="list-group-item"><b>Name: </b>{{ scholarship_object.scholarship_name}} </li>
-  <li class="list-group-item"><b>GPA Requirement: </b>{{ scholarship_object.required_gpa}}</li>
-  <li class="list-group-item"><b>Major/Minor Requirements: </b>{{ scholarship_object.required_majors_or_minors}}</li>
-  <li class="list-group-item"><b>Application Deadline: </b>{{ scholarship_object.application_deadline }}</li>
-  <li class="list-group-item"><b>Other requirements: </b>{{ scholarship_object.other_requirements}}</li>
-</ul>
-  <br>
+{% include 'SAnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
+    <h1>Student Application</h1>
+    <ul class="list-group">
+        <li class="list-group-item"><b>Name: </b>{{ application_object.student.student_info.First_name }} {{ application_object.student.student_info.Last_name }}</li>
+        <li class="list-group-item"><b>GPA: </b>{{ application_object.student.gpa }}</li>
+        <li class="list-group-item"><b>Major: </b>{{ application_object.student.major }}</li>
+        <li class="list-group-item"><b>Minor: </b>{{ application_object.student.minor }}</li>
+        <li class="list-group-item"><b>Current year: </b>{{ application_object.student.current_year }}</li>
+        <li class="list-group-item"><b>Personal statement: </b>{{ application_object.student.personal_statement }}</li>
+    </ul>
+    <br>
+    <h1>Scholarship Requirements</h1>
+    <ul class="list-group">
+        <li class="list-group-item"><b>Name: </b>{{ scholarship_object.scholarship_name }}</li>
+        <li class="list-group-item"><b>GPA Requirement: </b>{{ scholarship_object.required_gpa }}</li>
+        <li class="list-group-item"><b>Major/Minor Requirements: </b>{{ scholarship_object.required_majors_or_minors }}</li>
+        <li class="list-group-item"><b>Application Deadline: </b>{{ scholarship_object.application_deadline }}</li>
+        <li class="list-group-item"><b>Other requirements: </b>{{ scholarship_object.other_requirements }}</li>
+    </ul>
+    <br>
 
-<h1>Reviewer Scoring</h1>
-<ul class="list-group">
-    <li class="list-group-item"><b>Score (0-100): </b>{{ application_object.score }} </li>
-    <li class="list-group-item"><b>Reviewer Request: </b>{{ application_object.sr_stauts }}</li>
-</ul>
-<br>
+    <h1>Reviewer Scoring</h1>
+    <ul class="list-group">
+        <li class="list-group-item"><b>Score (0-100): </b>{{ application_object.score }}</li>
+        <li class="list-group-item"><b>Reviewer Request: </b>{{ application_object.sr_stauts }}</li>
+    </ul>
+    <br>
 
-  <h1>Final Approval/Rejection</h1>
-  <form action="{% url 'application_approval' application_object.id scholarship.id%}" method="POST">
-    {% csrf_token %}
-    <label for="approval">Approval:</label>
-    <select id="approval" name="approval" required>
-        <option value="Approved">Approve Application</option>
-        <option value="Rejected">Reject Application</option>
-    </select>
-    
-    <button type="submit">Submit</button>
-  </form>
-  <br>
-  <br>
-  <br>
-
+    <h1>Final Approval/Rejection</h1>
+    <form action="{% url 'application_approval' application_object.id scholarship_object.id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="approval" class="form-label">Approval:</label>
+            <select id="approval" name="approval" class="form-select" required>
+                <option value="Approved">Approve Application</option>
+                <option value="Rejected">Reject Application</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <br>
+    <br>
+</div>
 {% endblock %}

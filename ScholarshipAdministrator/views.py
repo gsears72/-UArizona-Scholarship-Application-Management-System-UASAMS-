@@ -207,7 +207,7 @@ def application_listy(request, scholarship_id):
 def review_application(request, application_id, scholarship_id):
     application_object = Application.objects.get(pk=application_id)
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
-    return render(request, "ReviewApplication.html", {
+    return render(request, "SAReviewApplication.html", {
         'application_object': application_object,
         'scholarship_object': scholarship_object
     })
@@ -216,8 +216,7 @@ def application_approval(request, application_id, scholarship_id):
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
     application_object = Application.objects.get(pk=application_id)
     # Update the status of the application to 'reviewed'
-    application_object.stauts = ('approval')
-    application_object.score = 100
+
     application_object.save()
 
     # Event Log
@@ -227,7 +226,6 @@ def application_approval(request, application_id, scholarship_id):
         Student_Awarded_Name = application_object.student.student_info.First_name+" "+application_object.student.student_info.Last_name,
         Student_Awarded_NetID = application_object.student.student_info.Net_ID,
         Student_Awarded_Email = application_object.student.student_info.email,
-
         Student_Awarded_Major = application_object.student.major,
         Student_Awarded_GPA = application_object.student.gpa,
         Student_Awarded_Ethnicity = application_object.student.ethnicity,
@@ -239,7 +237,10 @@ def application_approval(request, application_id, scholarship_id):
     # student_subject = "Notification: Application Has Been " + application_object.stauts
     # student_message = "Dear " + application_object.student.student_info.First_name + ", \n\tYour application for " + application_object.scholarship.scholarship_name + " has been " + application_object.stauts + ". For further information, please login to UASAMS."
     # send_mail(student_subject, student_message, 'madrocarlson@gmail.com', student_recipient_email)
-    return render(request, "SAapplicationlist.html", {
+
+
+
+    return render(request, "SAhome.html", {
         'applications': application_object,
         'scholarship_object': scholarship_object
     })

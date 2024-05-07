@@ -2,8 +2,11 @@
 
 {% block content %}
 {% include 'SAnavbar.html' %}
+
+<div class="container bg-white text-black justify-content-center align-items-center">
+
 <h1>Applicants for {{scholarship_object.scholarship_name}}</h1>
-    <form method="get" action="{% url 'application_listy' scholarship_object.id %}" class="mb-3">
+    <form method="get" action="{% url 'application_listy' scholarship.id %}" class="mb-3">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search Applicants" name="q" value="{{ request.GET.q }}">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
@@ -19,6 +22,7 @@
             <th>Minor</th>
             <th>Current Year</th>
             <th>Initial Review Status</th>
+            <th>Score</th>
             <th> </th>
           </tr>
         </thead>
@@ -33,6 +37,7 @@
                   <td>{{ object.student.minor }}</td>
                   <td>{{ object.student.current_year}}</td>
                   <td>{{ object.sr_status}}</td>
+                  <td>{{ object.score}}</td>
                   <td>
                       <a class="btn btn-success" href="{% url 'review_application' object.pk object.scholarship.id%}" role="button">Review Application</a>
                       </td>
@@ -41,4 +46,5 @@
         {% endfor %}    
       </table>
   </div>
+</div>
 {% endblock %}

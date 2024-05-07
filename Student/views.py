@@ -10,6 +10,7 @@ from SFWEScholarships.forms import ApplicationForm
 from .forms import UploadFileForm
 from Student.forms import StudentForm
 from Student.forms import UserForm
+from EventLog.models import ScholarshipApplicationReport
 # Create your views here.
 
 def home(request):
@@ -69,6 +70,7 @@ def createApplication(request, scholarship_id):
             scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
             resume = request.FILES.get('file')  # Assuming 'file' is the field name for resume upload
             application = Application(student=student, scholarship=scholarship, personal_statement=personal_statement, resume=resume)
+            ScholarshipApplicationReport.objects.create(Scholarship_Name=scholarship.scholarship_name, Applicant_Name=student.student_info.First_name + " " + student.student_info.Last_name, Applicant_Pronouns=student.preferred_pronoun, Applicant_NetID=student.student_info.Net_ID, Applicant_Major=student.major, Applicant_GPA=student.gpa, Applicant_Year=student.current_year,Applicant_Ethnicity = student.ethnicity, Applicant_Personal_Statement=personal_statement)
             application.save()
             messages.success(request, "Application created successfully.")
         else:
