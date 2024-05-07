@@ -3,6 +3,7 @@
 {% block content %}
 {% include 'SNavbar.html' %}
 <section>
+<div class="container bg-white text-black justify-content-center align-items-center">
     <h2>Edit {{ currentUser.First_name }} {{ currentUser.Last_name }}'s Profile</h2>
     <form action="" method="post" class="form">
         {% csrf_token %}
@@ -49,5 +50,6 @@
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="{% url 'SViewProfile' %}" class = "btn btn-danger">Cancel</a>
     </form>
+</div>
 </section>
 {% endblock %}

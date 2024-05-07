@@ -61,31 +61,19 @@ def ViewEligableScholarships(request):
 
 def createApplication(request, scholarship_id):
     if request.method == 'POST':
-        personal_statement = request.POST.get('personal_statement')
-        currentUser = request.user #gets current logged in user
-        student = get_object_or_404(Student, student_info_id = currentUser.id)
-        scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
         form = UploadFileForm(request.POST, request.FILES)
-        title = request.POST.get('file')
-        print("1")
         if form.is_valid():
-
-            application = Application(
-                student = student,
-                scholarship = scholarship,
-                personal_statement = personal_statement,
-                resume = title,
-            )
-            print("2")
+            personal_statement = request.POST.get('personal_statement')
+            currentUser = request.user
+            student = get_object_or_404(Student, student_info_id=currentUser.id)
+            scholarship = get_object_or_404(Scholarship, pk=scholarship_id)
+            resume = request.FILES.get('file')  # Assuming 'file' is the field name for resume upload
+            application = Application(student=student, scholarship=scholarship, personal_statement=personal_statement, resume=resume)
             application.save()
             messages.success(request, "Application created successfully.")
         else:
-            print("3")
-            messages.success(request, "Application failed to upload resume.")
-        return redirect('SViewScholarships')
-    else:
-        print("4")
-        return redirect('SViewScholarships')
+            messages.error(request, "Application failed to upload. Please check your input.")
+    return redirect('SViewScholarships')
 
 
 def editProfile(request):

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ScholarshipAdministrator.apps.ScholarshipadministratorConfig',
     'ApplicantReviewer.apps.ApplicantreviewerConfig',
     'Student.apps.StudentConfig',
+    'EventLog.apps.EventlogConfig',
 
 ]
 

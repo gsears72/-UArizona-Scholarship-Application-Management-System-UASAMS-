@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from EventLog.views import generate_StudentDemographicsReport, generate_AvailableScholarshipsReport, generate_ArchivedScholarshipsReport, generate_ScholarshipApplicationReport, generate_AwardedScholarshipReport, generate_ActiveDonorsReport
 
 urlpatterns = [
     path('', views.home, name='SAhome'),
@@ -15,6 +16,15 @@ urlpatterns = [
     path('approveChangeRequest/<int:change_id>/', views.approveChangeRequest, name='approveChangeRequest'),
     path('edit-scholarship-db/<str:scholarship_name>/', views.edit_scholarship, name='edit_scholarship_db'),
     path('application-list/<int:scholarship_id>/', views.application_listy, name = 'application_listy'),
-    path('review-application<int:application_id>/<int:scholarship_id>', views.review_application, name = 'review_application'),
-    path('application-approval<int:application_id>/', views.application_approval, name = 'application_approval'),
+    path('review-application/<int:application_id>/<int:scholarship_id>/', views.review_application, name = 'review_application'),
+    path('application-approval/<int:application_id>/<int:scholarship_id>/', views.application_approval, name = 'application_approval'),
+
+
+    path('Reports', views.Reports, name='Reports'),
+    path('generate_StudentDemographicsReport/', generate_StudentDemographicsReport, name='generate_StudentDemographicsReport'),
+    path('generate_AvailableScholarshipsReport/', generate_AvailableScholarshipsReport, name='generate_AvailableScholarshipsReport'),
+    path('generate_ArchivedScholarshipsReport/', generate_ArchivedScholarshipsReport, name='generate_ArchivedScholarshipsReport'),
+    path('generate_ScholarshipApplicationReport/', generate_ScholarshipApplicationReport, name='generate_ScholarshipApplicationReport'),
+    path('generate_AwardedScholarshipReport/', generate_AwardedScholarshipReport, name='generate_AwardedScholarshipReport'),
+    path('generate_ActiveDonorsReport/', generate_ActiveDonorsReport, name='generate_ActiveDonorsReport'),
 ]

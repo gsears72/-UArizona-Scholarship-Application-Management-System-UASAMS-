@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'SAnavbar.html' %}
+<div class="m-2 p-2 container-fluid bg-white text-black">
+    </div>
+        <div class="container">
+            <h3>Generat Reports</h3>
+            <hr>
+            <div class="row">
+              <div class="col">
+                Scholarships:
+                <br>
+                <a href="{% url 'generate_AvailableScholarshipsReport' %}" class="link-primary">Available Scholarships Report</a>
+                <br>
+                <a href="{% url 'generate_ArchivedScholarshipsReport' %}" class="link-primary">Archived Scholarships Report</a>
+                <br>
+                <a href="{% url 'generate_ScholarshipApplicationReport' %}" class="link-primary">Scholarship Application Report</a>
+                <br>
+                <a href="{% url 'generate_AwardedScholarshipReport' %}" class="link-primary">Awarded Scholarship Report
+                </a>
+                <br>
+              </div>
+              <div class="col">
+                Students:
+                <br>
+                <a href="{% url 'generate_StudentDemographicsReport' %}" class="link-primary">Student Demographics Report</a>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="col">
+                Donors:
+                <br>
+                <a href="{% url 'generate_ActiveDonorsReport' %}" class="link-primary">Active Donors Report</a>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

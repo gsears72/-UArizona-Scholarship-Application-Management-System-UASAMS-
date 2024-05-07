@@ -2,6 +2,7 @@
 
 {% block content %}
 {% include 'ARnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
 <h1>All Applicants</h1>
     <form method="get" action="{% url 'application_list' %}" class="mb-3">
         <div class="input-group mb-3">
@@ -41,4 +42,5 @@
         {% endfor %}    
       </table>
   </div>
+</div>
 {% endblock %}

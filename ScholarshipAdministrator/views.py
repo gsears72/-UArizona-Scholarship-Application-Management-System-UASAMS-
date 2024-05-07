@@ -9,6 +9,9 @@ from ScholarshipDonor.models import Scholarship_change
 from SFWEScholarships.models import Application
 from Login.models import User
 from Student.models import Student
+from EventLog.models import AvailableScholarshipsReport
+from EventLog.models import ArchivedScholarshipsReport
+from EventLog.models import AwardedScholarshipReport
 #from ScholarshipAdministrator.forms import ScholarshipForm
 
 # Create your views here.
@@ -21,6 +24,18 @@ def create_scholarship(request):
             form = ScholarshipForm(request.POST)
             if form.is_valid():
                 form.save()
+                AvailableScholarshipsReport.objects.create(
+                    Scholarship_name = form.cleaned_data['scholarship_name'],
+                    Scholarship_Amount = form.cleaned_data['scholarship_amount'],
+                    Scholarship_Donor_name = form.cleaned_data['donor_full_name'],
+                    Scholarship_Donor_email = form.cleaned_data['donor_email'],
+                    Scholarship_Donor_phone = form.cleaned_data['donor_phone_number'],
+                    Scholarships_Avaliable = form.cleaned_data['num_scholarships_available'],
+                    Scholarships_Majors_Minors = form.cleaned_data['required_majors_or_minors'],
+                    Scholarships_GPA = form.cleaned_data['required_gpa'],
+                    Scholarships_Deadline = form.cleaned_data['application_deadline'],
+                    Scholarships_Description = form.cleaned_data['other_requirements']
+                )
                 return redirect('SAhome')  # Adjust the redirect to your needs
     else:
         form = ScholarshipForm()
@@ -41,10 +56,23 @@ def scholarship_list(request):
 
 def edit_scholarship(request, scholarship_name):
     scholarship = get_object_or_404(Scholarship, scholarship_name=scholarship_name)
+    Log_available = AvailableScholarshipsReport.objects.get(Scholarship_name=scholarship_name)
     if request.method == 'POST':
         form = ScholarshipForm(request.POST, instance=scholarship)
         if form.is_valid():
             form.save()
+            
+            Log_available.Scholarship_name = form.cleaned_data['scholarship_name']
+            Log_available.Scholarship_Amount = form.cleaned_data['scholarship_amount']
+            Log_available.Scholarship_Donor_name = form.cleaned_data['donor_full_name']
+            Log_available.Scholarship_Donor_email = form.cleaned_data['donor_email']
+            Log_available.Scholarship_Donor_phone = form.cleaned_data['donor_phone_number']
+            Log_available.Scholarships_Avaliable = form.cleaned_data['num_scholarships_available']
+            Log_available.Scholarships_Majors_Minors = form.cleaned_data['required_majors_or_minors']
+            Log_available.Scholarships_GPA = form.cleaned_data['required_gpa']
+            Log_available.Scholarships_Deadline = form.cleaned_data['application_deadline']
+            Log_available.Scholarships_Description = form.cleaned_data['other_requirements']
+            Log_available.save()
             return redirect('scholarship_list')
     else:
         form = ScholarshipForm(instance=scholarship)
@@ -56,6 +84,19 @@ def delete_scholarship_page(request, scholarship_name):
 
 def delete_scholarship_db(request, scholarship_name):
     scholarship = Scholarship.objects.get(scholarship_name=scholarship_name)
+    ArchivedScholarshipsReport.objects.create(
+        Scholarship_name = scholarship.scholarship_name,
+        Scholarship_Amount = scholarship.scholarship_amount,
+        Scholarship_Donor_name = scholarship.donor_full_name,
+        Scholarship_Donor_email = scholarship.donor_email,
+        Scholarship_Donor_phone = scholarship.donor_phone_number,
+        Scholarships_Avaliable = scholarship.num_scholarships_available,
+        Scholarships_Majors_Minors = scholarship.required_majors_or_minors,
+        Scholarships_GPA = scholarship.required_gpa,
+        Scholarships_Deadline = scholarship.application_deadline,
+        Scholarships_Description = scholarship.other_requirements
+    )
+    AvailableScholarshipsReport.objects.get(Scholarship_name=scholarship_name).delete()
     scholarship.delete()
     return render(request, 'SAscholarshipdeleted.html', {})
 
@@ -73,6 +114,7 @@ def denyChangeRequest(request, change_id):
 def approveChangeRequest(request, change_id):
     changeRequest = get_object_or_404(Scholarship_change, pk=change_id)
     scholarship = get_object_or_404(Scholarship, pk=changeRequest.Scholarship_to_change)
+    Log_available = AvailableScholarshipsReport.objects.get(Scholarship_name=scholarship_name)
     if request.method == "POST":
         scholarship.scholarship_name = changeRequest.scholarship_name
         scholarship.scholarship_amount = changeRequest.scholarship_amount
@@ -85,6 +127,19 @@ def approveChangeRequest(request, change_id):
         scholarship.required_majors_or_minors = changeRequest.required_majors_or_minors 
         scholarship.other_requirements = changeRequest.other_requirements
         scholarship.save()
+
+        Log_available.Scholarship_name = changeRequest.scholarship_name
+        Log_available.Scholarship_Amount = changeRequest.scholarship_amount
+        Log_available.Scholarship_Donor_name = changeRequest.donor_full_name
+        Log_available.Scholarship_Donor_email = changeRequest.donor_email
+        Log_available.Scholarship_Donor_phone = changeRequest.donor_phone_number
+        Log_available.Scholarships_Avaliable = changeRequest.num_scholarships_available
+        Log_available.Scholarships_Majors_Minors = changeRequest.required_majors_or_minors
+        Log_available.Scholarships_GPA = changeRequest.required_gpa
+        Log_available.Scholarships_Deadline = changeRequest.application_deadline
+        Log_available.Scholarships_Description = changeRequest.other_requirements
+        Log_available.save()
+
         changeRequest.delete()
         messages.success(request, "Change request approved.")
         return redirect('viewChangeRequest')
@@ -135,35 +190,59 @@ def review_scholarship_list(request):
     return render(request, 'ViewScholarshipsAR.html', {'applications_object': applications_object})
 
 def application_listy(request, scholarship_id):
-    scholarship_object = Scholarship.objects.get(id=scholarship_id)
+    scholarship = get_object_or_404(Scholarship, id=scholarship_id)
     query = request.GET.get('q', '')  # Get the search query from 'q' parameter, default to empty string
+    
+    applications = Application.objects.filter(scholarship_id=scholarship_id)
+    
     if query:
-        user = User.objects.get(First_name__icontains=query)
-        curr_student = Student.objects.get(student_info=user)
-        applications_object = Application.objects.filter(
-            student=curr_student,
-            scholarship__id=scholarship_id
-        ) 
-    else:
-        # Retrieve all applications for the specified scholarship
-        applications_object = Application.objects.filter(scholarship__id=scholarship_id)
-
-    return render(request, "SAapplicationlist.html", {'applications_object': applications_object}, {'scholarship_object': scholarship_object})
+        # Filter applications based on the student's first name
+        applications = applications.filter(student__student_info__First_name__icontains=query)
+    
+    return render(request, "SAapplicationlist.html", {
+        'applications': applications,
+        'scholarship': scholarship,
+    })
 
 def review_application(request, application_id, scholarship_id):
     application_object = Application.objects.get(pk=application_id)
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
-    return render(request, "SAreviewapplication.html", {'application_object': application_object}, {'scholarship_object': scholarship_object})
+    return render(request, "ReviewApplication.html", {
+        'application_object': application_object,
+        'scholarship_object': scholarship_object
+    })
 
 def application_approval(request, application_id, scholarship_id):
     scholarship_object = Scholarship.objects.get(id=scholarship_id)
     application_object = Application.objects.get(pk=application_id)
     # Update the status of the application to 'reviewed'
     application_object.stauts = ('approval')
+    application_object.score = 100
     application_object.save()
+
+    # Event Log
+    AwardedScholarshipReport.objects.create(
+        Scholarship_Name = scholarship_object.scholarship_name,
+        Scholarship_Amount = scholarship_object.scholarship_amount,
+        Student_Awarded_Name = application_object.student.student_info.First_name+" "+application_object.student.student_info.Last_name,
+        Student_Awarded_NetID = application_object.student.student_info.Net_ID,
+        Student_Awarded_Email = application_object.student.student_info.email,
+
+        Student_Awarded_Major = application_object.student.major,
+        Student_Awarded_GPA = application_object.student.gpa,
+        Student_Awarded_Ethnicity = application_object.student.ethnicity,
+        
+    )
+
 
     # student_recipient_email = application_object.student.student_info.email
     # student_subject = "Notification: Application Has Been " + application_object.stauts
     # student_message = "Dear " + application_object.student.student_info.First_name + ", \n\tYour application for " + application_object.scholarship.scholarship_name + " has been " + application_object.stauts + ". For further information, please login to UASAMS."
     # send_mail(student_subject, student_message, 'madrocarlson@gmail.com', student_recipient_email)
-    return render(request, "SAapplicationlist.html", {'applications': application_object}, {'scholarship_object': scholarship_object})
+    return render(request, "SAapplicationlist.html", {
+        'applications': application_object,
+        'scholarship_object': scholarship_object
+    })
+
+def Reports(request):
+    return render(request, 'SAreports.html', {})

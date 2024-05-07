@@ -2,8 +2,9 @@
 
 {% block content %}
 {% include 'SNavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
 <h1>{{scholarship.scholarship_name}}</h1>
-<a class="btn btn-danger" href="{% url 'applicationForm' scholarship.id %}" role="button">Apply</a>
+
 <div class="row">
     <div class="col-sm-6" style="background-color:white;">
         <h4>Scholarship Amount</h4>
@@ -21,6 +22,8 @@
         <h4>Other Requirements</h4>
         <p>{{scholarship.other_requirements}}</p>
     </div>
+    <a class="btn btn-primary" href="{% url 'applicationForm' scholarship.id %}" role="button">Apply</a>
+</div>
 </div>
 
 

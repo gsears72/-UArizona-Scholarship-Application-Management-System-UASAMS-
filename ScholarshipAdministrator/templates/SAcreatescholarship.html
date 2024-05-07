@@ -3,6 +3,7 @@
 {% block content %}
 {% include 'SAnavbar.html' %}
 <section>
+<div class="container bg-white text-black justify-content-center align-items-center">    
     <h2>Create Scholarship</h2>
     <form action="" method="post" class="form">
         {% csrf_token %}
@@ -21,5 +22,6 @@
         <button type="submit" class="btn btn-primary">Create Scholarship</button>
         <a href="{% url 'scholarship_list' %}" class = "btn btn-info">Return Home</a>
     </form>
+</div>
 </section>
 {% endblock %}

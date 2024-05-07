@@ -2,6 +2,7 @@
 
 {% block content %}
 {% include 'SAnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
     <h1>Delete Scholarship</h1>
 
     <p>Are you sure you want to delete the scholarship "{{ scholarship.scholarship_name }}"?</p>
@@ -12,4 +13,5 @@
     </form>
 
     <a href="{% url 'scholarship_list' %}" class="btn btn-secondary">Cancel</a>
+</div>
 {% endblock %}

@@ -5,6 +5,8 @@ from Student.models import Student
 from ScholarshipAdministrator.models import scholarshipAdministrator
 from ScholarshipDonor.models import Donor
 from ApplicantReviewer.models import applicantReviewer
+from EventLog.models import StudentDemographicsReport
+from EventLog.models import ActiveDonorsReport
 
 
 from .forms import CreateStudentForm, CreateScholorshipAdministratorForm, CreateScholorshipDonorForm, CreateApplicantReviewerForm
@@ -75,15 +77,15 @@ def studentRegister(request):
     """
     form = CreateStudentForm()
     if request.method == 'POST':
-         form = CreateStudentForm(request.POST)
-         if form.is_valid():
-             form.save()
-             email = form.cleaned_data.get('email')
-             raw_password = form.cleaned_data.get('password1')
-             user = authenticate(email=email, password=raw_password)
-             login(request, user)
-             messages.success(request,'Account Created')
-             Student.objects.create(student_info=user,
+        form = CreateStudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            messages.success(request,'Account Created')
+            Student.objects.create(student_info=user,
                                     preferred_pronoun = form.cleaned_data.get('Preferred_Pronoun'),
                                     major = form.cleaned_data.get('Major'),
                                     minor = form.cleaned_data.get('Minor'),
@@ -92,8 +94,19 @@ def studentRegister(request):
                                     ethnicity = form.cleaned_data.get('Ethnicity'),
                                     personal_statement_essay = form.cleaned_data.get('Personal_Statement'),
                                     work_experience = form.cleaned_data.get('Work_Experience'))
-             return redirect("home")
-         else:
+            StudentDemographicsReport.objects.create(
+            Student_Name = form.cleaned_data.get('First_name') + ' ' + form.cleaned_data.get('Last_name'),
+            Student_Pronouns = form.cleaned_data.get('Preferred_Pronoun'),
+            Student_NetID = form.cleaned_data.get('Net_ID'),
+            Student_Major = form.cleaned_data.get('Major'),             Student_GPA = form.cleaned_data.get('GPA'),
+            Student_Year = form.cleaned_data.get('Current_Year'),
+            Student_Ethnicity = form.cleaned_data.get('Ethnicity'),
+            Student_Personal_Statement = form.cleaned_data.get('Personal_Statement')
+            )
+
+
+            return redirect("home")
+        else:
                 context = {'form': form}
                 return render(request,'authenticate/student_register.html',context)
     else:
@@ -158,7 +171,14 @@ def scholorshipdonorregisterRegister(request):
             user = authenticate(email=email, password=raw_password)
             login(request, user)
             messages.success(request,'Account Created')
-            Donor.objects.create(donor_info=user) 
+            Donor.objects.create(donor_info=user)
+            ActiveDonorsReport.objects.create(
+                Donor_Name = form.cleaned_data.get('First_name') + ' ' + form.cleaned_data.get('Last_name'),
+                Donor_Email = form.cleaned_data.get('email'),
+                Donor_Phone = form.cleaned_data.get('Phone_number'),
+                Donor_Amount = 0,
+                Donor_Scholarships =0,
+            ) 
             return redirect("home")
         else:
                 context = {'form': form}
@@ -184,17 +204,18 @@ def applicantreviewerRegister(request):
     """
     form = CreateApplicantReviewerForm()
     if request.method == 'POST':
-         form = CreateApplicantReviewerForm(request.POST)
-         if form.is_valid():
+        form = CreateApplicantReviewerForm(request.POST)
+        if form.is_valid():
             form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(email=email, password=raw_password)
             login(request, user)
             messages.success(request,'Account Created')
-            applicantReviewer.objects.create(applicantReviewer_info=user) 
+            applicantReviewer.objects.create(applicantReviewer_info=user)
+
             return redirect("home")
-         else:
+        else:
             context = {'form': form}
             return render(request,'authenticate/applicant_reviewer_register.html',context)
     else:

@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% block content %}
 {% include 'SDnavbar.html' %}
+<div class="container bg-white text-black justify-content-center align-items-center">
 <h1>Student Application</h1>
 <ul class="list-group">
     <li class="list-group-item"><b>Name: </b>{{ application_object.student.student_info.First_name}} {{application_object.student.student_info.Last_name}}</li>
@@ -39,5 +40,6 @@
   <br>
   <br>
   <br>
+</div>
 
 {% endblock %}
