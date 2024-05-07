@@ -14,7 +14,7 @@ run_test:
   stage: test
   image: python:3.12.1-bookworm
   before_script:
-    - python -m pip install -r requirements.txt
+    - python -m pip install -r requirments.txt
   script:
     - python manage.py test
 
